@@ -432,7 +432,7 @@ class Client
     /**
      * Refunds a payment by transaction ID.
      *
-     * @see https://paytrailfinland.github.io/psp-api/#/?id=refund
+     * @see https://paytrail.github.io/api-documentation/#/?id=refund
      *
      * @param RefundRequest $refund A refund instance.
      * @param string $transactionID The transaction id.
@@ -477,7 +477,7 @@ class Client
     /**
      * Refunds a payment by transaction ID as an email refund.
      *
-     * @see https://paytrailfinland.github.io/psp-api/#/?id=email-refund
+     * @see https://paytrail.github.io/api-documentation/#/?id=email-refund
      *
      * @param EmailRefundRequest $refund An email refund instance.
      * @param string $transactionID The transaction id.
