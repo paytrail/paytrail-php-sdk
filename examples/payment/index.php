@@ -12,13 +12,13 @@ require 'vendor/autoload.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Checkout Finland Payment Service Example</title>
+    <title>Paytrail Payment Service Example</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style> div {max-width: 1000px;}</style>
 </head>
 <body>
     <div class="container-fluid">
-        <h1>Checkout Finland Payment Service Example</h1>
+        <h1>Paytrail Payment Service Example</h1>
 
         <form method="post" action="index.php">
             <fieldset>
