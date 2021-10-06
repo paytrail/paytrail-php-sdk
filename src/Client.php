@@ -156,7 +156,7 @@ class Client
      * @type LoggerInterface $logger A PSR-3 logger instance. See: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
      * @type string $message_format The format for logger messages. See: https://github.com/guzzle/guzzle/blob/master/src/MessageFormatter.php#L9
      */
-    public function __construct(int $merchantId, string $secretKey, string $cofPluginVersion, $args = [])
+    public function __construct(int $merchantId, string $secretKey, string $platformName, $args = [])
     {
         $this->setMerchantId($merchantId);
         $this->setSecretKey($secretKey);
