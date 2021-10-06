@@ -281,7 +281,7 @@ class Client
     /**
      * Returns an array of following grouped payment providers fields:
      * terms: Localized text with a link to the terms of payment.
-     * groups: Array of payment method group data (id, name, icon, providers)
+     * groups: Array of payment method group data (id, name, icon, svg, providers)
      *
      * @param int $amount Purchase amount in currency's minor unit.
      * @param string $locale
@@ -334,7 +334,8 @@ class Client
             return [
                 'id' => $group_data->id,
                 'name' => $group_data->name,
-                'icon' => $group_data->svg,
+                'icon' => $group_data->icon,
+                'svg' => $group_data->svg,
                 'providers' => array_map(function ($provider_data) {
                     return (new Provider())->bindProperties($provider_data);
                 }, $group_data->providers),
