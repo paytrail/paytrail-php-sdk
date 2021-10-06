@@ -41,7 +41,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
         $props = get_object_vars($this);
 
         $supportedLanguages = ['FI', 'SV', 'EN'];
-         $supportedCurrencies = ['EUR'];
+        $supportedCurrencies = ['EUR'];
 
         if (empty($props['items'])) {
             throw new ValidationException('Items is empty');

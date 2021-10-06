@@ -359,7 +359,6 @@ class Item implements \JsonSerializable, ItemInterface
         return $this;
     }
 
-
     /**
      * Validates with Respect\Validation library and throws an exception for invalid objects
      *
@@ -388,4 +387,20 @@ class Item implements \JsonSerializable, ItemInterface
 
         return true;
     }
+
+     /**
+      * Validates shop-in-shop props with Respect\Validation library and throws an exception for invalid objects
+      *
+      * @throws ValidationException
+      */
+     public function validateShopInShop()
+     {
+         $props = get_object_vars($this);
+
+         if (empty($props['merchant'])) {
+             throw new ValidationException('merchant is empty');
+         }
+
+         return true;
+     }
 }

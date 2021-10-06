@@ -6,6 +6,7 @@ use Paytrail\SDK\Exception\HmacException;
 use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Model\Address;
 use Paytrail\SDK\Model\CallbackUrl;
+use Paytrail\SDK\Model\Commission;
 use Paytrail\SDK\Model\Customer;
 use Paytrail\SDK\Model\Item;
 use Paytrail\SDK\Request\AddCardFormRequest;
@@ -13,6 +14,7 @@ use Paytrail\SDK\Request\CitPaymentRequest;
 use Paytrail\SDK\Request\GetTokenRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
+use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 use Paytrail\SDK\Request\PaymentStatusRequest;
 use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
 use PHPUnit\Framework\TestCase;
@@ -22,6 +24,12 @@ class ClientTest extends TestCase
     const SECRET = 'SAIPPUAKAUPPIAS';
 
     const MERCHANT_ID = 375917;
+
+    const SHOP_IN_SHOP_SECRET = 'MONISAIPPUAKAUPPIAS';
+
+    const SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID = 695861;
+
+    const SHOP_IN_SHOP_SUB_MERCHANT_ID = 695874;
 
     const COF_PLUGIN_VERSION = 'phpunit-test';
 
@@ -42,6 +50,8 @@ class ClientTest extends TestCase
     protected $address;
 
     protected $paymentRequest;
+    
+    protected $shopInShopPaymentRequest;
 
     protected $citPaymentRequest;
 
@@ -72,6 +82,22 @@ class ClientTest extends TestCase
             ->setUnits(2)
             ->setDescription('some description2')
             ->setUnitPrice(200);
+        
+        $this->shopInShopItem = clone $this->item;
+        $this->shopInShopItem->setMerchant(self::SHOP_IN_SHOP_SUB_MERCHANT_ID);
+        $this->shopInShopItem->setCommission(
+            (new Commission())
+            ->setAmount(10)
+            ->setMerchant(self::SHOP_IN_SHOP_SUB_MERCHANT_ID)
+        );
+
+        $this->shopInShopItem2 = clone $this->item2;
+        $this->shopInShopItem2->setMerchant(self::SHOP_IN_SHOP_SUB_MERCHANT_ID);
+        $this->shopInShopItem2->setCommission(
+            (new Commission())
+            ->setAmount(5)
+            ->setMerchant(self::SHOP_IN_SHOP_SUB_MERCHANT_ID)
+        );
 
         $this->redirect = (new CallbackUrl())
             ->setCancel('https://somedomain.com/cancel')
@@ -103,6 +129,19 @@ class ClientTest extends TestCase
             ->setDeliveryAddress($this->address)
             ->setInvoicingAddress($this->address);
 
+        $this->shopInShopPaymentRequest = (new ShopInShopPaymentRequest())
+             ->setCustomer($this->customer)
+             ->setRedirectUrls($this->redirect)
+             ->setCallbackUrls($this->callback)
+             ->setItems([$this->shopInShopItem, $this->shopInShopItem2])
+             ->setAmount(500)
+             ->setStamp('PaymentRequestStamp' . rand(1, 999999))
+             ->setReference('PaymentRequestReference' . rand(1, 999999))
+             ->setCurrency('EUR')
+             ->setLanguage('EN')
+             ->setDeliveryAddress($this->address)
+             ->setInvoicingAddress($this->address);
+        
         $this->citPaymentRequest = (new CitPaymentRequest())
             ->setCustomer($this->customer)
             ->setRedirectUrls($this->redirect)
@@ -165,6 +204,51 @@ class ClientTest extends TestCase
         $psr->setTransactionId($transactionId);
 
         $client = new Client(self::MERCHANT_ID, self::SECRET, self::COF_PLUGIN_VERSION);
+
+        try {
+            $res = $client->getPaymentStatus($psr);
+            $this->assertEquals('new', $res->getStatus());
+            $this->assertEquals($res->getTransactionId(), $transactionId);
+        } catch (HmacException $e) {
+            var_dump('hmac error');
+        } catch (ValidationException $e) {
+            var_dump('validation error');
+        }
+    }
+
+    public function testShopInShopPaymentRequest()
+    {
+        $client = new Client(self::SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID, self::SHOP_IN_SHOP_SECRET, self::COF_PLUGIN_VERSION);
+        $paymentRequest = $this->shopInShopPaymentRequest;
+
+        $transactionId = '';
+
+        if ($paymentRequest->validate()) {
+            try {
+                $response = $client->createShopInShopPayment($paymentRequest);
+
+                $this->assertObjectHasAttribute('transactionId', $response);
+                $this->assertObjectHasAttribute('href', $response);
+                $this->assertObjectHasAttribute('providers', $response);
+                $this->assertIsArray($response->getProviders());
+
+                $transactionId = $response->getTransactionId();
+
+            } catch (HmacException $e) {
+                var_dump($e->getMessage());
+            } catch (ValidationException $e) {
+                var_dump($e->getMessage());
+            } catch (RequestException $e) {
+                var_dump(json_decode($e->getResponse()->getBody()));
+            }
+
+        } else {
+            echo 'ShopInShopPaymentRequest is not valid';
+        }
+
+        // Test payment status request with the transactionId we got from the PaymentRequest
+        $psr = new PaymentStatusRequest();
+        $psr->setTransactionId($transactionId);
 
         try {
             $res = $client->getPaymentStatus($psr);
