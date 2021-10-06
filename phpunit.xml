@@ -3,7 +3,7 @@
         colors="true"
         stopOnFailure="false">
     <testsuites>
-        <testsuite name="OP-SDK testsuite">
+        <testsuite name="Paytrail PHP-SDK testsuite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
