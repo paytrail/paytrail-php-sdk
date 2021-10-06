@@ -107,28 +107,28 @@ class Client
     protected $secretKey;
 
     /**
-     * Plugin version for the API.
+     * Platform name for the API.
      *
      * @var string
      */
-    protected $cofPluginVersion;
+    protected $platformName;
 
     /**
-     * @param string $cofPluginVersion
+     * @param string $platformName
      * @return Client
      */
-    public function setCofPluginVersion(string $cofPluginVersion): Client
+    public function setPlatformName(string $platformName): Client
     {
-        $this->cofPluginVersion = $cofPluginVersion;
+        $this->platformName = $platformName;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCofPluginVersion(): string
+    public function getPlatformName(): string
     {
-        return $this->cofPluginVersion;
+        return $this->platformName;
     }
 
 
@@ -149,7 +149,7 @@ class Client
      *
      * @param int $merchantId The merchant.
      * @param string $secretKey The secret key.
-     * @param string $cofPluginVersion Plugin version.
+     * @param string $platformName Platform name.
      * @param array $args Optional. Array of additional arguments.
      *
      * @type float $timeout A timeout value in seconds for the GuzzleHTTP client.
@@ -160,7 +160,7 @@ class Client
     {
         $this->setMerchantId($merchantId);
         $this->setSecretKey($secretKey);
-        $this->setCofPluginVersion($cofPluginVersion);
+        $this->setPlatformName($platformName);
 
         $stack = $this->createLoggerStack($args);
 
@@ -218,7 +218,7 @@ class Client
             'paytrail-method' => strtoupper($method),
             'paytrail-nonce' => uniqid(true),
             'paytrail-timestamp' => $datetime->format('Y-m-d\TH:i:s.u\Z'),
-            'platform-name' => $this->cofPluginVersion,
+            'platform-name' => $this->platformName,
             'content-type' => 'application/json; charset=utf-8',
         ];
 
