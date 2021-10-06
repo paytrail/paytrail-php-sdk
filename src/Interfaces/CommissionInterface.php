@@ -14,7 +14,7 @@ use Paytrail\SDK\Exception\ValidationException;
  *
  * @package Paytrail\SDK
  */
-interface ComissionInterface
+interface CommissionInterface
 {
 
 }
