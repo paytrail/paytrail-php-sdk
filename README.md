@@ -70,3 +70,7 @@ Some of the key features are:
 - [Creating Add card form request](https://paytrail.github.io/api-documentation/#/?id=adding-tokenizing-cards)
 - [Creating Get token request](https://paytrail.github.io/api-documentation/#/?id=get-token)
 - [Creating Customer Initiated Transactions (CIT) or Merchant Initiated Transactions (MIT) payment requests](https://checkoutfinland.github.io/psp-api/#/?id=charging-a-token)
+
+### Shop-in-Shop
+
+- Creating Shop-in-Shop payment request
