@@ -3,7 +3,7 @@ PHP Software Development Kit for [Paytrail](https://www.paytrail.com) payment se
 
 ## Paytrail Payment Service
 
-Paytrail payment service is a payment gateway that offers 20+ payment methods for Finnish customers.
+Paytrail is a payment gateway that offers 20+ payment methods for Finnish customers.
 
 The payment gateway provides all the popular payment methods with one simple integration. The provided payment methods include, but are not limited to, credit cards, online banking and mobile payments.
 
