@@ -6,7 +6,7 @@
 namespace Paytrail\SDK\Model;
 
 use Paytrail\SDK\Exception\ValidationException;
-use Paytrail\SDK\Interfaces\ComissionInterface;
+use Paytrail\SDK\Interfaces\CommissionInterface;
 use Paytrail\SDK\Interfaces\ItemInterface;
 use Paytrail\SDK\Util\JsonSerializable;
 
@@ -102,7 +102,7 @@ class Item implements \JsonSerializable, ItemInterface
      * Shop-in-Shop commission.
      * Do not use for normal payments.
      *
-     * @var ComissionInterface
+     * @var CommissionInterface
      */
     protected $commission;
 
@@ -339,9 +339,9 @@ class Item implements \JsonSerializable, ItemInterface
     /**
      * Get the commission.
      *
-     * @return ComissionInterface
+     * @return CommissionInterface
      */
-    public function getCommission(): ?ComissionInterface
+    public function getCommission(): ?CommissionInterface
     {
         return $this->commission;
     }
@@ -349,10 +349,10 @@ class Item implements \JsonSerializable, ItemInterface
     /**
      * Set the commission.
      *
-     * @param ComissionInterface $commission
+     * @param CommissionInterface $commission
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setCommission(?ComissionInterface $commission) : ItemInterface
+    public function setCommission(?CommissionInterface $commission) : ItemInterface
     {
         $this->commission = $commission;
 
