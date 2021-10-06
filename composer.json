@@ -1,0 +1,76 @@
+{
+    "name": "paytrail/paytrail-php-sdk",
+    "description": "PHP SDK for using Paytrail payment service",
+    "authors": [
+        {
+            "name": "Miika Arponen",
+            "email": "miika.arponen@geniem.com",
+            "homepage": "http://github.com/nomafin",
+            "role": "Developer"
+        },
+        {
+            "name": "Ville Siltala",
+            "email": "ville.siltala@geniem.com",
+            "homepage": "http://github.com/villesiltala",
+            "role": "Developer"
+        },
+        {
+            "name": "Henryk Helsky",
+            "email": "henryk.helsky@geniem.com",
+            "homepage": "https://github.com/traone",
+            "role": "Developer"
+        },
+        {
+            "name": "Joonas Loueranta",
+            "email": "joonas.loueranta@op.fi",
+            "homepage": "https://github.com/loueranta",
+            "role": "Manager"
+        },
+        {
+            "name": "Ville Pietarinen",
+            "email": "ville.pietarinen@geniem.com",
+            "homepage": "http://github.com/villepietarinen",
+            "role": "Developer"
+        },
+        {
+            "name": "Kimmo Kava",
+            "email": "kimmo.kava@ambientia.fi",
+            "homepage": "https://github.com/ambkimmok",
+            "role": "Developer"
+        }
+
+    ],
+    "keywords": [
+        "paytrail", "payment service provider"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.3",
+        "ext-json": "*",
+        "symfony/polyfill-intl-idn": "^1.17.0",
+        "psr/http-message": "~1.0",
+        "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paytrail\\SDK\\": "src/",
+            "Guzzle6\\": "lib/guzzlehttp/guzzle/src/",
+            "Guzzle6\\Psr7\\": "lib/guzzlehttp/psr7/src/",
+            "Guzzle6\\Promise\\": "lib/guzzlehttp/promises/src/"
+        },
+        "files": [
+            "lib/guzzlehttp/guzzle/src/functions_include.php",
+            "lib/guzzlehttp/psr7/src/functions_include.php",
+            "lib/guzzlehttp/promises/src/functions_include.php"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4",
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpcompatibility/php-compatibility": "^9.3"
+    },
+    "scripts": {
+        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
+        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
+    }
+}
