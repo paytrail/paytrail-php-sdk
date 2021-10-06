@@ -1,6 +1,6 @@
 <?php
 
-use OpMerchantServices\SDK\Model\Provider;
+use Paytrail\SDK\Model\Provider;
 use PHPUnit\Framework\TestCase;
 
 class ProviderTest extends TestCase

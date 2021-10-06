@@ -3,10 +3,10 @@
  * Class Customer
  */
 
-namespace OpMerchantServices\SDK\Model\Token;
+namespace Paytrail\SDK\Model\Token;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Util\ObjectPropertyConverter;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 /**
  * Class Customer
@@ -14,7 +14,7 @@ use OpMerchantServices\SDK\Util\ObjectPropertyConverter;
  * The customer class defines the customer details object.
  *
  * @see https://paytrail.github.io/api-documentation/#/?id=customer
- * @package OpMerchantServices\SDK\Model\Token
+ * @package Paytrail\SDK\Model\Token
  */
 class Customer implements \JsonSerializable
 {

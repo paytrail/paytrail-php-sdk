@@ -3,14 +3,14 @@
  * TODO: To be implemented.
  */
 
-namespace OpMerchantServices\SDK\Model;
+namespace Paytrail\SDK\Model;
 
-use OpMerchantServices\SDK\Interfaces\ComissionInterface;
+use Paytrail\SDK\Interfaces\ComissionInterface;
 
 /**
  * Class Commission
  *
- * @package OpMerchantServices\SDK\Model
+ * @package Paytrail\SDK\Model
  */
 class Commission implements ComissionInterface
 {

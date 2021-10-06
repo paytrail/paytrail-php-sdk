@@ -3,17 +3,17 @@
  * Class GetTokenResponse
  */
 
-namespace OpMerchantServices\SDK\Response;
+namespace Paytrail\SDK\Response;
 
-use OpMerchantServices\SDK\Interfaces\ResponseInterface;
-use OpMerchantServices\SDK\Model\Token\Card;
-use OpMerchantServices\SDK\Model\Token\Customer;
-use OpMerchantServices\SDK\Util\ObjectPropertyConverter;
+use Paytrail\SDK\Interfaces\ResponseInterface;
+use Paytrail\SDK\Model\Token\Card;
+use Paytrail\SDK\Model\Token\Customer;
+use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 /**
  * Class GetTokenResponse
  *
- * @package OpMerchantServices\SDK\Response
+ * @package Paytrail\SDK\Response
  */
 class GetTokenResponse implements ResponseInterface, \JsonSerializable
 {

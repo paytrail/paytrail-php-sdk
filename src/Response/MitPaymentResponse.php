@@ -3,16 +3,16 @@
  * Class MitPaymentResponse
  */
 
-namespace OpMerchantServices\SDK\Response;
+namespace Paytrail\SDK\Response;
 
-use OpMerchantServices\SDK\Interfaces\ResponseInterface;
+use Paytrail\SDK\Interfaces\ResponseInterface;
 
 /**
  * Class MitPaymentResponse
  *
  * Represents a response object of MIT payment creation.
  *
- * @package OpMerchantServices\SDK\Response
+ * @package Paytrail\SDK\Response
  */
 class MitPaymentResponse implements ResponseInterface
 {

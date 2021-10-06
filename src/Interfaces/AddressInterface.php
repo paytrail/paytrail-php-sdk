@@ -3,16 +3,16 @@
  * Interface Addresss
  */
 
-namespace OpMerchantServices\SDK\Interfaces;
+namespace Paytrail\SDK\Interfaces;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
+use Paytrail\SDK\Exception\ValidationException;
 
 /**
  * Interface Address
  *
  * An interface for all Address classes to implement.
  *
- * @package OpMerchantServices\SDK
+ * @package Paytrail\SDK
  */
 interface AddressInterface
 {

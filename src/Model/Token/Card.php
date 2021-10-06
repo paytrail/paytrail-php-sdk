@@ -3,17 +3,17 @@
  * Class Card
  */
 
-namespace OpMerchantServices\SDK\Model\Token;
+namespace Paytrail\SDK\Model\Token;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Util\ObjectPropertyConverter;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 /**
  * Class Card
  *
  * The Card class defines the card details object.
  *
- * @package OpMerchantServices\SDK\Model\Token
+ * @package Paytrail\SDK\Model\Token
  */
 class Card implements \JsonSerializable
 {

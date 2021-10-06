@@ -3,28 +3,28 @@
  * Class Client
  */
 
-namespace OpMerchantServices\SDK;
+namespace Paytrail\SDK;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\Provider;
-use OpMerchantServices\SDK\Request\AddCardFormRequest;
-use OpMerchantServices\SDK\Request\CitPaymentRequest;
-use OpMerchantServices\SDK\Request\GetTokenRequest;
-use OpMerchantServices\SDK\Request\MitPaymentRequest;
-use OpMerchantServices\SDK\Request\PaymentRequest;
-use OpMerchantServices\SDK\Request\PaymentStatusRequest;
-use OpMerchantServices\SDK\Request\RefundRequest;
-use OpMerchantServices\SDK\Request\EmailRefundRequest;
-use OpMerchantServices\SDK\Request\RevertPaymentAuthHoldRequest;
-use OpMerchantServices\SDK\Response\CitPaymentResponse;
-use OpMerchantServices\SDK\Response\GetTokenResponse;
-use OpMerchantServices\SDK\Response\MitPaymentResponse;
-use OpMerchantServices\SDK\Response\PaymentResponse;
-use OpMerchantServices\SDK\Response\PaymentStatusResponse;
-use OpMerchantServices\SDK\Response\RefundResponse;
-use OpMerchantServices\SDK\Response\EmailRefundResponse;
-use OpMerchantServices\SDK\Response\RevertPaymentAuthHoldResponse;
-use OpMerchantServices\SDK\Util\Signature;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\Provider;
+use Paytrail\SDK\Request\AddCardFormRequest;
+use Paytrail\SDK\Request\CitPaymentRequest;
+use Paytrail\SDK\Request\GetTokenRequest;
+use Paytrail\SDK\Request\MitPaymentRequest;
+use Paytrail\SDK\Request\PaymentRequest;
+use Paytrail\SDK\Request\PaymentStatusRequest;
+use Paytrail\SDK\Request\RefundRequest;
+use Paytrail\SDK\Request\EmailRefundRequest;
+use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
+use Paytrail\SDK\Response\CitPaymentResponse;
+use Paytrail\SDK\Response\GetTokenResponse;
+use Paytrail\SDK\Response\MitPaymentResponse;
+use Paytrail\SDK\Response\PaymentResponse;
+use Paytrail\SDK\Response\PaymentStatusResponse;
+use Paytrail\SDK\Response\RefundResponse;
+use Paytrail\SDK\Response\EmailRefundResponse;
+use Paytrail\SDK\Response\RevertPaymentAuthHoldResponse;
+use Paytrail\SDK\Util\Signature;
 use Guzzle6\Exception\RequestException;
 use Guzzle6\Psr7\Uri;
 use Guzzle6\HandlerStack;
@@ -32,14 +32,14 @@ use Guzzle6\Middleware;
 use Guzzle6\MessageFormatter;
 use Guzzle6\Client as GuzzleHttpClient;
 use Psr\Http\Message\ResponseInterface;
-use OpMerchantServices\SDK\Exception\HmacException;
+use Paytrail\SDK\Exception\HmacException;
 
 /**
  * Class Client
  *
  * The client is the connector class for the API.
  *
- * @package OpMerchantServices\SDK
+ * @package Paytrail\SDK
  */
 class Client
 {

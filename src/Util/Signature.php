@@ -3,16 +3,16 @@
  * Class Signature
  */
 
-namespace OpMerchantServices\SDK\Util;
+namespace Paytrail\SDK\Util;
 
-use OpMerchantServices\SDK\Exception\HmacException;
+use Paytrail\SDK\Exception\HmacException;
 
 /**
  * Class Signature
  *
  * A utility class for creating and validating HMAC signatures.
  *
- * @package OpMerchantServices\SDK\Util
+ * @package Paytrail\SDK\Util
  */
 class Signature
 {
@@ -21,8 +21,8 @@ class Signature
      * Calculate Paytrail HMAC
      *
      * For more information about the signature headers:
-     * @see https://checkoutfinland.github.io/psp-api/#/?id=headers-and-request-signing
-     * @see https://checkoutfinland.github.io/psp-api/#/?id=redirect-and-callback-url-parameters
+     * @see https://Paytrail.github.io/psp-api/#/?id=headers-and-request-signing
+     * @see https://Paytrail.github.io/psp-api/#/?id=redirect-and-callback-url-parameters
      *
      * @param array[string]  $params    HTTP headers in an associative array.
      *
@@ -59,8 +59,8 @@ class Signature
      * Evaluate a response signature validity.
      *
      * For more information about the signature headers:
-     * @see https://checkoutfinland.github.io/psp-api/#/?id=headers-and-request-signing
-     * @see https://checkoutfinland.github.io/psp-api/#/?id=redirect-and-callback-url-parameters
+     * @see https://Paytrail.github.io/psp-api/#/?id=headers-and-request-signing
+     * @see https://Paytrail.github.io/psp-api/#/?id=redirect-and-callback-url-parameters
      *
      * @param array  $params    The response parameters.
      * @param string $body      The response body.

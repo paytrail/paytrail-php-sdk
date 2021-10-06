@@ -1,8 +1,8 @@
 <?php
 
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Request\PaymentStatusRequest;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Request\PaymentStatusRequest;
 use PHPUnit\Framework\TestCase;
 
 class PaymentStatusRequestTest extends TestCase

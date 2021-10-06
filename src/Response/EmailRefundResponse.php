@@ -3,12 +3,12 @@
  * Class EmailRefundResponse
  */
 
-namespace OpMerchantServices\SDK\Response;
+namespace Paytrail\SDK\Response;
 
 /**
  * Class EmailRefundResponse
  *
- * @package OpMerchantServices\SDK\Response
+ * @package Paytrail\SDK\Response
  */
 class EmailRefundResponse extends RefundResponse
 {

@@ -1,20 +1,20 @@
 <?php
 
 use Guzzle6\Exception\RequestException;
-use OpMerchantServices\SDK\Client;
-use OpMerchantServices\SDK\Exception\HmacException;
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\Address;
-use OpMerchantServices\SDK\Model\CallbackUrl;
-use OpMerchantServices\SDK\Model\Customer;
-use OpMerchantServices\SDK\Model\Item;
-use OpMerchantServices\SDK\Request\AddCardFormRequest;
-use OpMerchantServices\SDK\Request\CitPaymentRequest;
-use OpMerchantServices\SDK\Request\GetTokenRequest;
-use OpMerchantServices\SDK\Request\MitPaymentRequest;
-use OpMerchantServices\SDK\Request\PaymentRequest;
-use OpMerchantServices\SDK\Request\PaymentStatusRequest;
-use OpMerchantServices\SDK\Request\RevertPaymentAuthHoldRequest;
+use Paytrail\SDK\Client;
+use Paytrail\SDK\Exception\HmacException;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\Address;
+use Paytrail\SDK\Model\CallbackUrl;
+use Paytrail\SDK\Model\Customer;
+use Paytrail\SDK\Model\Item;
+use Paytrail\SDK\Request\AddCardFormRequest;
+use Paytrail\SDK\Request\CitPaymentRequest;
+use Paytrail\SDK\Request\GetTokenRequest;
+use Paytrail\SDK\Request\MitPaymentRequest;
+use Paytrail\SDK\Request\PaymentRequest;
+use Paytrail\SDK\Request\PaymentStatusRequest;
+use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase

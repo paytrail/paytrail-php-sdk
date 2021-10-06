@@ -1,7 +1,7 @@
 <?php
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\Token\Card;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\Token\Card;
 use PHPUnit\Framework\TestCase;
 
 class CardTest extends TestCase

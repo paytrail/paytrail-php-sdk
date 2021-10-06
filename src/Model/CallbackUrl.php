@@ -3,11 +3,11 @@
  * Class CallbackUrl
  */
 
-namespace OpMerchantServices\SDK\Model;
+namespace Paytrail\SDK\Model;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Interfaces\CallbackUrlInterface;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Interfaces\CallbackUrlInterface;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class CallbackUrl
@@ -15,7 +15,7 @@ use OpMerchantServices\SDK\Util\JsonSerializable;
  * This class defines callback url details.
  *
  * @see https://paytrail.github.io/api-documentation/#/?id=callbackurl
- * @package OpMerchantServices\SDK\Model
+ * @package Paytrail\SDK\Model
  */
 class CallbackUrl implements \JsonSerializable, CallbackUrlInterface
 {

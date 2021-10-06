@@ -3,16 +3,16 @@
  * Interface Commission
  */
 
-namespace OpMerchantServices\SDK\Interfaces;
+namespace Paytrail\SDK\Interfaces;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
+use Paytrail\SDK\Exception\ValidationException;
 
 /**
  * Interface Commission
  *
  * An interface for all Commission classes to implement.
  *
- * @package OpMerchantServices\SDK
+ * @package Paytrail\SDK
  */
 interface ComissionInterface
 {

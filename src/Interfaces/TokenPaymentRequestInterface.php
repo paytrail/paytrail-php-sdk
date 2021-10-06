@@ -3,14 +3,14 @@
  * Interface TokenPaymentRequest
  */
 
-namespace OpMerchantServices\SDK\Interfaces;
+namespace Paytrail\SDK\Interfaces;
 
 /**
  * Interface TokenPaymentRequest
  *
  * An interface for TokenPaymentRequest to implement.
  *
- * @package OpMerchantServices\SDK
+ * @package Paytrail\SDK
  */
 interface TokenPaymentRequestInterface extends PaymentRequestInterface
 {

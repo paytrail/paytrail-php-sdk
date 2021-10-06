@@ -6,10 +6,10 @@
  * Time: 13.55
  */
 
-use OpMerchantServices\SDK\Model\CallbackUrl;
-use OpMerchantServices\SDK\Model\Customer;
-use OpMerchantServices\SDK\Model\Item;
-use OpMerchantServices\SDK\Request\CitPaymentRequest;
+use Paytrail\SDK\Model\CallbackUrl;
+use Paytrail\SDK\Model\Customer;
+use Paytrail\SDK\Model\Item;
+use Paytrail\SDK\Request\CitPaymentRequest;
 use PHPUnit\Framework\TestCase;
 
 class CitPaymentRequestTest extends TestCase

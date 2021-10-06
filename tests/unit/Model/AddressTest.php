@@ -1,8 +1,8 @@
 <?php
 
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\Address;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\Address;
 use PHPUnit\Framework\TestCase;
 
 class AddressTest extends TestCase

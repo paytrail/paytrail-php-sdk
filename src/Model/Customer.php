@@ -3,11 +3,11 @@
  * Class CustomerInterface
  */
 
-namespace OpMerchantServices\SDK\Model;
+namespace Paytrail\SDK\Model;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Interfaces\CustomerInterface;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Interfaces\CustomerInterface;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class CustomerInterface
@@ -15,7 +15,7 @@ use OpMerchantServices\SDK\Util\JsonSerializable;
  * The customer class defines the customer details object.
  *
  * @see https://paytrail.github.io/api-documentation/#/?id=customer
- * @package OpMerchantServices\SDK\Model
+ * @package Paytrail\SDK\Model
  */
 class Customer implements \JsonSerializable, CustomerInterface
 {

@@ -3,14 +3,14 @@
  * Class RefundResponse
  */
 
-namespace OpMerchantServices\SDK\Response;
+namespace Paytrail\SDK\Response;
 
-use OpMerchantServices\SDK\Interfaces\ResponseInterface;
+use Paytrail\SDK\Interfaces\ResponseInterface;
 
 /**
  * Class RefundResponse
  *
- * @package OpMerchantServices\SDK\Response
+ * @package Paytrail\SDK\Response
  */
 class RefundResponse implements ResponseInterface
 {

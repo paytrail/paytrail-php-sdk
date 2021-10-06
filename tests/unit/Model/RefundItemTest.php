@@ -1,8 +1,8 @@
 <?php
 
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\RefundItem;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\RefundItem;
 use PHPUnit\Framework\TestCase;
 
 class RefundItemTest extends TestCase

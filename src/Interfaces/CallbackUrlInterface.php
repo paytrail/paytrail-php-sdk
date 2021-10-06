@@ -3,16 +3,16 @@
  * Interface CallbackUrl
  */
 
-namespace OpMerchantServices\SDK\Interfaces;
+namespace Paytrail\SDK\Interfaces;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
+use Paytrail\SDK\Exception\ValidationException;
 
 /**
  * Interface CallbackUrl
  *
  * An interface for all CallbackUrl classes to implement.
  *
- * @package OpMerchantServices\SDK
+ * @package Paytrail\SDK
  */
 interface CallbackUrlInterface
 {

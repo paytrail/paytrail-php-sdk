@@ -1,13 +1,13 @@
 <?php
 
-namespace OpMerchantServices\SDK\Request;
+namespace Paytrail\SDK\Request;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
+use Paytrail\SDK\Exception\ValidationException;
 
 /**
  * Class PaymentStatusRequest
  *
- * @package OpMerchantServices\SDK\Request
+ * @package Paytrail\SDK\Request
  */
 class PaymentStatusRequest
 {

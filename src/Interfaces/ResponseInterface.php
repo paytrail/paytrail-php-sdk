@@ -3,14 +3,14 @@
  * Interface ResponseInterface
  */
 
-namespace OpMerchantServices\SDK\Interfaces;
+namespace Paytrail\SDK\Interfaces;
 
 /**
  * Interface ResponseInterface
  *
  * All response classes implement this interface.
  *
- * @package OpMerchantServices\SDK\Interfaces
+ * @package Paytrail\SDK\Interfaces
  */
 interface ResponseInterface
 {

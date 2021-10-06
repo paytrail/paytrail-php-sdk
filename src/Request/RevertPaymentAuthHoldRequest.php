@@ -3,15 +3,15 @@
  * Class RevertCitPaymentAuthHoldRequest
  */
 
-namespace OpMerchantServices\SDK\Request;
+namespace Paytrail\SDK\Request;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class RevertCitPaymentAuthHoldRequest
  *
- * @package OpMerchantServices\SDK\Request
+ * @package Paytrail\SDK\Request
  */
 class RevertPaymentAuthHoldRequest implements \JsonSerializable
 {

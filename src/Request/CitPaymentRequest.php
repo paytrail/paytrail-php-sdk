@@ -3,19 +3,19 @@
  * Class CitPaymentRequest
  */
 
-namespace OpMerchantServices\SDK\Request;
+namespace Paytrail\SDK\Request;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Interfaces\TokenPaymentRequestInterface;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Interfaces\TokenPaymentRequestInterface;
 
 /**
  * Class CitPaymentRequest
  *
  * This class is used to create a CIT payment request object for
- * the CheckoutFinland\SDK\Client class.
+ * the Paytrail\SDK\Client class.
  *
- * @see https://checkoutfinland.github.io/psp-api/#/?id=request4
- * @package OpMerchantServices\SDK\Request
+ * @see https://Paytrail.github.io/psp-api/#/?id=request4
+ * @package Paytrail\SDK\Request
  */
 class CitPaymentRequest extends AbstractPaymentRequest implements TokenPaymentRequestInterface
 {

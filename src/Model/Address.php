@@ -3,11 +3,11 @@
  * Class AddressInterface
  */
 
-namespace OpMerchantServices\SDK\Model;
+namespace Paytrail\SDK\Model;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Interfaces\AddressInterface;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Interfaces\AddressInterface;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class AddressInterface
@@ -15,7 +15,7 @@ use OpMerchantServices\SDK\Util\JsonSerializable;
  * This class defines address details for a payment request.
  *
  * @see https://paytrail.github.io/api-documentation/#/?id=address
- * @package OpMerchantServices\SDK\Model
+ * @package Paytrail\SDK\Model
  */
 class Address implements \JsonSerializable, AddressInterface
 {

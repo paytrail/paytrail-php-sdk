@@ -6,8 +6,8 @@
  * Time: 9.15
  */
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Request\AddCardFormRequest;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Request\AddCardFormRequest;
 use PHPUnit\Framework\TestCase;
 
 class AddCardFormRequestTest extends TestCase

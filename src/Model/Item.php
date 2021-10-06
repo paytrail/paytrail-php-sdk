@@ -3,12 +3,12 @@
  * Class ItemTest
  */
 
-namespace OpMerchantServices\SDK\Model;
+namespace Paytrail\SDK\Model;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Interfaces\ComissionInterface;
-use OpMerchantServices\SDK\Interfaces\ItemInterface;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Interfaces\ComissionInterface;
+use Paytrail\SDK\Interfaces\ItemInterface;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class ItemTest
@@ -16,7 +16,7 @@ use OpMerchantServices\SDK\Util\JsonSerializable;
  * This class defines payment item details.
  *
  * @see https://paytrail.github.io/api-documentation/#/?id=item
- * @package OpMerchantServices\SDK\Model
+ * @package Paytrail\SDK\Model
  */
 class Item implements \JsonSerializable, ItemInterface
 {

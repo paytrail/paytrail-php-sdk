@@ -3,28 +3,28 @@
  * Class PaymentRequest
  */
 
-namespace OpMerchantServices\SDK\Request;
+namespace Paytrail\SDK\Request;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Interfaces\AddressInterface;
-use OpMerchantServices\SDK\Interfaces\CallbackUrlInterface;
-use OpMerchantServices\SDK\Interfaces\CustomerInterface;
-use OpMerchantServices\SDK\Interfaces\ItemInterface;
-use OpMerchantServices\SDK\Interfaces\PaymentRequestInterface;
-use OpMerchantServices\SDK\Model\Address;
-use OpMerchantServices\SDK\Model\CallbackUrl;
-use OpMerchantServices\SDK\Model\Customer;
-use OpMerchantServices\SDK\Model\Item;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Interfaces\AddressInterface;
+use Paytrail\SDK\Interfaces\CallbackUrlInterface;
+use Paytrail\SDK\Interfaces\CustomerInterface;
+use Paytrail\SDK\Interfaces\ItemInterface;
+use Paytrail\SDK\Interfaces\PaymentRequestInterface;
+use Paytrail\SDK\Model\Address;
+use Paytrail\SDK\Model\CallbackUrl;
+use Paytrail\SDK\Model\Customer;
+use Paytrail\SDK\Model\Item;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class AbstractPaymentRequest
  *
  * This class is used to create a payment request object for
- * the CheckoutFinland\SDK\Client class.
+ * the Paytrail\SDK\Client class.
  *
- * @see https://checkoutfinland.github.io/psp-api/#/?id=create-request-body
- * @package OpMerchantServices\SDK\Request
+ * @see https://Paytrail.github.io/psp-api/#/?id=create-request-body
+ * @package Paytrail\SDK\Request
  */
 abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentRequestInterface
 {

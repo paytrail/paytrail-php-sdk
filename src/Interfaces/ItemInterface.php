@@ -3,16 +3,16 @@
  * Interface Item
  */
 
-namespace OpMerchantServices\SDK\Interfaces;
+namespace Paytrail\SDK\Interfaces;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
+use Paytrail\SDK\Exception\ValidationException;
 
 /**
  * Interface Item
  *
  * An interface for all Item classes to implement.
  *
- * @package OpMerchantServices\SDK
+ * @package Paytrail\SDK
  */
 interface ItemInterface
 {

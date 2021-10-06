@@ -3,19 +3,19 @@
  * Class EmailRefund
  */
 
-namespace OpMerchantServices\SDK\Request;
+namespace Paytrail\SDK\Request;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\CallbackUrl;
-use OpMerchantServices\SDK\Model\RefundItem;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\CallbackUrl;
+use Paytrail\SDK\Model\RefundItem;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class EmailRefund
  *
- * @see https://checkoutfinland.github.io/psp-api/#/examples?id=email-refund-request-body
+ * @see https://Paytrail.github.io/psp-api/#/examples?id=email-refund-request-body
  *
- * @package OpMerchantServices\SDK\Request
+ * @package Paytrail\SDK\Request
  */
 class EmailRefundRequest extends RefundRequest
 {

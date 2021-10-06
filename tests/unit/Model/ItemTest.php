@@ -1,8 +1,8 @@
 <?php
 
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\Item;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\Item;
 use PHPUnit\Framework\TestCase;
 
 class ItemTest extends TestCase

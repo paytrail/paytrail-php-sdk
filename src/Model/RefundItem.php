@@ -3,17 +3,17 @@
  * Class RefundItem
  */
 
-namespace OpMerchantServices\SDK\Model;
+namespace Paytrail\SDK\Model;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class RefundItem
  *
  * @see https://paytrail.github.io/api-documentation/#/?id=refunditem
  *
- * @package OpMerchantServices\SDK\Model
+ * @package Paytrail\SDK\Model
  */
 class RefundItem implements \JsonSerializable
 {

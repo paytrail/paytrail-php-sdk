@@ -53,7 +53,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OpMerchantServices\\SDK\\": "src/",
+            "Paytrail\\SDK\\": "src/",
             "Guzzle6\\": "lib/guzzlehttp/guzzle/src/",
             "Guzzle6\\Psr7\\": "lib/guzzlehttp/psr7/src/",
             "Guzzle6\\Promise\\": "lib/guzzlehttp/promises/src/"

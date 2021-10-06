@@ -3,17 +3,17 @@
  * Class PaymentResponse
  */
 
-namespace OpMerchantServices\SDK\Response;
+namespace Paytrail\SDK\Response;
 
-use OpMerchantServices\SDK\Model\Provider;
-use OpMerchantServices\SDK\Interfaces\ResponseInterface;
+use Paytrail\SDK\Model\Provider;
+use Paytrail\SDK\Interfaces\ResponseInterface;
 
 /**
  * Class PaymentResponse
  *
  * Represents a response object of payment creation.
  *
- * @package OpMerchantServices\SDK\Response
+ * @package Paytrail\SDK\Response
  */
 class PaymentResponse implements ResponseInterface
 {

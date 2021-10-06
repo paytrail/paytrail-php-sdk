@@ -3,15 +3,15 @@
  * Class GetTokenRequest
  */
 
-namespace OpMerchantServices\SDK\Request;
+namespace Paytrail\SDK\Request;
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Util\ObjectPropertyConverter;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 /**
  * Class GetTokenRequest
  *
- * @package OpMerchantServices\SDK\Request
+ * @package Paytrail\SDK\Request
  */
 class GetTokenRequest implements \JsonSerializable
 {

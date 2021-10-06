@@ -1,10 +1,10 @@
 <?php
 
-use OpMerchantServices\SDK\Model\CallbackUrl;
-use OpMerchantServices\SDK\Model\RefundItem;
+use Paytrail\SDK\Model\CallbackUrl;
+use Paytrail\SDK\Model\RefundItem;
 use PHPUnit\Framework\TestCase;
-use OpMerchantServices\SDK\Request\EmailRefundRequest;
-use OpMerchantServices\SDK\Exception\ValidationException;
+use Paytrail\SDK\Request\EmailRefundRequest;
+use Paytrail\SDK\Exception\ValidationException;
 
 class EmailRefundRequestTest extends TestCase
 {

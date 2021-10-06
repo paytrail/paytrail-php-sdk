@@ -3,10 +3,10 @@
  * Class Provider
  */
 
-namespace OpMerchantServices\SDK\Model;
+namespace Paytrail\SDK\Model;
 
-use OpMerchantServices\SDK\Util\PropertyBinder;
-use OpMerchantServices\SDK\Util\JsonSerializable;
+use Paytrail\SDK\Util\PropertyBinder;
+use Paytrail\SDK\Util\JsonSerializable;
 
 /**
  * Class Provider
@@ -15,7 +15,7 @@ use OpMerchantServices\SDK\Util\JsonSerializable;
  * containing an array of providers.
  *
  * @see https://paytrail.github.io/api-documentation/#/examples?id=response
- * @package OpMerchantServices\SDK\Model
+ * @package Paytrail\SDK\Model
  */
 class Provider implements \JsonSerializable
 {

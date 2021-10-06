@@ -3,7 +3,7 @@
  * Trait PropertyBinder
  */
 
-namespace OpMerchantServices\SDK\Util;
+namespace Paytrail\SDK\Util;
 
 /**
  * Trait PropertyBinder

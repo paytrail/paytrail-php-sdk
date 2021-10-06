@@ -3,7 +3,7 @@
  * Class ValidationException
  */
 
-namespace OpMerchantServices\SDK\Exception;
+namespace Paytrail\SDK\Exception;
 
 
 /**
@@ -13,7 +13,7 @@ namespace OpMerchantServices\SDK\Exception;
  *
  * This exception holds the general expection message
  *
- * @package OpMerchantServices\SDK\Exception
+ * @package Paytrail\SDK\Exception
  */
 class ValidationException extends \Exception
 {

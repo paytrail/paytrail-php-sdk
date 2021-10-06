@@ -3,7 +3,7 @@
  * Trait ObjectPropertyConverter
  */
 
-namespace OpMerchantServices\SDK\Util;
+namespace Paytrail\SDK\Util;
 
 /**
  * Trait ObjectPropertyConverter

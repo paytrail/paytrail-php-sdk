@@ -3,16 +3,16 @@
  * Class RevertCitPaymentAuthHoldResponse
  */
 
-namespace OpMerchantServices\SDK\Response;
+namespace Paytrail\SDK\Response;
 
-use OpMerchantServices\SDK\Interfaces\ResponseInterface;
+use Paytrail\SDK\Interfaces\ResponseInterface;
 
 /**
  * Class RevertCitPaymentAuthHoldResponse
  *
  * Represents a response object of CIT payment authorization hold revert.
  *
- * @package OpMerchantServices\SDK\Response
+ * @package Paytrail\SDK\Response
  */
 class RevertPaymentAuthHoldResponse implements ResponseInterface
 {

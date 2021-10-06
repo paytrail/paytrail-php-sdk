@@ -3,16 +3,16 @@
  * Class PaymentResponse
  */
 
-namespace OpMerchantServices\SDK\Response;
+namespace Paytrail\SDK\Response;
 
-use OpMerchantServices\SDK\Interfaces\ResponseInterface;
+use Paytrail\SDK\Interfaces\ResponseInterface;
 
 /**
  * Class PaymentStatusResponse
  *
  * Represents a response object of payment status.
  *
- * @package OpMerchantServices\SDK\Response
+ * @package Paytrail\SDK\Response
  */
 class PaymentStatusResponse implements ResponseInterface
 {

@@ -6,8 +6,8 @@
  * Time: 12.26
  */
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Request\GetTokenRequest;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Request\GetTokenRequest;
 use PHPUnit\Framework\TestCase;
 
 class GetTokenRequestTest extends TestCase
