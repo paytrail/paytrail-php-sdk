@@ -1,7 +1,7 @@
 <?php
 
-use OpMerchantServices\SDK\Exception\ValidationException;
-use OpMerchantServices\SDK\Model\Commission;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Model\Commission;
 use PHPUnit\Framework\TestCase;
 
 class CommissionTest extends TestCase
