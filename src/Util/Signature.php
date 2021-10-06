@@ -21,8 +21,8 @@ class Signature
      * Calculate Paytrail HMAC
      *
      * For more information about the signature headers:
-     * @see https://Paytrail.github.io/psp-api/#/?id=headers-and-request-signing
-     * @see https://Paytrail.github.io/psp-api/#/?id=redirect-and-callback-url-parameters
+     * @see https://paytrail.github.io/api-documentation/#/?id=headers-and-request-signing
+     * @see https://paytrail.github.io/api-documentation/#/?id=redirect-and-callback-url-parameters
      *
      * @param array[string]  $params    HTTP headers in an associative array.
      *
@@ -59,8 +59,8 @@ class Signature
      * Evaluate a response signature validity.
      *
      * For more information about the signature headers:
-     * @see https://Paytrail.github.io/psp-api/#/?id=headers-and-request-signing
-     * @see https://Paytrail.github.io/psp-api/#/?id=redirect-and-callback-url-parameters
+     * @see https://paytrail.github.io/api-documentation/#/?id=headers-and-request-signing
+     * @see https://paytrail.github.io/api-documentation/#/?id=redirect-and-callback-url-parameters
      *
      * @param array  $params    The response parameters.
      * @param string $body      The response body.
