@@ -5,14 +5,14 @@
 
 namespace Paytrail\SDK\Model;
 
-use Paytrail\SDK\Interfaces\ComissionInterface;
+use Paytrail\SDK\Interfaces\CommissionInterface;
 
 /**
  * Class Commission
  *
  * @package Paytrail\SDK\Model
  */
-class Commission implements ComissionInterface
+class Commission implements CommissionInterface
 {
 
 }
