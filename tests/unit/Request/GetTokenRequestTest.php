@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kimmok
- * Date: 03/04/2020
- * Time: 12.26
- */
 
 use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Request\GetTokenRequest;

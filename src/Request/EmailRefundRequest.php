@@ -13,7 +13,7 @@ use Paytrail\SDK\Util\JsonSerializable;
 /**
  * Class EmailRefund
  *
- * @see https://Paytrail.github.io/psp-api/#/examples?id=email-refund-request-body
+ * @see https://paytrail.github.io/api-documentation/#/examples?id=email-refund-request-body
  *
  * @package Paytrail\SDK\Request
  */

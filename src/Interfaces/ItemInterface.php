@@ -176,15 +176,15 @@ interface ItemInterface
     /**
      * Get the commission.
      *
-     * @return ComissionInterface
+     * @return CommissionInterface
      */
-    public function getCommission(): ?ComissionInterface;
+    public function getCommission(): ?CommissionInterface;
 
     /**
      * Set the commission.
      *
-     * @param ComissionInterface $commission
+     * @param CommissionInterface $commission
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setCommission(?ComissionInterface $commission) : ItemInterface;
+    public function setCommission(?CommissionInterface $commission) : ItemInterface;
 }

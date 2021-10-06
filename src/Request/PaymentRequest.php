@@ -11,7 +11,7 @@ namespace Paytrail\SDK\Request;
  * This class is used to create a payment request object for
  * the Paytrail\SDK\Client class.
  *
- * @see https://Paytrail.github.io/psp-api/#/?id=create-request-body
+ * @see https://paytrail.github.io/api-documentation/#/?id=create-request-body
  * @package Paytrail\SDK\Request
  */
 class PaymentRequest extends AbstractPaymentRequest

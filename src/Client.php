@@ -107,28 +107,28 @@ class Client
     protected $secretKey;
 
     /**
-     * Plugin version for the API.
+     * Platform name for the API.
      *
      * @var string
      */
-    protected $cofPluginVersion;
+    protected $platformName;
 
     /**
-     * @param string $cofPluginVersion
+     * @param string $platformName
      * @return Client
      */
-    public function setCofPluginVersion(string $cofPluginVersion): Client
+    public function setPlatformName(string $platformName): Client
     {
-        $this->cofPluginVersion = $cofPluginVersion;
+        $this->platformName = $platformName;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCofPluginVersion(): string
+    public function getPlatformName(): string
     {
-        return $this->cofPluginVersion;
+        return $this->platformName;
     }
 
 
@@ -149,18 +149,18 @@ class Client
      *
      * @param int $merchantId The merchant.
      * @param string $secretKey The secret key.
-     * @param string $cofPluginVersion Plugin version.
+     * @param string $platformName Platform name.
      * @param array $args Optional. Array of additional arguments.
      *
      * @type float $timeout A timeout value in seconds for the GuzzleHTTP client.
      * @type LoggerInterface $logger A PSR-3 logger instance. See: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
      * @type string $message_format The format for logger messages. See: https://github.com/guzzle/guzzle/blob/master/src/MessageFormatter.php#L9
      */
-    public function __construct(int $merchantId, string $secretKey, string $cofPluginVersion, $args = [])
+    public function __construct(int $merchantId, string $secretKey, string $platformName, $args = [])
     {
         $this->setMerchantId($merchantId);
         $this->setSecretKey($secretKey);
-        $this->setCofPluginVersion($cofPluginVersion);
+        $this->setPlatformName($platformName);
 
         $stack = $this->createLoggerStack($args);
 
@@ -218,7 +218,7 @@ class Client
             'paytrail-method' => strtoupper($method),
             'paytrail-nonce' => uniqid(true),
             'paytrail-timestamp' => $datetime->format('Y-m-d\TH:i:s.u\Z'),
-            'platform-name' => $this->cofPluginVersion,
+            'platform-name' => $this->platformName,
             'content-type' => 'application/json; charset=utf-8',
         ];
 
@@ -432,7 +432,7 @@ class Client
     /**
      * Refunds a payment by transaction ID.
      *
-     * @see https://paytrailfinland.github.io/psp-api/#/?id=refund
+     * @see https://paytrail.github.io/api-documentation/#/?id=refund
      *
      * @param RefundRequest $refund A refund instance.
      * @param string $transactionID The transaction id.
@@ -477,7 +477,7 @@ class Client
     /**
      * Refunds a payment by transaction ID as an email refund.
      *
-     * @see https://paytrailfinland.github.io/psp-api/#/?id=email-refund
+     * @see https://paytrail.github.io/api-documentation/#/?id=email-refund
      *
      * @param EmailRefundRequest $refund An email refund instance.
      * @param string $transactionID The transaction id.

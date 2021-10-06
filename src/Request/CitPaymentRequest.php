@@ -14,7 +14,7 @@ use Paytrail\SDK\Interfaces\TokenPaymentRequestInterface;
  * This class is used to create a CIT payment request object for
  * the Paytrail\SDK\Client class.
  *
- * @see https://Paytrail.github.io/psp-api/#/?id=request4
+ * @see https://paytrail.github.io/api-documentation/#/?id=request4
  * @package Paytrail\SDK\Request
  */
 class CitPaymentRequest extends AbstractPaymentRequest implements TokenPaymentRequestInterface
