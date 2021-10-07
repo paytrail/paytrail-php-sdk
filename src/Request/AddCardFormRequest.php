@@ -17,32 +17,32 @@ class AddCardFormRequest implements \JsonSerializable
 {
     use ObjectPropertyConverter;
 
-    /** @var int $paytrailAccount */
-    protected $paytrailAccount;
+    /** @var int $checkoutAccount */
+    protected $checkoutAccount;
 
-    /** @var string $paytrailAlgorithm */
-    protected $paytrailAlgorithm;
+    /** @var string $checkoutAlgorithm */
+    protected $checkoutAlgorithm;
 
-    /** @var string $paytrailMethod */
-    protected $paytrailMethod;
+    /** @var string $checkoutMethod */
+    protected $checkoutMethod;
 
-    /** @var string $paytrailNonce */
-    protected $paytrailNonce;
+    /** @var string $checkoutNonce */
+    protected $checkoutNonce;
 
-    /** @var string $paytrailTimestamp */
-    protected $paytrailTimestamp;
+    /** @var string $checkoutTimestamp */
+    protected $checkoutTimestamp;
 
-    /** @var string $paytrailRedirectSuccessUrl */
-    protected $paytrailRedirectSuccessUrl;
+    /** @var string $checkoutRedirectSuccessUrl */
+    protected $checkoutRedirectSuccessUrl;
 
-    /** @var string $paytrailRedirectCancelUrl */
-    protected $paytrailRedirectCancelUrl;
+    /** @var string $checkoutRedirectCancelUrl */
+    protected $checkoutRedirectCancelUrl;
 
-    /** @var string $paytrailCallbackSuccessUrl */
-    protected $paytrailCallbackSuccessUrl;
+    /** @var string $checkoutCallbackSuccessUrl */
+    protected $checkoutCallbackSuccessUrl;
 
-    /** @var string $paytrailCallbackCancelUrl */
-    protected $paytrailCallbackCancelUrl;
+    /** @var string $checkoutCallbackCancelUrl */
+    protected $checkoutCallbackCancelUrl;
 
     /** @var string $language */
     protected $language;
@@ -62,28 +62,28 @@ class AddCardFormRequest implements \JsonSerializable
         $supportedLanguages = ['FI', 'SV', 'EN'];
         $supportedMethods = ['GET', 'POST'];
 
-        if (empty($props['paytrail-account'])) {
-            throw new ValidationException('Paytrail account is empty');
+        if (empty($props['checkout-account'])) {
+            throw new ValidationException('checkout-account is empty');
         }
 
-        if (empty($props['paytrail-algorithm'])) {
-            throw new ValidationException('Paytrail algorithm is empty');
+        if (empty($props['checkout-algorithm'])) {
+            throw new ValidationException('checkout-algorithm is empty');
         }
 
-        if (!in_array($props['paytrail-method'], $supportedMethods)) {
+        if (!in_array($props['checkout-method'], $supportedMethods)) {
             throw new ValidationException('Unsupported method chosen');
         }
 
-        if (empty($props['paytrail-timestamp'])) {
-            throw new ValidationException('Paytrail timestamp is empty');
+        if (empty($props['checkout-timestamp'])) {
+            throw new ValidationException('checkout-timestamp is empty');
         }
 
-        if (empty($props['paytrail-redirect-success-url'])) {
-            throw new ValidationException('Paytrail redirect success url is empty');
+        if (empty($props['checkout-redirect-success-url'])) {
+            throw new ValidationException('checkout-redirect success url is empty');
         }
 
-        if (empty($props['paytrail-redirect-cancel-url'])) {
-            throw new ValidationException('Paytrail redirect cancel url is empty');
+        if (empty($props['checkout-redirect-cancel-url'])) {
+            throw new ValidationException('checkout-redirect cancel url is empty');
         }
 
         if (!in_array($props['language'], $supportedLanguages)) {
@@ -94,96 +94,96 @@ class AddCardFormRequest implements \JsonSerializable
     }
 
     /**
-     * @param int $paytrailAccount
+     * @param int $checkoutAccount
      * @return AddCardFormRequest
      */
-    public function setPaytrailAccount(int $paytrailAccount): AddCardFormRequest
+    public function setCheckoutAccount(int $checkoutAccount): AddCardFormRequest
     {
-        $this->paytrailAccount = $paytrailAccount;
+        $this->checkoutAccount = $checkoutAccount;
 
         return $this;
     }
 
     /**
-     * @param string $paytrailAlgorithm
+     * @param string $checkoutAlgorithm
      * @return AddCardFormRequest
      */
-    public function setPaytrailAlgorithm(string $paytrailAlgorithm): AddCardFormRequest
+    public function setCheckoutAlgorithm(string $checkoutAlgorithm): AddCardFormRequest
     {
-        $this->paytrailAlgorithm = $paytrailAlgorithm;
+        $this->checkoutAlgorithm = $checkoutAlgorithm;
 
         return $this;
     }
 
     /**
-     * @param string $paytrailMethod
+     * @param string $checkoutMethod
      * @return AddCardFormRequest
      */
-    public function setPaytrailMethod(string $paytrailMethod): AddCardFormRequest
+    public function setCheckoutMethod(string $checkoutMethod): AddCardFormRequest
     {
-        $this->paytrailMethod = $paytrailMethod;
+        $this->checkoutMethod = $checkoutMethod;
 
         return $this;
     }
 
     /**
-     * @param string $paytrailNonce
+     * @param string $checkoutNonce
      * @return AddCardFormRequest
      */
-    public function setPaytrailNonce(string $paytrailNonce): AddCardFormRequest
+    public function setCheckoutNonce(string $checkoutNonce): AddCardFormRequest
     {
-        $this->paytrailNonce = $paytrailNonce;
+        $this->checkoutNonce = $checkoutNonce;
 
         return $this;
     }
 
-    public function setPaytrailTimestamp(string $paytrailTimestamp): AddCardFormRequest
+    public function setCheckoutTimestamp(string $checkoutTimestamp): AddCardFormRequest
     {
-        $this->paytrailTimestamp = $paytrailTimestamp;
-
-        return $this;
-    }
-
-    /**
-     * @param string $paytrailRedirectSuccessUrl
-     * @return AddCardFormRequest
-     */
-    public function setPaytrailRedirectSuccessUrl(string $paytrailRedirectSuccessUrl): AddCardFormRequest
-    {
-        $this->paytrailRedirectSuccessUrl = $paytrailRedirectSuccessUrl;
+        $this->checkoutTimestamp = $checkoutTimestamp;
 
         return $this;
     }
 
     /**
-     * @param string $paytrailRedirectCancelUrl
+     * @param string $checkoutRedirectSuccessUrl
      * @return AddCardFormRequest
      */
-    public function setPaytrailRedirectCancelUrl(string $paytrailRedirectCancelUrl): AddCardFormRequest
+    public function setCheckoutRedirectSuccessUrl(string $checkoutRedirectSuccessUrl): AddCardFormRequest
     {
-        $this->paytrailRedirectCancelUrl = $paytrailRedirectCancelUrl;
+        $this->checkoutRedirectSuccessUrl = $checkoutRedirectSuccessUrl;
 
         return $this;
     }
 
     /**
-     * @param string $paytrailCallbackSuccessUrl
+     * @param string $checkoutRedirectCancelUrl
      * @return AddCardFormRequest
      */
-    public function setPaytrailCallbackSuccessUrl(string $paytrailCallbackSuccessUrl): AddCardFormRequest
+    public function setCheckoutRedirectCancelUrl(string $checkoutRedirectCancelUrl): AddCardFormRequest
     {
-        $this->paytrailCallbackSuccessUrl = $paytrailCallbackSuccessUrl;
+        $this->checkoutRedirectCancelUrl = $checkoutRedirectCancelUrl;
 
         return $this;
     }
 
     /**
-     * @param string $paytrailCallbackCancelUrl
+     * @param string $checkoutCallbackSuccessUrl
      * @return AddCardFormRequest
      */
-    public function setPaytrailCallbackCancelUrl(string $paytrailCallbackCancelUrl): AddCardFormRequest
+    public function setCheckoutCallbackSuccessUrl(string $checkoutCallbackSuccessUrl): AddCardFormRequest
     {
-        $this->paytrailCallbackCancelUrl = $paytrailCallbackCancelUrl;
+        $this->checkoutCallbackSuccessUrl = $checkoutCallbackSuccessUrl;
+
+        return $this;
+    }
+
+    /**
+     * @param string $checkoutCallbackCancelUrl
+     * @return AddCardFormRequest
+     */
+    public function setCheckoutCallbackCancelUrl(string $checkoutCallbackCancelUrl): AddCardFormRequest
+    {
+        $this->checkoutCallbackCancelUrl = $checkoutCallbackCancelUrl;
 
         return $this;
     }

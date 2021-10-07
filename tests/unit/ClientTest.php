@@ -268,13 +268,13 @@ class ClientTest extends TestCase
         $client = $this->client;
 
         $addCardFormRequest = (new AddCardFormRequest())
-            ->setPaytrailAccount(self::MERCHANT_ID)
-            ->setPaytrailAlgorithm('sha256')
-            ->setPaytrailMethod('POST')
-            ->setPaytrailNonce(uniqid(true))
-            ->setPaytrailTimestamp($datetime->format('Y-m-d\TH:i:s.u\Z'))
-            ->setPaytrailRedirectSuccessUrl('https://somedomain.com/success')
-            ->setPaytrailRedirectCancelUrl('https://somedomain.com/cancel')
+            ->setCheckoutAccount(self::MERCHANT_ID)
+            ->setCheckoutAlgorithm('sha256')
+            ->setCheckoutMethod('POST')
+            ->setCheckoutNonce(uniqid(true))
+            ->setCheckoutTimestamp($datetime->format('Y-m-d\TH:i:s.u\Z'))
+            ->setCheckoutRedirectSuccessUrl('https://somedomain.com/success')
+            ->setCheckoutRedirectCancelUrl('https://somedomain.com/cancel')
             ->setLanguage('EN')
             ->setSignature('d902e82ee61cb2c6ff2ba48b255402eb5d446c943e8ebbb3ada4fe40be7b8ab5');
 

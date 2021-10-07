@@ -9,7 +9,7 @@ class GetTokenRequestTest extends TestCase
     public function validationProvider()
     {
         return [
-            'Paytrail tokenization id is empty' => [['checkoutTokenizationId' => ''], 'Paytrail tokenization id is empty']
+            'checkout-tokenization id is empty' => [['checkoutTokenizationId' => ''], 'checkout-tokenization id is empty']
         ];
     }
 

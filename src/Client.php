@@ -204,31 +204,31 @@ class Client
      *
      * @param string $method The request method. GET or POST.
      * @param string $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
-     * @param string $paytrailTokenizationId Paytrail tokenization ID for getToken request
+     * @param string $checkoutTokenizationId Paytrail tokenization ID for getToken request
      *
      * @return array
      * @throws \Exception
      */
-    protected function getHeaders(string $method, string $transactionId = null, string $paytrailTokenizationId = null)
+    protected function getHeaders(string $method, string $transactionId = null, string $checkoutTokenizationId = null)
     {
         $datetime = new \DateTime();
 
         $headers = [
-            'paytrail-account' => $this->merchantId,
-            'paytrail-algorithm' => 'sha256',
-            'paytrail-method' => strtoupper($method),
-            'paytrail-nonce' => uniqid(true),
-            'paytrail-timestamp' => $datetime->format('Y-m-d\TH:i:s.u\Z'),
+            'checkout-account' => $this->merchantId,
+            'checkout-algorithm' => 'sha256',
+            'checkout-method' => strtoupper($method),
+            'checkout-nonce' => uniqid(true),
+            'checkout-timestamp' => $datetime->format('Y-m-d\TH:i:s.u\Z'),
             'platform-name' => $this->platformName,
             'content-type' => 'application/json; charset=utf-8',
         ];
 
         if (!empty($transactionId)) {
-            $headers['paytrail-transaction-id'] = $transactionId;
+            $headers['checkout-transaction-id'] = $transactionId;
         }
 
-        if (!empty($paytrailTokenizationId)) {
-            $headers['paytrail-tokenization-id'] = $paytrailTokenizationId;
+        if (!empty($checkoutTokenizationId)) {
+            $headers['checkout-tokenization-id'] = $checkoutTokenizationId;
         }
 
         return $headers;
@@ -592,10 +592,10 @@ class Client
     public function createGetTokenRequest(GetTokenRequest $getTokenRequest): GetTokenResponse
     {
         $this->validateRequestItem($getTokenRequest);
-        $paytrailTokenizationId = $getTokenRequest->getpaytrailTokenizationId();
+        $paytrailTokenizationId = $getTokenRequest->getCheckoutTokenizationId();
 
         try {
-            $uri = new Uri('/tokenization/' . $getTokenRequest->getpaytrailTokenizationId());
+            $uri = new Uri('/tokenization/' . $getTokenRequest->getCheckoutTokenizationId());
 
             $getTokenResponse = $this->post(
                 $uri,
