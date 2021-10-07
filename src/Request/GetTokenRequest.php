@@ -30,7 +30,7 @@ class GetTokenRequest implements \JsonSerializable
         $props = $this->convertObjectVarsToDashed();
 
         if (empty($props['checkout-tokenization-id'])) {
-            throw new ValidationException('checkout-tokenization id is empty');
+            throw new ValidationException('checkout-tokenization-id is empty');
         }
 
         return true;
