@@ -11,8 +11,6 @@ use Paytrail\SDK\Interfaces\CommissionInterface;
  *
  * @package Paytrail\SDK\Model
  */
-class Commission implements CommissionInterface
-{
 class Commission implements \JsonSerializable, CommissionInterface
  {    
      use JsonSerializable;

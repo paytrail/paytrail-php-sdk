@@ -32,9 +32,9 @@ class Signature
      */
     public static function calculateHmac(array $params = [], string $body = '', string $secretKey = '')
     {
-        // Keep only paytrail- params, more relevant for response validation.
+        // Keep only checkout- params, more relevant for response validation.
         $includedKeys = array_filter(array_keys($params), function ($key) {
-            return preg_match('/^paytrail-/', $key);
+            return preg_match('/^checkout-/', $key);
         });
 
         // Keys must be sorted alphabetically

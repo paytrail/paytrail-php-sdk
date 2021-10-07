@@ -18,7 +18,7 @@ class GetTokenRequest implements \JsonSerializable
     use ObjectPropertyConverter;
 
     /** @var string $paytrailTokenizationId */
-    protected $paytrailTokenizationId;
+    protected $checkoutTokenizationId;
 
     /**
      * Validates with Respect\Validation library and throws an exception for invalid objects
@@ -29,16 +29,16 @@ class GetTokenRequest implements \JsonSerializable
     {
         $props = $this->convertObjectVarsToDashed();
 
-        if (empty($props['paytrail-tokenization-id'])) {
-            throw new ValidationException('Paytrail tokenization id is empty');
+        if (empty($props['checkout-tokenization-id'])) {
+            throw new ValidationException('checkout-tokenization-id is empty');
         }
 
         return true;
     }
 
-    public function setpaytrailTokenizationId(string $paytrailTokenizationId): GetTokenRequest
+    public function setCheckoutTokenizationId(string $checkoutTokenizationId): GetTokenRequest
     {
-        $this->paytrailTokenizationId = $paytrailTokenizationId;
+        $this->checkoutTokenizationId = $checkoutTokenizationId;
 
         return $this;
     }
@@ -46,9 +46,9 @@ class GetTokenRequest implements \JsonSerializable
     /**
      * @return string
      */
-    public function getpaytrailTokenizationId(): string
+    public function getCheckoutTokenizationId(): string
     {
-        return $this->paytrailTokenizationId;
+        return $this->checkoutTokenizationId;
     }
 
     /**

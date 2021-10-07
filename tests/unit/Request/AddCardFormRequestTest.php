@@ -15,65 +15,65 @@ class AddCardFormRequestTest extends TestCase
     public function validationProvider()
     {
         return [
-            'Paytrail account is empty' => [
+            'checkout-account is empty' => [
                 [
-                    'paytrailAccount' => ''
+                    'checkoutAccount' => ''
                 ],
-                'Paytrail account is empty'
+                'checkout-account is empty'
             ],
-            'Paytrail algorithm is empty' => [
+            'checkout-algorithm is empty' => [
                 [
-                    'paytrailAccount' => 375917,
-                    'paytrailAlgorithm' => ''
+                    'checkoutAccount' => 375917,
+                    'checkoutAlgorithm' => ''
                 ],
-                'Paytrail algorithm is empty'
+                'checkout-algorithm is empty'
             ],
             'Unsupported method chosen' => [
                 [
-                    'paytrailAccount' => 375917,
-                    'paytrailAlgorithm' => 'sha256',
-                    'paytrailMethod' => 'PAST'
+                    'checkoutAccount' => 375917,
+                    'checkoutAlgorithm' => 'sha256',
+                    'checkoutMethod' => 'PAST'
                 ],
                 'Unsupported method chosen'
             ],
-            'Paytrail timestamp is empty' => [
+            'checkout-timestamp is empty' => [
                 [
-                    'paytrailAccount' => 375917,
-                    'paytrailAlgorithm' => 'sha256',
-                    'paytrailMethod' => 'POST',
-                    'paytrailTimestamp' => ''
+                    'checkoutAccount' => 375917,
+                    'checkoutAlgorithm' => 'sha256',
+                    'checkoutMethod' => 'POST',
+                    'checkoutTimestamp' => ''
                 ],
-                'Paytrail timestamp is empty'
+                'checkout-timestamp is empty'
             ],
-            'Paytrail redirect success url is empty' => [
+            'checkout-redirect success url is empty' => [
                 [
-                    'paytrailAccount' => 375917,
-                    'paytrailAlgorithm' => 'sha256',
-                    'paytrailMethod' => 'POST',
-                    'paytrailTimestamp' => '2020-04-07T08:20:13.729011Z',
-                    'paytrailRedirectSuccessUrl' => ''
+                    'checkoutAccount' => 375917,
+                    'checkoutAlgorithm' => 'sha256',
+                    'checkoutMethod' => 'POST',
+                    'checkoutTimestamp' => '2020-04-07T08:20:13.729011Z',
+                    'checkoutRedirectSuccessUrl' => ''
                 ],
-                'Paytrail redirect success url is empty'
+                'checkout-redirect success url is empty'
             ],
-            'Paytrail redirect cancel url is empty' => [
+            'checkout-redirect cancel url is empty' => [
                 [
-                    'paytrailAccount' => 375917,
-                    'paytrailAlgorithm' => 'sha256',
-                    'paytrailMethod' => 'POST',
-                    'paytrailTimestamp' => '2020-04-07T08:20:13.729011Z',
-                    'paytrailRedirectSuccessUrl' => 'https://somedomain.com/success',
-                    'paytrailRedirectCancelUrl' => ''
+                    'checkoutAccount' => 375917,
+                    'checkoutAlgorithm' => 'sha256',
+                    'checkoutMethod' => 'POST',
+                    'checkoutTimestamp' => '2020-04-07T08:20:13.729011Z',
+                    'checkoutRedirectSuccessUrl' => 'https://somedomain.com/success',
+                    'checkoutRedirectCancelUrl' => ''
                 ],
-                'Paytrail redirect cancel url is empty'
+                'checkout-redirect cancel url is empty'
             ],
             'Unsupported language chosen' => [
                 [
-                    'paytrailAccount' => 375917,
-                    'paytrailAlgorithm' => 'sha256',
-                    'paytrailMethod' => 'POST',
-                    'paytrailTimestamp' => '2020-04-07T08:20:13.729011Z',
-                    'paytrailRedirectSuccessUrl' => 'https://somedomain.com/success',
-                    'paytrailRedirectCancelUrl' => 'https://somedomain.com/cancel',
+                    'checkoutAccount' => 375917,
+                    'checkoutAlgorithm' => 'sha256',
+                    'checkoutMethod' => 'POST',
+                    'checkoutTimestamp' => '2020-04-07T08:20:13.729011Z',
+                    'checkoutRedirectSuccessUrl' => 'https://somedomain.com/success',
+                    'checkoutRedirectCancelUrl' => 'https://somedomain.com/cancel',
                     'language' => 'RU'
                 ],
                 'Unsupported language chosen'
@@ -84,15 +84,15 @@ class AddCardFormRequestTest extends TestCase
     public function testAddCardFormRequest()
     {
         $addCardFormRequest = new AddCardFormRequest();
-        $addCardFormRequest->setpaytrailAccount(375917);
-        $addCardFormRequest->setpaytrailAlgorithm('sha256');
-        $addCardFormRequest->setpaytrailMethod('POST');
-        $addCardFormRequest->setpaytrailNonce('15e8c3d6796f96');
-        $addCardFormRequest->setpaytrailTimestamp('2020-04-07T08:20:13.729011Z');
-        $addCardFormRequest->setpaytrailRedirectSuccessUrl('https://somedomain.com/success');
-        $addCardFormRequest->setpaytrailRedirectCancelUrl('https://somedomain.com/cancel');
-        $addCardFormRequest->setpaytrailCallbackSuccessUrl('https://someother.com/success');
-        $addCardFormRequest->setpaytrailCallbackCancelUrl('https://someother.com/cancel');
+        $addCardFormRequest->setCheckoutAccount(375917);
+        $addCardFormRequest->setCheckoutAlgorithm('sha256');
+        $addCardFormRequest->setCheckoutMethod('POST');
+        $addCardFormRequest->setCheckoutNonce('15e8c3d6796f96');
+        $addCardFormRequest->setCheckoutTimestamp('2020-04-07T08:20:13.729011Z');
+        $addCardFormRequest->setCheckoutRedirectSuccessUrl('https://somedomain.com/success');
+        $addCardFormRequest->setCheckoutRedirectCancelUrl('https://somedomain.com/cancel');
+        $addCardFormRequest->setCheckoutCallbackSuccessUrl('https://someother.com/success');
+        $addCardFormRequest->setCheckoutCallbackCancelUrl('https://someother.com/cancel');
         $addCardFormRequest->setLanguage('EN');
 
         $this->assertInstanceOf(AddCardFormRequest::class, $addCardFormRequest);
@@ -100,15 +100,15 @@ class AddCardFormRequestTest extends TestCase
         $jsonData = $addCardFormRequest->jsonSerialize();
 
         $expectedArray = [
-            'paytrail-account' => 375917,
-            'paytrail-algorithm' => 'sha256',
-            'paytrail-method' => 'POST',
-            'paytrail-nonce' => '15e8c3d6796f96',
-            'paytrail-timestamp' => '2020-04-07T08:20:13.729011Z',
-            'paytrail-redirect-success-url' => 'https://somedomain.com/success',
-            'paytrail-redirect-cancel-url' => 'https://somedomain.com/cancel',
-            'paytrail-callback-success-url' => 'https://someother.com/success',
-            'paytrail-callback-cancel-url' => 'https://someother.com/cancel',
+            'checkout-account' => 375917,
+            'checkout-algorithm' => 'sha256',
+            'checkout-method' => 'POST',
+            'checkout-nonce' => '15e8c3d6796f96',
+            'checkout-timestamp' => '2020-04-07T08:20:13.729011Z',
+            'checkout-redirect-success-url' => 'https://somedomain.com/success',
+            'checkout-redirect-cancel-url' => 'https://somedomain.com/cancel',
+            'checkout-callback-success-url' => 'https://someother.com/success',
+            'checkout-callback-cancel-url' => 'https://someother.com/cancel',
             'language' => 'EN'
         ];
 
