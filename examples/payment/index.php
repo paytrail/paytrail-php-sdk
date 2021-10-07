@@ -82,7 +82,7 @@ require 'vendor/autoload.php';
             </fieldset>
         </form>
         <?php
-        include "checkout.php";
+        include "paytrail.php";
         ?>
     </div>
 </body>

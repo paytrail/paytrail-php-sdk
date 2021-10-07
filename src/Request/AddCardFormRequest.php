@@ -97,7 +97,7 @@ class AddCardFormRequest implements \JsonSerializable
      * @param int $paytrailAccount
      * @return AddCardFormRequest
      */
-    public function setpaytrailAccount(int $paytrailAccount): AddCardFormRequest
+    public function setPaytrailAccount(int $paytrailAccount): AddCardFormRequest
     {
         $this->paytrailAccount = $paytrailAccount;
 
@@ -108,7 +108,7 @@ class AddCardFormRequest implements \JsonSerializable
      * @param string $paytrailAlgorithm
      * @return AddCardFormRequest
      */
-    public function setpaytrailAlgorithm(string $paytrailAlgorithm): AddCardFormRequest
+    public function setPaytrailAlgorithm(string $paytrailAlgorithm): AddCardFormRequest
     {
         $this->paytrailAlgorithm = $paytrailAlgorithm;
 
@@ -119,7 +119,7 @@ class AddCardFormRequest implements \JsonSerializable
      * @param string $paytrailMethod
      * @return AddCardFormRequest
      */
-    public function setpaytrailMethod(string $paytrailMethod): AddCardFormRequest
+    public function setPaytrailMethod(string $paytrailMethod): AddCardFormRequest
     {
         $this->paytrailMethod = $paytrailMethod;
 
@@ -130,14 +130,14 @@ class AddCardFormRequest implements \JsonSerializable
      * @param string $paytrailNonce
      * @return AddCardFormRequest
      */
-    public function setpaytrailNonce(string $paytrailNonce): AddCardFormRequest
+    public function setPaytrailNonce(string $paytrailNonce): AddCardFormRequest
     {
         $this->paytrailNonce = $paytrailNonce;
 
         return $this;
     }
 
-    public function setpaytrailTimestamp(string $paytrailTimestamp): AddCardFormRequest
+    public function setPaytrailTimestamp(string $paytrailTimestamp): AddCardFormRequest
     {
         $this->paytrailTimestamp = $paytrailTimestamp;
 
@@ -148,7 +148,7 @@ class AddCardFormRequest implements \JsonSerializable
      * @param string $paytrailRedirectSuccessUrl
      * @return AddCardFormRequest
      */
-    public function setpaytrailRedirectSuccessUrl(string $paytrailRedirectSuccessUrl): AddCardFormRequest
+    public function setPaytrailRedirectSuccessUrl(string $paytrailRedirectSuccessUrl): AddCardFormRequest
     {
         $this->paytrailRedirectSuccessUrl = $paytrailRedirectSuccessUrl;
 
@@ -159,7 +159,7 @@ class AddCardFormRequest implements \JsonSerializable
      * @param string $paytrailRedirectCancelUrl
      * @return AddCardFormRequest
      */
-    public function setpaytrailRedirectCancelUrl(string $paytrailRedirectCancelUrl): AddCardFormRequest
+    public function setPaytrailRedirectCancelUrl(string $paytrailRedirectCancelUrl): AddCardFormRequest
     {
         $this->paytrailRedirectCancelUrl = $paytrailRedirectCancelUrl;
 
@@ -170,7 +170,7 @@ class AddCardFormRequest implements \JsonSerializable
      * @param string $paytrailCallbackSuccessUrl
      * @return AddCardFormRequest
      */
-    public function setpaytrailCallbackSuccessUrl(string $paytrailCallbackSuccessUrl): AddCardFormRequest
+    public function setPaytrailCallbackSuccessUrl(string $paytrailCallbackSuccessUrl): AddCardFormRequest
     {
         $this->paytrailCallbackSuccessUrl = $paytrailCallbackSuccessUrl;
 
@@ -181,7 +181,7 @@ class AddCardFormRequest implements \JsonSerializable
      * @param string $paytrailCallbackCancelUrl
      * @return AddCardFormRequest
      */
-    public function setpaytrailCallbackCancelUrl(string $paytrailCallbackCancelUrl): AddCardFormRequest
+    public function setPaytrailCallbackCancelUrl(string $paytrailCallbackCancelUrl): AddCardFormRequest
     {
         $this->paytrailCallbackCancelUrl = $paytrailCallbackCancelUrl;
 
@@ -217,7 +217,7 @@ class AddCardFormRequest implements \JsonSerializable
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return array_filter($this->convertObjectVarsToDashed(), function ($item) {
             return $item !== null;

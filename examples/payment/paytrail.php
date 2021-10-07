@@ -1,6 +1,6 @@
 <?php
 /**
- * The checkout form view.
+ * The Paytrail form view.
  *
  * The payment transaction is created on page load.
  *
@@ -57,7 +57,7 @@ if ($data['county'] != '') {
         <title>Paytrail Payment Service Example</title>
     </head>
     <body>
-    <h1>Checkout</h1>
+    <h1>Paytrail</h1>
 
         <fieldset>
             <legend>Select the payment provider</legend>
@@ -66,7 +66,7 @@ if ($data['county'] != '') {
             echo '<p>Go directly to <a href="' . $paymentData->getHref() . '" target="_blank">Paytrail Payment Service</a></p>';
 
             $terms_link = $groupData['terms'];
-            echo '<div class="checkout-terms-link">' . $terms_link . '</div>';
+            echo '<div class="paytrail-terms-link">' . $terms_link . '</div>';
             echo '<div class="container-fluid ml-0">';
 
             foreach ($arr as $group){
