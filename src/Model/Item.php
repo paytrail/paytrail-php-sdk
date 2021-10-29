@@ -381,9 +381,6 @@ class Item implements \JsonSerializable, ItemInterface
         if (empty($props['productCode'])) {
             throw new ValidationException('productCode is empty');
         }
-        if (empty($props['deliveryDate'])) {
-            throw new ValidationException('deliveryDate is empty');
-        }
 
         return true;
     }
