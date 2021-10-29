@@ -20,6 +20,7 @@ class PaymentRequestTest extends TestCase
 
         $item1 = new Item();
         $item1->setStamp('someStamp')
+            ->setDeliveryDate('12.12.2020')
             ->setProductCode('pr1')
             ->setVatPercentage(25)
             ->setUnitPrice(10)
@@ -27,6 +28,7 @@ class PaymentRequestTest extends TestCase
 
         $item2 = new Item();
         $item2->setStamp('someOtherStamp')
+            ->setDeliveryDate('12.12.2020')
             ->setProductCode('pr2')
             ->setVatPercentage(25)
             ->setUnitPrice(10)

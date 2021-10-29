@@ -84,6 +84,21 @@ interface ItemInterface
     public function setProductCode(?string $productCode) : ItemInterface;
 
     /**
+     * Get the delivery date.
+     *
+     * @return string
+     */
+    public function getDeliveryDate(): ?string;
+
+    /**
+     * Set the delivery date.
+     *
+     * @param string $deliveryDate
+     * @return ItemInterface Return self to enable chaining.
+     */
+    public function setDeliveryDate(?string $deliveryDate) : ItemInterface;
+
+    /**
      * Get the description.
      *
      * @return string
