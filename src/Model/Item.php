@@ -53,13 +53,6 @@ class Item implements \JsonSerializable, ItemInterface
     protected $productCode;
 
     /**
-     * The delivery date.
-     *
-     * @var string
-     */
-    protected $deliveryDate;
-
-    /**
      * ItemInterface description.
      * May appear on invoices of certain payment methods.
      *
@@ -194,29 +187,6 @@ class Item implements \JsonSerializable, ItemInterface
     public function setProductCode(?string $productCode) : ItemInterface
     {
         $this->productCode = $productCode;
-
-        return $this;
-    }
-
-    /**
-     * Get the delivery date.
-     *
-     * @return string
-     */
-    public function getDeliveryDate(): ?string
-    {
-        return $this->deliveryDate;
-    }
-
-    /**
-     * Set the delivery date.
-     *
-     * @param string $deliveryDate
-     * @return ItemInterface Return self to enable chaining.
-     */
-    public function setDeliveryDate(?string $deliveryDate) : ItemInterface
-    {
-        $this->deliveryDate = $deliveryDate;
 
         return $this;
     }
@@ -380,9 +350,6 @@ class Item implements \JsonSerializable, ItemInterface
         }
         if (empty($props['productCode'])) {
             throw new ValidationException('productCode is empty');
-        }
-        if (empty($props['deliveryDate'])) {
-            throw new ValidationException('deliveryDate is empty');
         }
 
         return true;

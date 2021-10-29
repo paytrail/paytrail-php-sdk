@@ -190,7 +190,6 @@ class Payment
             ->setUnits($item['amount'])
             ->setVatPercentage($item['vat'])
             ->setProductCode($item['code'])
-            ->setDeliveryDate(date('Y-m-d'))
             ->setDescription($item['title']);
 
         return $orderItem;

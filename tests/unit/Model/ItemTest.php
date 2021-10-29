@@ -20,7 +20,6 @@ class ItemTest extends TestCase
             ->setUnits(2)
             ->setVatPercentage(0)
             ->setProductCode('productCode123')
-            ->setDeliveryDate('12.12.1999')
             ->setDescription('description');
 
         $this->assertEquals(true, $i->validate());

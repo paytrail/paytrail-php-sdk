@@ -64,7 +64,6 @@ class ClientTest extends TestCase
         $this->client = new Client(self::MERCHANT_ID, self::SECRET, self::COF_PLUGIN_VERSION, $this->args);
 
         $this->item = (new Item())
-            ->setDeliveryDate('2020-12-12')
             ->setProductCode('pr1')
             ->setVatPercentage(24)
             ->setReference('itemReference123')
@@ -74,7 +73,6 @@ class ClientTest extends TestCase
             ->setUnitPrice(100);
 
         $this->item2 = (new Item())
-            ->setDeliveryDate('2020-12-12')
             ->setProductCode('pr2')
             ->setVatPercentage(24)
             ->setReference('itemReference123')
