@@ -368,6 +368,10 @@ class Item implements \JsonSerializable, ItemInterface
     {
         $props = get_object_vars($this);
 
+        if ($props['unitPrice'] < 0) {
+            throw new ValidationException('Items UnitPrice can\'t be a negative number');
+        }
+
         if (filter_var($props['unitPrice'], FILTER_VALIDATE_INT) === false) {
             //throw new \Exception('UnitPrice is not an integer');
             throw new ValidationException('UnitPrice is not an integer');

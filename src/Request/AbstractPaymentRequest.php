@@ -43,22 +43,6 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
         $supportedLanguages = ['FI', 'SV', 'EN'];
         $supportedCurrencies = ['EUR'];
 
-        if (empty($props['items'])) {
-            throw new ValidationException('Items is empty');
-        }
-
-        if (!is_array($props['items'])) {
-            throw new ValidationException('Items needs to be type of array');
-        }
-
-        // Count the total amount of the payment.
-        $items_total = array_reduce($this->getItems(), function ($carry = 0, ?Item $item = null) {
-            if ($item === null) {
-                return $carry;
-            }
-            return $item->getUnitPrice() * $item->getUnits() + $carry;
-        });
-
         if (empty($props['amount'])) {
             throw new ValidationException('Amount is empty');
         }
@@ -67,8 +51,28 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
             throw new ValidationException('Amount is not a number');
         }
 
-        if ($props['amount'] !== $items_total) {
-            throw new ValidationException('Amount doesnt match ItemsTotal');
+        // Validate the items.
+        if (!empty($props['items'])) {
+            if (!is_array($props['items'])) {
+                throw new ValidationException('Items needs to be type of array');
+            }
+
+            array_walk($this->items, function (Item $item) {
+                $item->validate();
+            });
+
+            // Count the total amount of the payment.
+            $items_total = array_reduce($this->getItems(), function ($carry = 0, ?Item $item = null) {
+                if ($item === null) {
+                    return $carry;
+                }
+                return $item->getUnitPrice() * $item->getUnits() + $carry;
+            });
+
+            // Check the totals.
+            if ($props['amount'] !== $items_total) {
+                throw new ValidationException('Amount doesnt match ItemsTotal');
+            }
         }
 
         if (empty($props['stamp'])) {
@@ -98,11 +102,6 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
         if (empty($props['redirectUrls'])) {
             throw new ValidationException('RedirectUrls is empty');
         }
-
-        // Validate the items.
-        array_walk($this->items, function (Item $item) {
-            $item->validate();
-        });
 
         // Validate the customer.
         $this->customer->validate();
