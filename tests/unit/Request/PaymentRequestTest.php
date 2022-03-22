@@ -22,7 +22,7 @@ class PaymentRequestTest extends TestCase
         }
     }
 
-    public function tesPaymentRequestWithoutItems(): void
+    public function testPaymentRequestWithoutItems(): void
     {
         $paymentRequest = $this->getPaymentRequest();
 
