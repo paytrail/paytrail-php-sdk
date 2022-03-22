@@ -359,8 +359,11 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      */
     public function setItems(?array $items) : PaymentRequestInterface
     {
+        $this->items = $items;
 
-        $this->items = array_values($items);
+        if ($items !== null) {
+            $this->items = array_values($items);
+        }
 
         return $this;
     }
