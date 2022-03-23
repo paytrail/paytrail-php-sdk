@@ -44,6 +44,13 @@ class ItemTest extends TestCase
         }
 
         try {
+            $i->setUnitPrice(-10);
+            $i->validate();
+        } catch (Exception $e) {
+            $this->assertStringContainsString('UnitPrice can\'t be a negative number', $e->getMessage());
+        }
+
+        try {
             $i->setUnitPrice(2);
             $i->validate();
         } catch (Exception $e) {

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Model\CallbackUrl;
@@ -9,53 +9,76 @@ use PHPUnit\Framework\TestCase;
 
 class PaymentRequestTest extends TestCase
 {
-    public function testPaymentRequest()
+    public function testPaymentRequestWithItems(): void
     {
-        $r = new PaymentRequest();
-        $r->setAmount(30);
-        $r->setStamp('RequestStamp');
-        $r->setReference('RequestReference123');
-        $r->setCurrency('EUR');
-        $r->setLanguage('EN');
+        $paymentRequest = $this->getPaymentRequest();
 
-        $item1 = new Item();
-        $item1->setStamp('someStamp')
+        $paymentRequest->setItems($this->getPaymentItems());
+
+        try {
+            $this->assertEquals(true, $paymentRequest->validate());
+        } catch (ValidationException $e) {
+            $this->fail();
+        }
+    }
+
+    public function testPaymentRequestWithoutItems(): void
+    {
+        $paymentRequest = $this->getPaymentRequest();
+
+        try {
+            $this->assertEquals(true, $paymentRequest->validate());
+        } catch (ValidationException $e) {
+            $this->fail();
+        }
+    }
+
+    private function getPaymentRequest(): PaymentRequest
+    {
+        $payment = (new PaymentRequest)
+            ->setAmount(30)
+            ->setStamp('RequestStamp')
+            ->setReference('RequestReference123')
+            ->setCurrency('EUR')
+            ->setLanguage('EN');
+
+        $customer = (new Customer)
+            ->setEmail('customer@email.com');
+
+        $payment->setCustomer($customer);
+
+        $callback = (new CallbackUrl)
+            ->setCancel('https://somedomain.com/cancel')
+            ->setSuccess('https://somedomain.com/success');
+
+        $payment->setCallbackUrls($callback);
+
+        $redirect = (new CallbackUrl)
+            ->setSuccess('https://someother.com/success')
+            ->setCancel('https://someother.com/cancel');
+
+        $payment->setRedirectUrls($redirect);
+
+        return $payment;
+    }
+
+    private function getPaymentItems(): array
+    {
+        return [
+            (new Item)
+            ->setStamp('someStamp')
             ->setDeliveryDate('12.12.2020')
             ->setProductCode('pr1')
             ->setVatPercentage(25)
             ->setUnitPrice(10)
-            ->setUnits(1);
-
-        $item2 = new Item();
-        $item2->setStamp('someOtherStamp')
+            ->setUnits(1),
+            (new Item)
+            ->setStamp('someOtherStamp')
             ->setDeliveryDate('12.12.2020')
             ->setProductCode('pr2')
             ->setVatPercentage(25)
             ->setUnitPrice(10)
-            ->setUnits(2);
-
-        $r->setItems([$item1, $item2]);
-
-        $c = new Customer();
-        $c->setEmail('customer@email.com');
-
-        $r->setCustomer($c);
-
-        $cb = new CallbackUrl();
-        $cb->setCancel('https://somedomain.com/cancel')
-            ->setSuccess('https://somedomain.com/success');
-
-        $r->setCallbackUrls($cb);
-
-        $redirect = new CallbackUrl();
-        $redirect->setSuccess('https://someother.com/success')
-            ->setCancel('https://someother.com/cancel');
-
-        $r->setRedirectUrls($redirect);
-
-        try {
-            $this->assertEquals(true, $r->validate());
-        } catch (ValidationException $e) {
-        }
+            ->setUnits(2),
+        ];
     }
 }
