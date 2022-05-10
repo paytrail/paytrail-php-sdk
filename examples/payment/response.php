@@ -4,6 +4,18 @@
  */
 require 'vendor/autoload.php';
 
+$client = new Client(
+    375917,
+    'SAIPPUAKAUPPIAS',
+    'php-sdk-test'
+);
+
+try {
+    $client->validateHmac($_GET, '', $_GET["signature"]);
+} catch (HmacException $e) {
+    die("Signature validation failed");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
