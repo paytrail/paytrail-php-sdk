@@ -88,7 +88,7 @@ class Payment
      */
     public function setPaymentData($payment, $data) {
 
-        $payment->setStamp(hash('sha256', time()));
+        $payment->setStamp(hash('sha256', hrtime(true)));
 
         $payment->setAmount($data['amount'] * 100);
 
