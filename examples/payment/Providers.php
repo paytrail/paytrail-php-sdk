@@ -1,7 +1,7 @@
 <?php
 
-use Guzzle6\Exception\RequestException;
 use Paytrail\SDK\Client;
+use Paytrail\SDK\Exception\RequestException;
 
 /**
  * Class Providers

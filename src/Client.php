@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
+
+namespace Paytrail\SDK;
+
 /**
  * Class Client
  */
 
-namespace Paytrail\SDK;
-
-use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Model\Provider;
 use Paytrail\SDK\Request\AddCardFormRequest;
 use Paytrail\SDK\Request\CitPaymentRequest;
@@ -26,14 +27,11 @@ use Paytrail\SDK\Response\RefundResponse;
 use Paytrail\SDK\Response\EmailRefundResponse;
 use Paytrail\SDK\Response\RevertPaymentAuthHoldResponse;
 use Paytrail\SDK\Util\Signature;
-use Guzzle6\Exception\RequestException;
-use Guzzle6\Psr7\Uri;
-use Guzzle6\HandlerStack;
-use Guzzle6\Middleware;
-use Guzzle6\MessageFormatter;
-use Guzzle6\Client as GuzzleHttpClient;
-use Psr\Http\Message\ResponseInterface;
 use Paytrail\SDK\Exception\HmacException;
+use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Exception\RequestException;
+use Paytrail\SDK\Exception\ClientException;
+use Paytrail\SDK\Util\RequestClient;
 
 /**
  * Class Client
@@ -42,7 +40,7 @@ use Paytrail\SDK\Exception\HmacException;
  *
  * @package Paytrail\SDK
  */
-class Client
+class Client extends PaytrailClient
 {
 
     /**
@@ -59,7 +57,6 @@ class Client
      */
     public function getMerchantId(): ?int
     {
-
         return $this->merchantId;
     }
 
@@ -83,7 +80,6 @@ class Client
      */
     public function getSecretKey(): ?string
     {
-
         return $this->secretKey;
     }
 
@@ -132,11 +128,10 @@ class Client
         return $this->platformName;
     }
 
-
     /**
-     * The Guzzle HTTP client.
+     * HTTP client.
      *
-     * @var GuzzleHttpClient
+     * @var RequestClient
      */
     protected $http_client;
 
@@ -151,87 +146,14 @@ class Client
      * @param int $merchantId The merchant.
      * @param string $secretKey The secret key.
      * @param string $platformName Platform name.
-     * @param array $args Optional. Array of additional arguments.
-     *
-     * @type float $timeout A timeout value in seconds for the GuzzleHTTP client.
-     * @type LoggerInterface $logger A PSR-3 logger instance. See: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
-     * @type string $message_format The format for logger messages. See: https://github.com/guzzle/guzzle/blob/master/src/MessageFormatter.php#L9
      */
-    public function __construct(int $merchantId, string $secretKey, string $platformName, $args = [])
+    public function __construct(int $merchantId, string $secretKey, string $platformName)
     {
         $this->setMerchantId($merchantId);
         $this->setSecretKey($secretKey);
         $this->setPlatformName($platformName);
 
-        $stack = $this->createLoggerStack($args);
-
-        $this->http_client = new GuzzleHttpClient(
-            [
-                'headers' => [],
-                'base_uri' => self::API_ENDPOINT,
-                'timeout' => $args['timeout'] ?? 10,
-                'handler' => $stack,
-            ]
-        );
-    }
-
-    /**
-     * Returns a handler stack containing a logger middleware
-     * or an empty stack if no logger was set.
-     *
-     * @param array $args Passed client arguments.
-     *
-     * @return HandlerStack
-     */
-    private function createLoggerStack(array $args)
-    {
-        if (empty($args['logger'])) {
-            return HandlerStack::create();
-        }
-
-        $stack = HandlerStack::create();
-        $stack->push(
-            Middleware::log(
-                $args['logger'],
-                new MessageFormatter($args['message_format'] ?? '{uri}: {req_body} - {res_body}')
-            )
-        );
-        return $stack;
-    }
-
-    /**
-     * Format request headers.
-     *
-     * @param string $method The request method. GET or POST.
-     * @param string $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
-     * @param string $checkoutTokenizationId Paytrail tokenization ID for getToken request
-     *
-     * @return array
-     * @throws \Exception
-     */
-    protected function getHeaders(string $method, string $transactionId = null, string $checkoutTokenizationId = null)
-    {
-        $datetime = new \DateTime();
-
-        $headers = [
-            'checkout-account' => $this->merchantId,
-            'checkout-algorithm' => 'sha256',
-            'checkout-method' => strtoupper($method),
-            'checkout-nonce' => uniqid(true),
-            'checkout-timestamp' => $datetime->format('Y-m-d\TH:i:s.u\Z'),
-            'platform-name' => $this->platformName,
-            'content-type' => 'application/json; charset=utf-8',
-        ];
-
-        if (!empty($transactionId)) {
-            $headers['checkout-transaction-id'] = $transactionId;
-        }
-
-        if (!empty($checkoutTokenizationId)) {
-            $headers['checkout-tokenization-id'] = $checkoutTokenizationId;
-        }
-
-        return $headers;
+        $this->http_client = new RequestClient();
     }
 
     /**
@@ -245,7 +167,7 @@ class Client
      */
     public function getPaymentProviders(int $amount = null)
     {
-        $uri = new Uri('/merchants/payment-providers');
+        $uri = '/merchants/payment-providers';
 
         $headers = $this->getHeaders('GET');
         $mac = $this->calculateHmac($headers);
@@ -263,7 +185,7 @@ class Client
             ];
         }
 
-        $response = $this->http_client->get($uri, $request_params);
+        $response = $this->http_client->request('GET', $uri, $request_params);
         $body = (string)$response->getBody();
 
         // Validate the signature.
@@ -293,7 +215,7 @@ class Client
      */
     public function getGroupedPaymentProviders(int $amount = null, string $locale = 'FI', array $groups = [])
     {
-        $uri = new Uri('/merchants/grouped-payment-providers');
+        $uri = '/merchants/grouped-payment-providers';
 
         $headers = $this->getHeaders('GET');
         $mac = $this->calculateHmac($headers);
@@ -317,7 +239,7 @@ class Client
             $request_params['query']['groups'] = join(',', $groups);
         }
 
-        $response = $this->http_client->get($uri, $request_params);
+        $response = $this->http_client->request('GET', $uri, $request_params);
         $body = (string)$response->getBody();
 
         // Validate the signature.
@@ -365,7 +287,7 @@ class Client
     {
         $this->validateRequestItem($payment);
 
-        $uri = new Uri('/payments');
+        $uri = '/payments';
 
         $payment_response = $this->post(
             $uri,
@@ -401,7 +323,7 @@ class Client
      {
          $this->validateRequestItem($payment);
 
-         $uri = new Uri('/payments');
+         $uri = '/payments';
 
          $payment_response = $this->post(
              $uri,
@@ -436,7 +358,7 @@ class Client
     {
         $this->validateRequestItem($paymentStatusRequest);
 
-        $uri = new Uri('/payments/' . $paymentStatusRequest->getTransactionId());
+        $uri = '/payments/' . $paymentStatusRequest->getTransactionId();
 
         $payment_status_response = $this->get(
             $uri,
@@ -484,7 +406,7 @@ class Client
         $this->validateRequestItem($refund);
 
         try {
-            $uri = new Uri('/payments/' . $transactionID . '/refund');
+            $uri = '/payments/' . $transactionID . '/refund';
 
             // This will throw an error if the refund is not created.
             $refund_response = $this->post(
@@ -529,7 +451,7 @@ class Client
         $this->validateRequestItem($refund);
 
         try {
-            $uri = new Uri('/payments/' . $transactionID . '/refund/email');
+            $uri = '/payments/' . $transactionID . '/refund/email';
 
             // This will throw an error if the refund is not created.
             $refund_response = $this->post(
@@ -570,7 +492,7 @@ class Client
     {
         $this->validateRequestItem($addCardFormRequest);
 
-        $uri = new Uri('/tokenization/addcard-form');
+        $uri = '/tokenization/addcard-form';
 
         $addCardFormResponse = $this->post(
             $uri,
@@ -595,7 +517,7 @@ class Client
         $paytrailTokenizationId = $getTokenRequest->getCheckoutTokenizationId();
 
         try {
-            $uri = new Uri('/tokenization/' . $getTokenRequest->getCheckoutTokenizationId());
+            $uri = '/tokenization/' . $getTokenRequest->getCheckoutTokenizationId();
 
             $getTokenResponse = $this->post(
                 $uri,
@@ -623,80 +545,6 @@ class Client
     }
 
     /**
-     * Create a CIT payment request.
-     *
-     * @param CitPaymentRequest $citPayment A CIT payment class instance.
-     * @param Uri $uri The uri for the request.
-     *
-     * @return CitPaymentResponse
-     * @throws HmacException Thrown if HMAC calculation fails for responses.
-     * @throws RequestException A Guzzle HTTP request exception is thrown for erroneous requests.
-     * @throws ValidationException Thrown if payment validation fails.
-     */
-    private function createCitPayment(CitPaymentRequest $citPayment, Uri $uri): CitPaymentResponse
-    {
-        $this->validateRequestItem($citPayment);
-
-        try {
-            $citPaymentResponse = $this->post(
-                $uri,
-                $citPayment,
-                /**
-                 * Create the response instance.
-                 *
-                 * @param mixed $decoded The decoded body.
-                 * @return CitPaymentResponse
-                 */
-                function ($decoded) {
-                    return (new CitPaymentResponse())
-                        ->setTransactionId($decoded->transactionId ?? null)
-                        ->setThreeDSecureUrl($decoded->threeDSecureUrl ?? null);
-                }
-            );
-
-            return $citPaymentResponse;
-        } catch (\Guzzle6\Exception\ClientException $e) {
-            if ($e->hasResponse() && $e->getCode() === 403) {
-                $decoded = json_decode($e->getResponse()->getBody());
-                return (new CitPaymentResponse())
-                    ->setTransactionId($decoded->transactionId ?? null)
-                    ->setThreeDSecureUrl($decoded->threeDSecureUrl ?? null);
-            } else {
-                throw $e;
-            }
-        }
-    }
-
-    /**
-     * @param MitPaymentRequest $mitPayment
-     * @param Uri $uri
-     * @return MitPaymentResponse
-     * @throws HmacException
-     * @throws ValidationException
-     */
-    private function createMitPayment(MitPaymentRequest $mitPayment, Uri $uri): MitPaymentResponse
-    {
-        $this->validateRequestItem($mitPayment);
-
-        $mitPaymentResponse = $this->post(
-            $uri,
-            $mitPayment,
-            /**
-             * Create the response instance.
-             *
-             * @param mixed $decoded The decoded body.
-             * @return MitPaymentResponse
-             */
-            function ($decoded) {
-                return (new MitPaymentResponse())
-                    ->setTransactionId($decoded->transactionId ?? null);
-            }
-        );
-
-        return $mitPaymentResponse;
-    }
-
-    /**
      * @param CitPaymentRequest $citPayment
      * @return CitPaymentResponse
      * @throws HmacException Thrown if HMAC calculation fails for responses.
@@ -704,7 +552,7 @@ class Client
      */
     public function createCitPaymentCharge(CitPaymentRequest $citPayment): CitPaymentResponse
     {
-        $uri = new Uri('/payments/token/cit/charge');
+        $uri = '/payments/token/cit/charge';
 
         return $this->createCitPayment($citPayment, $uri);
     }
@@ -717,7 +565,7 @@ class Client
      */
     public function createCitPaymentAuthorizationHold(CitPaymentRequest $citPayment): CitPaymentResponse
     {
-        $uri = new Uri('/payments/token/cit/authorization-hold');
+        $uri = '/payments/token/cit/authorization-hold';
 
         return $this->createCitPayment($citPayment, $uri);
     }
@@ -730,7 +578,7 @@ class Client
      */
     public function createMitPaymentCharge(MitPaymentRequest $mitPayment): MitPaymentResponse
     {
-        $uri = new Uri('/payments/token/mit/charge');
+        $uri = '/payments/token/mit/charge';
 
         return $this->createMitPayment($mitPayment, $uri);
     }
@@ -743,7 +591,7 @@ class Client
      */
     public function createMitPaymentAuthorizationHold(MitPaymentRequest $mitPayment): MitPaymentResponse
     {
-        $uri = new Uri('/payments/token/mit/authorization-hold');
+        $uri = '/payments/token/mit/authorization-hold';
 
         return $this->createMitPayment($mitPayment, $uri);
     }
@@ -761,7 +609,7 @@ class Client
     {
         $this->validateRequestItem($citPayment);
 
-        $uri = new Uri('/payments/' . $transactionId . '/token/commit');
+        $uri = '/payments/' . $transactionId . '/token/commit';
 
         $citPaymentResponse = $this->post(
             $uri,
@@ -794,7 +642,7 @@ class Client
     {
         $this->validateRequestItem($mitPayment);
 
-        $uri = new Uri('/payments/' . $transactionId . '/token/commit');
+        $uri = '/payments/' . $transactionId . '/token/commit';
 
         $mitPaymentResponse = $this->post(
             $uri,
@@ -829,7 +677,7 @@ class Client
         $this->validateRequestItem($revertPaymentAuthHoldRequest);
         $transactionId = $revertPaymentAuthHoldRequest->getTransactionId();
 
-        $uri = new Uri('/payments/' . $transactionId . '/token/revert');
+        $uri = '/payments/' . $transactionId . '/token/revert';
 
         $revertPaymentAuthHoldResponse = $this->post(
             $uri,
@@ -851,141 +699,6 @@ class Client
     }
 
     /**
-     * A wrapper for post requests.
-     *
-     * @param Uri $uri The uri for the request.
-     * @param \JsonSerializable $data The request payload.
-     * @param callable $callback The callback method to run for the decoded response. If left empty, the response is returned.
-     * @param string $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
-     * @param bool $signatureInHeader Checks if signature is calculated from header/body parameters
-     * @param string $paytrailTokenizationId Paytrail tokenization ID for getToken request
-     *
-     * @return mixed|ResponseInterface Callback return value or the response object.
-     * @throws HmacException
-     */
-    protected function post(Uri $uri, \JsonSerializable $data, callable $callback = null, string $transactionId = null, bool $signatureInHeader = true, string $paytrailTokenizationId = null)
-    {
-        $body = json_encode($data, JSON_UNESCAPED_SLASHES);
-
-        if ($signatureInHeader) {
-            $headers = $this->getHeaders('POST', $transactionId, $paytrailTokenizationId);
-            $mac = $this->calculateHmac($headers, $body);
-            $headers['signature'] = $mac;
-
-            $response = $this->http_client->post($uri, [
-                'headers' => $headers,
-                'body' => $body,
-                'allow_redirects' => false
-            ]);
-            $body = (string)$response->getBody();
-
-            // Handle header data and validate HMAC.
-            $headers = $this->reduceHeaders($response->getHeaders());
-            $this->validateHmac($headers, $body, $headers['signature'] ?? '');
-        } else {
-            $mac = $this->calculateHmac($data->toArray());
-            $data->setSignature($mac);
-            $body = json_encode($data->toArray(), JSON_UNESCAPED_SLASHES);
-
-            $response = $this->http_client->post($uri, [
-                'body' => $body,
-                'allow_redirects' => false
-            ]);
-            $body = (string)$response->getBody();
-        }
-
-        if ($callback) {
-            $decoded = json_decode($body);
-            return call_user_func($callback, $decoded);
-        }
-
-        return $response;
-    }
-
-    /**
-     * A wrapper for get requests.
-     *
-     * @param Uri $uri The uri for the request.
-     * @param callable $callback The callback method to run for the decoded response. If left empty, the response is returned.
-     * @param string $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
-     *
-     * @return mixed|ResponseInterface Callback return value or the response object.
-     * @throws HmacException
-     */
-    protected function get(Uri $uri, callable $callback = null, string $transactionId = null)
-    {
-        $headers = $this->getHeaders('GET', $transactionId);
-        $mac = $this->calculateHmac($headers);
-
-        $headers['signature'] = $mac;
-
-        $response = $this->http_client->get($uri, [
-            'headers' => $headers
-        ]);
-        $body = (string)$response->getBody();
-
-        // Handle header data and validate HMAC.
-        $responseHeaders = $this->reduceHeaders($response->getHeaders());
-        $this->validateHmac($responseHeaders, $body, $responseHeaders['signature'] ?? '');
-
-        if ($callback) {
-            $decoded = json_decode($body);
-            return call_user_func($callback, $decoded);
-        }
-
-        return $response;
-    }
-
-    /**
-     * Validate a request item.
-     *
-     * @param $item
-     *
-     * @throws ValidationException
-     */
-    protected function validateRequestItem($item)
-    {
-        if (method_exists($item, 'validate')) {
-            try {
-                $item->validate();
-            } catch (\Exception $e) {
-                $message = $e->getMessage();
-                throw new ValidationException($message, $e->getCode(), $e);
-            }
-        }
-    }
-
-    /**
-     * The PSR message interface defines headers as
-     * an associative array where every header key has
-     * an array of values. This method reduces the values to one.
-     *
-     * @param array[][] $headers The response headers.
-     *
-     * @return array
-     */
-    protected function reduceHeaders(array $headers = [])
-    {
-        return array_map(function ($value) {
-            return $value[0] ?? $value;
-        }, $headers);
-    }
-
-
-    /**
-     * A proxy for the Signature class' static method
-     * to be used via a client instance.
-     *
-     * @param array $params The parameters.
-     * @param string $body The body.
-     * @return string SHA-256 HMAC
-     */
-    protected function calculateHmac(array $params = [], string $body = '')
-    {
-        return Signature::calculateHmac($params, $body, $this->secretKey);
-    }
-
-    /**
      * A proxy for the Signature class' static method
      * to be used via a client instance.
      *
@@ -998,5 +711,79 @@ class Client
     public function validateHmac(array $response = [], string $body = '', string $signature = '')
     {
         Signature::validateHmac($response, $body, $signature, $this->secretKey);
+    }
+
+    /**
+     * Create a CIT payment request.
+     *
+     * @param CitPaymentRequest $citPayment A CIT payment class instance.
+     * @param string $uri The uri for the request.
+     *
+     * @return CitPaymentResponse
+     * @throws HmacException Thrown if HMAC calculation fails for responses.
+     * @throws RequestException A Guzzle HTTP request exception is thrown for erroneous requests.
+     * @throws ValidationException Thrown if payment validation fails.
+     */
+    private function createCitPayment(CitPaymentRequest $citPayment, string $uri): CitPaymentResponse
+    {
+        $this->validateRequestItem($citPayment);
+
+        try {
+            $citPaymentResponse = $this->post(
+                $uri,
+                $citPayment,
+                /**
+                 * Create the response instance.
+                 *
+                 * @param mixed $decoded The decoded body.
+                 * @return CitPaymentResponse
+                 */
+                function ($decoded) {
+                    return (new CitPaymentResponse())
+                        ->setTransactionId($decoded->transactionId ?? null)
+                        ->setThreeDSecureUrl($decoded->threeDSecureUrl ?? null);
+                }
+            );
+
+            return $citPaymentResponse;
+        } catch (ClientException $e) {
+            if ($e->getResponseBody() && $e->getResponseCode() === 403) {
+                $decoded = json_decode($e->getResponseBody());
+                return (new CitPaymentResponse())
+                    ->setTransactionId($decoded->transactionId ?? null)
+                    ->setThreeDSecureUrl($decoded->threeDSecureUrl ?? null);
+            } else {
+                throw $e;
+            }
+        }
+    }
+
+    /**
+     * @param MitPaymentRequest $mitPayment
+     * @param string $uri
+     * @return MitPaymentResponse
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    private function createMitPayment(MitPaymentRequest $mitPayment, string $uri): MitPaymentResponse
+    {
+        $this->validateRequestItem($mitPayment);
+
+        $mitPaymentResponse = $this->post(
+            $uri,
+            $mitPayment,
+            /**
+             * Create the response instance.
+             *
+             * @param mixed $decoded The decoded body.
+             * @return MitPaymentResponse
+             */
+            function ($decoded) {
+                return (new MitPaymentResponse())
+                    ->setTransactionId($decoded->transactionId ?? null);
+            }
+        );
+
+        return $mitPaymentResponse;
     }
 }
