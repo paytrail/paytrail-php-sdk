@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tests;
 
@@ -32,7 +33,7 @@ class ClientTest extends TestCase
 
     const SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID = 695861;
 
-    const SHOP_IN_SHOP_SUB_MERCHANT_ID = 695874;
+    const SHOP_IN_SHOP_SUB_MERCHANT_ID = '695874';
 
     const COF_PLUGIN_VERSION = 'phpunit-test';
 
@@ -274,7 +275,7 @@ class ClientTest extends TestCase
             ->setCheckoutAccount(self::MERCHANT_ID)
             ->setCheckoutAlgorithm('sha256')
             ->setCheckoutMethod('POST')
-            ->setCheckoutNonce(uniqid(true))
+            ->setCheckoutNonce(uniqid('', true))
             ->setCheckoutTimestamp($datetime->format('Y-m-d\TH:i:s.u\Z'))
             ->setCheckoutRedirectSuccessUrl('https://somedomain.com/success')
             ->setCheckoutRedirectCancelUrl('https://somedomain.com/cancel')

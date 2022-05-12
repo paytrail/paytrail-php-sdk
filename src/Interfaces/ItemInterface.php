@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Interface Item
  */
@@ -33,7 +35,7 @@ interface ItemInterface
     /**
      * Set the unit price.
      *
-     * @param int $unitPrice
+     * @param int/null $unitPrice
      * @return ItemInterface Return self to enable chaining.
      */
     public function setUnitPrice(?int $unitPrice) : ItemInterface;
@@ -48,7 +50,7 @@ interface ItemInterface
     /**
      * Set the units.
      *
-     * @param int $units
+     * @param int/null $units
      * @return ItemInterface Return self to enable chaining.
      */
     public function setUnits(?int $units) : ItemInterface;
@@ -63,7 +65,7 @@ interface ItemInterface
     /**
      * Set the VAT percentage.
      *
-     * @param int $vatPercentage
+     * @param int|null $vatPercentage
      * @return ItemInterface Return self to enable chaining.
      */
     public function setVatPercentage(?int $vatPercentage) : ItemInterface;
@@ -78,7 +80,7 @@ interface ItemInterface
     /**
      * Set the product code.
      *
-     * @param string $productCode
+     * @param string|null $productCode
      * @return ItemInterface Return self to enable chaining.
      */
     public function setProductCode(?string $productCode) : ItemInterface;
@@ -93,7 +95,7 @@ interface ItemInterface
     /**
      * Set the delivery date.
      *
-     * @param string $deliveryDate
+     * @param string|null $deliveryDate
      * @return ItemInterface Return self to enable chaining.
      */
     public function setDeliveryDate(?string $deliveryDate) : ItemInterface;
@@ -108,7 +110,7 @@ interface ItemInterface
     /**
      * Set the description.
      *
-     * @param string $description
+     * @param string|null $description
      * @return ItemInterface Return self to enable chaining.
      */
     public function setDescription(?string $description) : ItemInterface;
@@ -123,7 +125,7 @@ interface ItemInterface
     /**
      * Set the category.
      *
-     * @param string $category
+     * @param string|null $category
      * @return ItemInterface Return self to enable chaining.
      */
     public function setCategory(?string $category) : ItemInterface;
@@ -138,7 +140,7 @@ interface ItemInterface
     /**
      * Set the stamp.
      *
-     * @param string $stamp
+     * @param string|null $stamp
      * @return ItemInterface Return self to enable chaining.
      */
     public function setStamp(?string $stamp) : ItemInterface;
@@ -146,7 +148,7 @@ interface ItemInterface
     /**
      * Get the reference.
      *
-     * @return string
+     * @return string|null
      */
     public function getReference(): ?string;
 
@@ -161,7 +163,7 @@ interface ItemInterface
     /**
      * Get the merchant.
      *
-     * @return string
+     * @return string|null
      */
     public function getMerchant(): ?string;
 

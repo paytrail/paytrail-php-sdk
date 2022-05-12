@@ -76,7 +76,7 @@ class Commission implements \JsonSerializable, CommissionInterface
      /**
       * The setter for the amount.
       *
-      * @param string $amount
+      * @param int $amount
       * @return Commission Return self to enable chaining.
       */
      public function setAmount(int $amount) : Commission

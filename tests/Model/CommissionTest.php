@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tests\Model;
 
@@ -10,30 +11,29 @@ class CommissionTest extends TestCase
 {
     public function testValidity()
     {
-        $c = new Commission();
-        $this->assertInstanceOf(Commission::class, $c);
-        $c->setMerchant('123456');
-        $c->setAmount(100);
-        $this->assertIsBool($c->validate(), 'merchant & amount are valid');
+        $commission = new Commission();
+        $this->assertInstanceOf(Commission::class, $commission);
+        $commission->setMerchant('123456');
+        $commission->setAmount(100);
+        $this->assertIsBool($commission->validate(), 'merchant & amount are valid');
     }
 
     public function testMerchantExceptions()
     {
-        // Test fail
         $this->expectException(ValidationException::class);
-        $c = new Commission();
-        $c->setAmount(123);
-        $c->setMerchant('');
-        $c->validate();
+        $commission = new Commission();
+        $commission->setAmount(123);
+        $commission->setMerchant('');
+        $commission->validate();
     }
 
     public function testAmountExceptions()
     {
         // Test fail
         $this->expectException(ValidationException::class);
-        $c = new Commission();
-        $c->setMerchant('123456');
-        var_dump($c->validate());
+        $commission = new Commission();
+        $commission->setMerchant('123456');
+        $commission->validate();
     }
 
 } 

@@ -1,5 +1,5 @@
 <?php
-    
+declare(strict_types=1);
 
 namespace Tests\Model;
 
@@ -11,11 +11,9 @@ class RefundItemTest extends TestCase
 {
     public function testValidation()
     {
+        $this->expectException(\TypeError::class);
         $rfi = new RefundItem();
-        $rfi->setAmount(123.2322323); // setter parameter typecasting should work for floats
-        $this->assertEquals(123, $rfi->getAmount());
-        $rfi->setStamp('someStringValueForTheStamp');
-        $this->assertEquals(true, $rfi->validate());
+        $rfi->setAmount(123.2322323);
     }
 
     public function testTypeError()
