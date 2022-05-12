@@ -12,8 +12,6 @@ use Paytrail\SDK\Exception\RequestException;
 
 class RequestClient
 {
-    const DEFAULT_TIMEOUT = 10;
-
     private $client;
 
     public function __construct()
@@ -46,11 +44,12 @@ class RequestClient
                 [
                     'headers' => [],
                     'base_uri' => Client::API_ENDPOINT,
-                    'timeout' => self::DEFAULT_TIMEOUT,
+                    'timeout' => Client::DEFAULT_TIMEOUT,
                 ]
             );
         }
         else {
+            // TODO: Create CURL client instead
             throw new \Exception('Client not found');
         }
     }

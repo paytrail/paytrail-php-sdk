@@ -18,7 +18,6 @@ use Paytrail\SDK\Exception\HmacException;
  */
 class Signature
 {
-
     /**
      * Calculate Paytrail HMAC
      *
