@@ -159,13 +159,13 @@ class Client extends PaytrailClient
     /**
      * Get a list of payment providers.
      *
-     * @param int $amount Purchase amount in currency's minor unit.
+     * @param int|null $amount Purchase amount in currency's minor unit.
      * @return Provider[]
      *
      * @throws HmacException       Thrown if HMAC calculation fails for responses.
      * @throws RequestException    A Guzzle HTTP request exception is thrown for erroneous requests.
      */
-    public function getPaymentProviders(int $amount = null)
+    public function getPaymentProviders(int $amount = null): array
     {
         $uri = '/merchants/payment-providers';
 
@@ -206,14 +206,14 @@ class Client extends PaytrailClient
      * terms: Localized text with a link to the terms of payment.
      * groups: Array of payment method group data (id, name, icon, svg, providers)
      *
-     * @param int $amount Purchase amount in currency's minor unit.
+     * @param int|null $amount Purchase amount in currency's minor unit.
      * @param string $locale
      * @param array $groups
      * @return array
      * @throws HmacException Thrown if HMAC calculation fails for responses.
      * @throws RequestException A Guzzle HTTP request exception is thrown for erroneous requests.
      */
-    public function getGroupedPaymentProviders(int $amount = null, string $locale = 'FI', array $groups = [])
+    public function getGroupedPaymentProviders(int $amount = null, string $locale = 'FI', array $groups = []): array
     {
         $uri = '/merchants/grouped-payment-providers';
 
@@ -283,7 +283,7 @@ class Client extends PaytrailClient
      * @throws RequestException     A Guzzle HTTP request exception is thrown for erroneous requests.
      * @throws ValidationException  Thrown if payment validation fails.
      */
-    public function createPayment(PaymentRequest $payment)
+    public function createPayment(PaymentRequest $payment): PaymentResponse
     {
         $this->validateRequestItem($payment);
 
@@ -319,7 +319,7 @@ class Client extends PaytrailClient
       * @throws RequestException     A Guzzle HTTP request exception is thrown for erroneous requests.
       * @throws ValidationException  Thrown if payment validation fails.
       */
-     public function createShopInShopPayment(ShopInShopPaymentRequest $payment)
+     public function createShopInShopPayment(ShopInShopPaymentRequest $payment): PaymentResponse
      {
          $this->validateRequestItem($payment);
 
@@ -354,7 +354,7 @@ class Client extends PaytrailClient
      * @throws HmacException Thrown if HMAC calculation fails for responses.
      * @throws ValidationException Thrown if payment validation fails.
      */
-    public function getPaymentStatus(PaymentStatusRequest $paymentStatusRequest)
+    public function getPaymentStatus(PaymentStatusRequest $paymentStatusRequest): PaymentStatusResponse
     {
         $this->validateRequestItem($paymentStatusRequest);
 
@@ -483,7 +483,7 @@ class Client extends PaytrailClient
      *
      * @param AddCardFormRequest $addCardFormRequest A AddCardFormRequest class instance.
      *
-     * @return AddCardFormResponse
+     * @return mixed
      * @throws HmacException Thrown if HMAC calculation fails for responses.
      * @throws RequestException A Guzzle HTTP request exception is thrown for erroneous requests.
      * @throws ValidationException Thrown if AddCardFormRequest validation fails.
@@ -708,9 +708,98 @@ class Client extends PaytrailClient
      *
      * @throws HmacException
      */
-    public function validateHmac(array $response = [], string $body = '', string $signature = '')
+    public function validateHmac(array $response = [], string $body = '', string $signature = ''): void
     {
         Signature::validateHmac($response, $body, $signature, $this->secretKey);
+    }
+
+    /**
+     * A wrapper for post requests.
+     *
+     * @param string $uri The uri for the request.
+     * @param \JsonSerializable $data The request payload.
+     * @param callable|null $callback The callback method to run for the decoded response. If left empty, the response is returned.
+     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
+     * @param bool $signatureInHeader Checks if signature is calculated from header/body parameters
+     * @param string|null $paytrailTokenizationId Paytrail tokenization ID for getToken request
+     *
+     * @return mixed
+     * @throws HmacException
+     */
+    protected function post(string $uri, \JsonSerializable $data, callable $callback = null, string $transactionId = null, bool $signatureInHeader = true, string $paytrailTokenizationId = null)
+    {
+        $body = json_encode($data, JSON_UNESCAPED_SLASHES);
+
+        if ($signatureInHeader) {
+            $headers = $this->getHeaders('POST', $transactionId, $paytrailTokenizationId);
+            $mac = $this->calculateHmac($headers, $body);
+            $headers['signature'] = $mac;
+
+            $response = $this->http_client->request('POST', $uri, [
+                'headers' => $headers,
+                'body' => $body,
+                'allow_redirects' => false
+            ]);
+
+            $body = (string)$response->getBody();
+
+            // Handle header data and validate HMAC.
+            $headers = $this->reduceHeaders($response->getHeaders());
+            $this->validateHmac($headers, $body, $headers['signature'] ?? '');
+        } else {
+            $mac = $this->calculateHmac($data->toArray());
+            $data->setSignature($mac);
+            $body = json_encode($data->toArray(), JSON_UNESCAPED_SLASHES);
+
+            $response = $this->http_client->request('POST', $uri, [
+                'body' => $body,
+                'allow_redirects' => false
+            ]);
+
+            $body = (string)$response->getBody();
+        }
+
+        if ($callback) {
+            $decoded = json_decode($body);
+            return call_user_func($callback, $decoded);
+        }
+
+        return $response;
+    }
+
+    /**
+     * A wrapper for get requests.
+     *
+     * @param string $uri The uri for the request.
+     * @param callable|null $callback The callback method to run for the decoded response. If left empty, the response is returned.
+     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
+     *
+     * @return mixed
+     * @throws HmacException
+     */
+    protected function get(string $uri, callable $callback = null, string $transactionId = null)
+    {
+        $headers = $this->getHeaders('GET', $transactionId);
+        $mac = $this->calculateHmac($headers);
+
+        $headers['signature'] = $mac;
+
+        $response = $this->http_client->request('GET', $uri, [
+            'headers' => $headers
+        ]);
+
+        $body = (string)$response->getBody();
+
+        // Handle header data and validate HMAC.
+        $responseHeaders = $this->reduceHeaders($response->getHeaders());
+        $this->validateHmac($responseHeaders, $body, $responseHeaders['signature'] ?? '');
+
+        if ($callback) {
+            $decoded = json_decode($body);
+            return call_user_func($callback, $decoded);
+        }
+
+        return $response;
     }
 
     /**
