@@ -49,8 +49,7 @@ class RequestClient
             );
         }
         else {
-            // TODO: Create CURL client instead
-            throw new \Exception('Client not found');
+            throw new \Exception('Guzzle client not found');
         }
     }
 }

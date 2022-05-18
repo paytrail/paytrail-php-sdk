@@ -8,7 +8,7 @@ use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Util\RequestClient;
 use Paytrail\SDK\Util\Signature;
 
-class PaytrailClient
+abstract class PaytrailClient
 {
     /**
      * The merchant id.
