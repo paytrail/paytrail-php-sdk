@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Class Signature
  */
@@ -16,7 +18,6 @@ use Paytrail\SDK\Exception\HmacException;
  */
 class Signature
 {
-
     /**
      * Calculate Paytrail HMAC
      *

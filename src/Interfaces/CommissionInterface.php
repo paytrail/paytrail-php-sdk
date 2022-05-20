@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Interface Commission
  */
@@ -42,7 +44,7 @@ interface CommissionInterface
      /**
       * The setter for the amount.
       *
-      * @param string $amount
+      * @param int $amount
       * @return Commission Return self to enable chaining.
       */
      public function setAmount(int $amount): Commission;
@@ -50,7 +52,7 @@ interface CommissionInterface
      /**
       * The getter for the amount.
       *
-      * @return string
+      * @return int
       */
      public function getAmount(): int;
 }

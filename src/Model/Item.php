@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Class ItemTest
  */
@@ -94,7 +96,7 @@ class Item implements \JsonSerializable, ItemInterface
      * Merchant ID for the item.
      * Required for Shop-in-Shop payments, do not use for normal payments.
      *
-     * @var string
+     * @var int
      */
     protected $merchant;
 

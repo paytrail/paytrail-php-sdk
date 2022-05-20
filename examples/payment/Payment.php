@@ -2,7 +2,6 @@
 
 require 'vendor/autoload.php';
 
-use Guzzle6\Exception\RequestException;
 use Paytrail\SDK\Client;
 use Paytrail\SDK\Exception\HmacException;
 use Paytrail\SDK\Exception\ValidationException;
@@ -12,6 +11,7 @@ use Paytrail\SDK\Model\Customer;
 use Paytrail\SDK\Model\Address;
 use Paytrail\SDK\Model\Item;
 use Paytrail\SDK\Response\PaymentResponse;
+use Paytrail\SDK\Exception\RequestException;
 
 /**
  * Class Payment
