@@ -11,16 +11,14 @@ To use the payment service, you need to sign up for a Paytrail account. Transact
 
 ## Requirements
 
-### PHP
+### General requirements
 
 - PHP version >= 7.3
+- [Guzzle](https://github.com/guzzle/guzzle) 7 or 6 - PHP HTTP client for performing HTTP request.
 
-### Composer packages
+### Development requirements
 
 - [PHPUnit](https://github.com/sebastianbergmann/phpunit) - A programmer-oriented testing framework for running unit tests in PHP.
-
-### Library packages
-- [Guzzle](https://github.com/guzzle/guzzle) v6.5.5 - PHP HTTP client for performing HTTP request.
 
 ## Installation
 
