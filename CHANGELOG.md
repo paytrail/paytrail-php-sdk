@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0] - 2022-05-20
+### Added
+- Added support for Guzzle 7
+### Changed
+- Removed bundled Guzzle 6 library
+- Guzzle version (6 or 7) is selected automatically depending on the environment
+
 ## [1.1.0] - 2022-03-23
 ### Added
 - Added native return type to jsonSerialize()
