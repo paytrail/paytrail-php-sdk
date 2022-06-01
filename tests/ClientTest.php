@@ -37,8 +37,6 @@ class ClientTest extends TestCase
 
     const COF_PLUGIN_VERSION = 'phpunit-test';
 
-    protected $args;
-
     protected $client;
 
     protected $item;
@@ -63,9 +61,7 @@ class ClientTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->args = ['timeout' => 20];
-
-        $this->client = new Client(self::MERCHANT_ID, self::SECRET, self::COF_PLUGIN_VERSION, $this->args);
+        $this->client = new Client(self::MERCHANT_ID, self::SECRET, self::COF_PLUGIN_VERSION);
 
         $this->item = (new Item())
             ->setDeliveryDate('2020-12-12')
