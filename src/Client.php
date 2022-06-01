@@ -26,6 +26,7 @@ use Paytrail\SDK\Response\PaymentStatusResponse;
 use Paytrail\SDK\Response\RefundResponse;
 use Paytrail\SDK\Response\EmailRefundResponse;
 use Paytrail\SDK\Response\RevertPaymentAuthHoldResponse;
+use Paytrail\SDK\Response\SettlementResponse;
 use Paytrail\SDK\Util\Signature;
 use Paytrail\SDK\Exception\HmacException;
 use Paytrail\SDK\Exception\ValidationException;
@@ -605,6 +606,42 @@ class Client extends PaytrailClient
         );
 
         return $revertPaymentAuthHoldResponse;
+    }
+
+    /**
+     * Get settlements for merchant
+     *
+     * @param string|null $startDate
+     * @param string|null $endDate
+     * @param string|null $reference
+     * @param int|null $limit
+     * @param int|null $subMerchant
+     * @return SettlementResponse
+     * @throws HmacException
+     */
+    public function getSettlements(?string $startDate = null, ?string $endDate = null, ?string $reference = null, ?int $limit = null, ?int $subMerchant = null)
+    {
+        $uri = "/settlements";
+
+        $parameters = [
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'bankReference' => $reference,
+            'limit' => $limit,
+            'submerchant' => $subMerchant,
+        ];
+
+        $query = http_build_query($parameters);
+
+        if (!empty($query)) {
+            $uri .= '?' . $query;
+        }
+
+        return $this->get($uri,
+        function ($decoded) {
+            return (new SettlementResponse())
+                ->setSettlements($decoded);
+        });
     }
 
     /**
