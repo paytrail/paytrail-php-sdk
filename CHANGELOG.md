@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added settlements endpoint
 - Added a validation exception if street address is longer then 50 characters
 ### Fixed
-- Fix exception handling on request timeout
+- Fixed exception handling on request timeout
 
 ## [2.0] - 2022-05-20
 ### Added
