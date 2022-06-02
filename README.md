@@ -38,18 +38,17 @@ _Note the path to the vendor directory is relative to your project._
 
 ## Folder contents & descriptions
 
-| Folder/File | Content/Description |
-| ------------- | ------------- |
-| src/Exception  | Exception classes and functions  |
-| src/Interfaces  | Interface classes and functions for all the related classes to implement  |
-| src/Model  | Model classes and functions  |
-| src/Request  | Request classes and functions  |
-| src/Response  | Response classes and functions  |
-| src/Util  | Utility/trait classes and functions  |
-| src/Client.php  | Client class and functions  |
-| lib | Library packages eg. Guzzle
-| tests/unit  | PHP unit tests  |
-| examples  | Examples  |
+| Folder/File    | Content/Description                                                      |
+|----------------|--------------------------------------------------------------------------|
+| examples       | Examples                                                                 |
+| src/Exception  | Exception classes and functions                                          |
+| src/Interfaces | Interface classes and functions for all the related classes to implement |
+| src/Model      | Model classes and functions                                              |
+| src/Request    | Request classes and functions                                            |
+| src/Response   | Response classes and functions                                           |
+| src/Util       | Utility/trait classes and functions                                      |
+| src/Client.php | Client class and functions                                               |
+| tests/unit     | PHP unit tests                                                           |
 
 ## Basic functionalities
 
@@ -72,3 +71,31 @@ Some of the key features are:
 ### Shop-in-Shop
 
 - Creating Shop-in-Shop payment request
+
+### Settlements
+
+- [Requesting merchant settlements](https://docs.paytrail.com/#/?id=settlements)
+
+## Methods
+
+List of `Client::class` methods
+
+| Method                              | Description                                          |
+|-------------------------------------|------------------------------------------------------|
+| getPaymentProviders()               | Get a list of payment providers                      |
+| getGroupedPaymentProviders()        | Returns an array of grouped payment providers fields |
+| createPayment()                     | Create payment                                       |
+| createShopInShopPayment()           | Create SiS payment                                   |
+| getPaymentStatus()                  | Request payment status                               |
+| refund()                            | Create refund                                        |
+| emailRefund()                       | Create email refund                                  |
+| createAddCardFormRequest()          | Save card details                                    |
+| createGetTokenRequest()             | Request card token                                   |
+| createCitPaymentCharge()            | Create CiT payment                                   |
+| createCitPaymentAuthorizationHold() | Create CiT authorization hold                        |
+| createCitPaymentCommit()            | Commit CiT authorization hold                        |
+| createMitPaymentCharge()            | Create MiT payment                                   |
+| createMitPaymentAuthorizationHold() | Create MiT authorization hold                        |
+| createMitPaymentCommit()            | Commit MiT authorization hold                        |
+| revertPaymentAuthorizationHold()    | Revert existing Mit or CiT authorization hold        |
+| getSettlements()                    | Request settlements                                  |
