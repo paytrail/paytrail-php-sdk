@@ -611,8 +611,8 @@ class Client extends PaytrailClient
     /**
      * Get settlements for merchant
      *
-     * @param string|null $startDate
-     * @param string|null $endDate
+     * @param string|null $startDate Start date in Y-m-d format
+     * @param string|null $endDate End date in Y-m-d format
      * @param string|null $reference
      * @param int|null $limit
      * @param int|null $subMerchant
@@ -621,6 +621,18 @@ class Client extends PaytrailClient
      */
     public function getSettlements(?string $startDate = null, ?string $endDate = null, ?string $reference = null, ?int $limit = null, ?int $subMerchant = null)
     {
+        if ($startDate) {
+            if ((new \DateTime())->createFromFormat('Y-m-d', $startDate) == false) {
+                throw new ValidationException('startDate must be in Y-m-d format');
+            }
+        }
+
+        if ($endDate) {
+            if ((new \DateTime())->createFromFormat('Y-m-d', $endDate) == false) {
+                throw new ValidationException('startDate must be in Y-m-d format');
+            }
+        }
+
         $uri = "/settlements";
 
         $parameters = [

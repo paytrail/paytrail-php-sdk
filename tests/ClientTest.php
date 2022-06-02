@@ -560,4 +560,10 @@ class ClientTest extends TestCase
             $this->assertStringContainsString('{"status":"error","message":"Transaction not found"}', $e->getMessage());
         }
     }
+
+    public function testGetSettlementsWithInvalidDateThrowsException()
+    {
+        $this->expectException(ValidationException::class);
+        $this->client->getSettlements('30.5.2022');
+    }
 }
