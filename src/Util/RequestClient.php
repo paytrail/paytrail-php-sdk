@@ -5,6 +5,7 @@ namespace Paytrail\SDK\Util;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException as GuzzleClientException;
+use GuzzleHttp\Exception\ConnectException as GuzzleConnectException;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Paytrail\SDK\Client;
 use Paytrail\SDK\Exception\ClientException;
@@ -19,6 +20,10 @@ class RequestClient
         $this->createClient();
     }
 
+    /**
+     * @throws ClientException
+     * @throws RequestException
+     */
     public function request(string $method, string $uri, array $options)
     {
         try {
@@ -31,6 +36,8 @@ class RequestClient
                 $clientException->setResponseCode($exception->getCode());
             }
             throw $clientException;
+        } catch (GuzzleConnectException $exception) {
+            throw new RequestException($exception->getMessage());
         }
         catch (GuzzleRequestException $exception) {
             throw new RequestException($exception->getMessage());
