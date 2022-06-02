@@ -94,7 +94,7 @@ class Address implements \JsonSerializable, AddressInterface
      */
     public function getStreetAddress(): ?string
     {
-        if ($this->streetAddress > 50 ) {
+        if (mb_strlen($this->streetAddress, 'UTF-8') > 50) {
             throw new ValidationException('streetAddress is too long');
         }
         return $this->streetAddress;
