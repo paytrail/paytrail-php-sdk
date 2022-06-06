@@ -78,8 +78,13 @@ class AddressTest extends TestCase
             $this->assertIsBool($a->validate(), 'Address::validate is bool');
         } catch (ValidationException $e) {
         }
+    }
 
-
+    public function testSetStreetAddressAcceptsNull()
+    {
+        $addressModel = new Address();
+        $addressModel->setStreetAddress(null);
+        $this->assertNull($addressModel->getStreetAddress());
     }
 
 }
