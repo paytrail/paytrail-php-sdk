@@ -110,7 +110,7 @@ class Address implements \JsonSerializable, AddressInterface
             return $this;
         }
 
-        if (mb_strlen($this->streetAddress, 'UTF-8') > 50) {
+        if (mb_strlen($streetAddress, 'UTF-8') > 50) {
             throw new ValidationException('streetAddress is too long');
         }
         $this->streetAddress = $streetAddress;
