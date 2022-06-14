@@ -30,6 +30,15 @@ class CurlResponse
         return $this->headers;
     }
 
+    public function getHeader(string $header): array
+    {
+        $header = strtolower($header);
+        if (!isset($this->headers[$header])) {
+            return [];
+        }
+        return $this->headers[$header];
+    }
+
     public function getStatusCode()
     {
         return $this->statusCode;
