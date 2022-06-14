@@ -21,11 +21,22 @@ class RequestClient
     }
 
     /**
+     * Perform http request.
+     *
+     * @param string $method
+     * @param string $uri
+     * @param array $options
+     * @param bool $formRequest
+     * @return mixed
      * @throws ClientException
      * @throws RequestException
      */
-    public function request(string $method, string $uri, array $options)
+    public function request(string $method, string $uri, array $options, bool $formRequest = false)
     {
+        // Decode form request for Curl fallback
+        if (get_class($this->client) == CurlClient::class && $formRequest) {
+            $options['body'] = json_decode($options['body'], true);
+        }
         try {
             return $this->client->request($method, $uri, $options);
         } catch (GuzzleClientException $exception) {
@@ -44,6 +55,11 @@ class RequestClient
         }
     }
 
+    /**
+     * Create http client. Use existing Guzzle if found one, else fallback to curl.
+     *
+     * @return void
+     */
     private function createClient(): void
     {
         if (class_exists('GuzzleHttp\Client')) {
@@ -56,7 +72,7 @@ class RequestClient
             );
         }
         else {
-            throw new \Exception('Guzzle client not found');
+            $this->client = new CurlClient(Client::API_ENDPOINT, Client::DEFAULT_TIMEOUT);
         }
     }
 }
