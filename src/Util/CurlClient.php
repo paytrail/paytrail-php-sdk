@@ -15,6 +15,15 @@ class CurlClient
         $this->timeout = $timeout;
     }
 
+    /**
+     * Perform http request
+     *
+     * @param string $method
+     * @param string $uri
+     * @param array $options
+     * @return CurlResponse
+     * @throws \Paytrail\SDK\Exception\ClientException
+     */
     public function request(string $method, string $uri, array $options)
     {
         $curl = curl_init();
@@ -46,6 +55,11 @@ class CurlClient
         return $curlResponse;
     }
 
+    /**
+     * Parse Key => Value headers as Key: Value array for curl.
+     * @param $options
+     * @return array
+     */
     private function parseHeaders($options): array
     {
         $headers = $options['headers'] ?? [];
@@ -57,7 +71,13 @@ class CurlClient
         return $result;
     }
 
-    private function formatBody($body)
+    /**
+     * Format body. For form request, build normal query string.
+     *
+     * @param $body
+     * @return string
+     */
+    private function formatBody($body): string
     {
         if (!is_array($body)) {
             return $body;

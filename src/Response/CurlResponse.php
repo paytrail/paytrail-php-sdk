@@ -35,7 +35,13 @@ class CurlResponse
         return $this->statusCode;
     }
 
-    private function setHeaders(string $headers)
+    /**
+     * Set response headers
+     *
+     * @param string $headers
+     * @return void
+     */
+    private function setHeaders(string $headers): void
     {
         $headerArray = explode("\n", $headers);
         $responseHeaders = [];
