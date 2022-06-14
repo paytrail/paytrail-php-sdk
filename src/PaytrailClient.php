@@ -84,7 +84,7 @@ abstract class PaytrailClient
             $response = $this->http_client->request('POST', $uri, [
                 'body' => $body,
                 'allow_redirects' => false
-            ]);
+            ], true);
 
             $body = (string)$response->getBody();
         }
