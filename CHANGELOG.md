@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added PHPUnit test workflow
 - Added cUrl fallback option for Guzzle
+### Fixed
+- Fixed phone input validation in the example code
 
 ## [2.1.2] - 2022-06-07
 ### Fixed
