@@ -644,7 +644,7 @@ class Client extends PaytrailClient
             'submerchant' => $subMerchant,
         ];
 
-        $query = http_build_query($parameters);
+        $query = http_build_query(array_filter($parameters));
 
         if (!empty($query)) {
             $uri .= '?' . $query;
