@@ -19,6 +19,7 @@ use Paytrail\SDK\Request\GetTokenRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
 use Paytrail\SDK\Request\PaymentStatusRequest;
+use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 use PHPUnit\Framework\TestCase;
