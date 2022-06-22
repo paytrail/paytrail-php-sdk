@@ -13,6 +13,7 @@ use Paytrail\SDK\Request\CitPaymentRequest;
 use Paytrail\SDK\Request\GetTokenRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
+use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 use Paytrail\SDK\Request\PaymentStatusRequest;
 use Paytrail\SDK\Request\RefundRequest;
@@ -654,6 +655,21 @@ class Client extends PaytrailClient
             return (new SettlementResponse())
                 ->setSettlements($decoded);
         });
+    }
+
+    /**
+     * Request payment report.
+     * Report is sent to callbackUrl defined in ReportRequest.
+     *
+     * @param ReportRequest $reportRequest
+     * @return mixed
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    public function requestPaymentReport(ReportRequest $reportRequest) {
+        $this->validateRequestItem($reportRequest);
+        $uri = '/payments/report';
+        return $this->post($uri, $reportRequest);
     }
 
     /**

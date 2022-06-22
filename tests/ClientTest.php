@@ -19,6 +19,7 @@ use Paytrail\SDK\Request\GetTokenRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
 use Paytrail\SDK\Request\PaymentStatusRequest;
+use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 use PHPUnit\Framework\TestCase;
@@ -561,5 +562,14 @@ class ClientTest extends TestCase
     {
         $this->expectException(ValidationException::class);
         $this->client->getSettlements('30.5.2022');
+    }
+
+    public function testRequestPaymentReportReturnsOk()
+    {
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test');
+        $response = $this->client->requestPaymentReport($reportRequest);
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }
