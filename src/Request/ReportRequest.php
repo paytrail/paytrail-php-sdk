@@ -9,6 +9,13 @@ use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 class ReportRequest implements \JsonSerializable
 {
+    const PAYMENT_STATUSES = [
+        'default',
+        'paid',
+        'all',
+        'settled'
+    ];
+
     private $requestType;
     private $callbackUrl;
     private $paymentStatus;
@@ -17,7 +24,6 @@ class ReportRequest implements \JsonSerializable
     private $limit;
     private $reportFields;
     private $subMerchant;
-
 
     use ObjectPropertyConverter;
 
@@ -29,8 +35,18 @@ class ReportRequest implements \JsonSerializable
             throw new ValidationException('RequestType can not be empty');
         }
 
+        if (!in_array($props['requestType'], ['json', 'csv'])) {
+            throw new ValidationException('RequestType must be either "json" or "csv"');
+        }
+
         if (empty($props['callbackUrl'])) {
             throw new ValidationException('CallbackUrl can not be empty');
+        }
+
+        if ($props['paymentStatus']) {
+            if (!in_array($props['paymentStatus'], self::PAYMENT_STATUSES)) {
+                throw new ValidationException('Invalid paymentStatus value');
+            }
         }
 
         if ($props['startDate']) {
@@ -47,6 +63,12 @@ class ReportRequest implements \JsonSerializable
 
         if ($props['limit'] > 50000) {
             throw new ValidationException('Limit exceeds maximum value of 50000');
+        }
+
+        if ($props['reportFields']) {
+            if (!is_array($props['reportFields'])) {
+                throw new ValidationException('ReportFields must be type of array');
+            }
         }
 
         return true;
