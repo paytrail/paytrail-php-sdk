@@ -47,14 +47,6 @@ class ReportRequest implements \JsonSerializable
             throw new ValidationException('Invalid paymentStatus value');
         }
 
-        if ($props['startDate'] && !(new \DateTime())->createFromFormat('Y-m-d', $props['startDate'])) {
-            throw new ValidationException('startDate must be in Y-m-d format');
-        }
-
-        if ($props['endDate'] && (new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])) {
-            throw new ValidationException('startDate must be in Y-m-d format');
-        }
-
         if ($props['limit'] > 50000) {
             throw new ValidationException('Limit exceeds maximum value of 50000');
         }
