@@ -572,4 +572,40 @@ class ClientTest extends TestCase
         $response = $this->client->requestPaymentReport($reportRequest);
         $this->assertEquals(200, $response->getStatusCode());
     }
+
+    public function testRequestPaymentReportThrowsExceptionWhenRequestTypeIsEmpty()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setCallbackUrl('https://nourl.test');
+        $this->client->requestPaymentReport($reportRequest);
+    }
+
+    public function testRequestPaymentReportThrowsExceptionWhenCallbackUrlIsEmpty()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json');
+        $this->client->requestPaymentReport($reportRequest);
+    }
+
+    public function testRequestPaymentReportThrowsExceptionWithInvalidPaymentStatus()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test')
+            ->setPaymentStatus('Foobar');
+        $this->client->requestPaymentReport($reportRequest);
+    }
+
+    public function testRequestPaymentReportThrowsExceptionWhenLimitExceeds()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test')
+            ->setLimit(99999999);
+        $this->client->requestPaymentReport($reportRequest);
+    }
 }
