@@ -43,79 +43,119 @@ class ReportRequest implements \JsonSerializable
             throw new ValidationException('CallbackUrl can not be empty');
         }
 
-        if ($props['paymentStatus']) {
-            if (!in_array($props['paymentStatus'], self::PAYMENT_STATUSES)) {
-                throw new ValidationException('Invalid paymentStatus value');
-            }
+        if ($props['paymentStatus'] && !in_array($props['paymentStatus'], self::PAYMENT_STATUSES)) {
+            throw new ValidationException('Invalid paymentStatus value');
         }
 
-        if ($props['startDate']) {
-            if ((new \DateTime())->createFromFormat('Y-m-d', $startDate) == false) {
-                throw new ValidationException('startDate must be in Y-m-d format');
-            }
+        if ($props['startDate'] && !(new \DateTime())->createFromFormat('Y-m-d', $props['startDate'])) {
+            throw new ValidationException('startDate must be in Y-m-d format');
         }
 
-        if ($props['endDate']) {
-            if ((new \DateTime())->createFromFormat('Y-m-d', $endDate) == false) {
-                throw new ValidationException('startDate must be in Y-m-d format');
-            }
+        if ($props['endDate'] && (new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])) {
+            throw new ValidationException('startDate must be in Y-m-d format');
         }
 
         if ($props['limit'] > 50000) {
             throw new ValidationException('Limit exceeds maximum value of 50000');
         }
 
-        if ($props['reportFields']) {
-            if (!is_array($props['reportFields'])) {
-                throw new ValidationException('ReportFields must be type of array');
-            }
+        if ($props['reportFields'] && is_array($props['reportFields'])) {
+            throw new ValidationException('ReportFields must be type of array');
         }
 
         return true;
     }
 
+    /**
+     * Set request type.
+     *
+     * @param string $requestType
+     * @return $this
+     */
     public function setRequestType(string $requestType): self
     {
         $this->requestType = $requestType;
         return $this;
     }
 
+    /**
+     * Set callback url.
+     *
+     * @param string $callbackUrl
+     * @return $this
+     */
     public function setCallbackUrl(string $callbackUrl): self
     {
         $this->callbackUrl = $callbackUrl;
         return $this;
     }
 
+    /**
+     * Set payment statuses.
+     *
+     * @param string $paymentStatus
+     * @return $this
+     */
     public function setPaymentStatus(string $paymentStatus): self
     {
         $this->paymentStatus = $paymentStatus;
         return $this;
     }
 
+    /**
+     * Set start date.
+     *
+     * @param string $startDate
+     * @return $this
+     */
     public function setStartDate(string $startDate): self
     {
         $this->startDate = $startDate;
         return $this;
     }
 
+    /**
+     * Set end date.
+     *
+     * @param string $endDate
+     * @return $this
+     */
     public function setEndDate(string $endDate): self
     {
         $this->endDate = $endDate;
         return $this;
     }
 
+    /**
+     * Set limit.
+     *
+     * @param int $limit
+     * @return $this
+     */
     public function setLimit(int $limit): self
     {
         $this->limit = $limit;
         return $this;
     }
 
+    /**
+     * Set report fields.
+     *
+     * @param string $reportFields
+     * @return $this
+     */
     public function setReportFields(string $reportFields): self
     {
         $this->reportFields = $reportFields;
         return $this;
     }
 
+    /**
+     * Set submerchant.
+     *
+     * @param int $subMerchant
+     * @return $this
+     */
     public function setSubMerchant(int $subMerchant): self
     {
         $this->subMerchant = $subMerchant;
