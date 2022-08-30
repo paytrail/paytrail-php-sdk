@@ -101,7 +101,7 @@ class ReportRequest implements \JsonSerializable
     /**
      * Set start date.
      *
-     * @param string $startDate
+     * @param string $startDate Start date as ISO format.
      * @return $this
      */
     public function setStartDate(string $startDate): self
@@ -113,7 +113,7 @@ class ReportRequest implements \JsonSerializable
     /**
      * Set end date.
      *
-     * @param string $endDate
+     * @param string $endDate End date as ISO format.
      * @return $this
      */
     public function setEndDate(string $endDate): self
