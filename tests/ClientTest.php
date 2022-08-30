@@ -608,4 +608,14 @@ class ClientTest extends TestCase
             ->setLimit(99999999);
         $this->client->requestPaymentReport($reportRequest);
     }
+
+    public function testRequestPaymentReportThrowsExceptionWhenLimitIsNegative()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test')
+            ->setLimit(-500);
+        $this->client->requestPaymentReport($reportRequest);
+    }
 }

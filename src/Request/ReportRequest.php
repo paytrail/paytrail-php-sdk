@@ -51,6 +51,10 @@ class ReportRequest implements \JsonSerializable
             throw new ValidationException('Limit exceeds maximum value of 50000');
         }
 
+        if ($props['limit'] < 0) {
+            throw new ValidationException('Limit must have a minimum value of 0');
+        }
+
         if ($props['reportFields'] && !is_array($props['reportFields'])) {
             throw new ValidationException('ReportFields must be type of array');
         }
