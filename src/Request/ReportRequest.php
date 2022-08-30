@@ -137,10 +137,10 @@ class ReportRequest implements \JsonSerializable
     /**
      * Set report fields.
      *
-     * @param string $reportFields
+     * @param string[] $reportFields
      * @return $this
      */
-    public function setReportFields(string $reportFields): self
+    public function setReportFields(array $reportFields): self
     {
         $this->reportFields = $reportFields;
         return $this;
