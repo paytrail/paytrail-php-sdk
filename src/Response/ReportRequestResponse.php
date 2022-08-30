@@ -26,7 +26,7 @@ class ReportRequestResponse implements ResponseInterface
     protected $requestId;
 
     /**
-     * Set the transaction id.
+     * Set the request id.
      *
      * @param string|null $requestId
      *
