@@ -26,6 +26,7 @@ use Paytrail\SDK\Response\PaymentResponse;
 use Paytrail\SDK\Response\PaymentStatusResponse;
 use Paytrail\SDK\Response\RefundResponse;
 use Paytrail\SDK\Response\EmailRefundResponse;
+use Paytrail\SDK\Response\ReportRequestResponse;
 use Paytrail\SDK\Response\RevertPaymentAuthHoldResponse;
 use Paytrail\SDK\Response\SettlementResponse;
 use Paytrail\SDK\Util\Signature;
@@ -662,14 +663,30 @@ class Client extends PaytrailClient
      * Report is sent to callbackUrl defined in ReportRequest.
      *
      * @param ReportRequest $reportRequest
-     * @return mixed
+     * @return ReportRequestResponse
      * @throws HmacException
      * @throws ValidationException
      */
     public function requestPaymentReport(ReportRequest $reportRequest) {
         $this->validateRequestItem($reportRequest);
         $uri = '/payments/report';
-        return $this->post($uri, $reportRequest);
+
+        $reportRequestResponse = $this->post(
+            $uri,
+            $reportRequest,
+            /**
+             * Create the response instance.
+             *
+             * @param mixed $decoded The decoded body.
+             * @return ReportRequestResponse
+             */
+            function ($decoded) {
+                return (new ReportRequestResponse())
+                    ->setRequestId($decoded->requestId ?? null);
+            },
+        );
+
+        return $reportRequestResponse;
     }
 
     /**
