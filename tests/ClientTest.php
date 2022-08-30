@@ -564,11 +564,23 @@ class ClientTest extends TestCase
         $this->client->getSettlements('30.5.2022');
     }
 
+
     public function testGetGroupedPaymentProvidersAcceptsLanguageParameters()
     {
         $providers = $this->client->getGroupedPaymentProviders(100, 'EN');
         $this->assertIsArray($providers);
         $this->assertEquals('Mobile payment methods', $providers['groups'][0]['name']);
+    }
+
+    public function testRequestPaymentReportReturnsRequestId()
+    {
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test');
+        $response = $this->client->requestPaymentReport($reportRequest);
+
+        $this->assertNotNull($response->getRequestId());
+        $this->assertNotEmpty($response->getRequestId());
     }
 
     public function testRequestPaymentReportThrowsExceptionWhenRequestTypeIsEmpty()
@@ -614,6 +626,15 @@ class ClientTest extends TestCase
             ->setRequestType('json')
             ->setCallbackUrl('https://nourl.test')
             ->setLimit(-500);
+        $this->client->requestPaymentReport($reportRequest);
+    }
+
+    public function testRequestPaymentReportThrowsExceptionWhenUrlInvalid()
+    {
+        $this->expectException(ClientException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('invalid-url');
         $this->client->requestPaymentReport($reportRequest);
     }
 }
