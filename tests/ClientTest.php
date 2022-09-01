@@ -562,4 +562,11 @@ class ClientTest extends TestCase
         $this->expectException(ValidationException::class);
         $this->client->getSettlements('30.5.2022');
     }
+
+    public function testGetGroupedPaymentProvidersAcceptsLanguageParameters()
+    {
+        $providers = $this->client->getGroupedPaymentProviders(100, 'EN');
+        $this->assertIsArray($providers);
+        $this->assertEquals('Mobile payment methods', $providers['groups'][0]['name']);
+    }
 }
