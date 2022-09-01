@@ -29,7 +29,7 @@ class Customer implements \JsonSerializable, CustomerInterface
      *
      * @throws ValidationException
      */
-    public function validate()
+    public function validate(): bool
     {
         $props = get_object_vars($this);
 
@@ -80,27 +80,32 @@ class Customer implements \JsonSerializable, CustomerInterface
     protected $vatId;
 
     /**
+     * The Company name
+     *
+     * @var string
+     */
+    protected $companyName;
+
+    /**
      * Get email.
      *
      * @return string
      */
     public function getEmail(): ?string
     {
-
         return $this->email;
     }
 
     /**
      * Set email.
      *
-     * @param string $email
+     * @param string|null $email
      *
      * @return self Return self to enable chaining.
      */
-    public function setEmail(?string $email) : CustomerInterface
+    public function setEmail(?string $email): CustomerInterface
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -111,21 +116,19 @@ class Customer implements \JsonSerializable, CustomerInterface
      */
     public function getFirstName(): ?string
     {
-
         return $this->firstName;
     }
 
     /**
      * Set first name.
      *
-     * @param string $firstName
+     * @param string|null $firstName
      *
      * @return self Return self to enable chaining.
      */
-    public function setFirstName(?string $firstName) : CustomerInterface
+    public function setFirstName(?string $firstName): CustomerInterface
     {
         $this->firstName = $firstName;
-
         return $this;
     }
 
@@ -136,21 +139,19 @@ class Customer implements \JsonSerializable, CustomerInterface
      */
     public function getLastName(): ?string
     {
-
         return $this->lastName;
     }
 
     /**
      * Set last name.
      *
-     * @param string $lastName
+     * @param string|null $lastName
      *
      * @return self Return self to enable chaining.
      */
-    public function setLastName(?string $lastName) : CustomerInterface
+    public function setLastName(?string $lastName): CustomerInterface
     {
         $this->lastName = $lastName;
-
         return $this;
     }
 
@@ -161,21 +162,19 @@ class Customer implements \JsonSerializable, CustomerInterface
      */
     public function getPhone(): ?string
     {
-
         return $this->phone;
     }
 
     /**
      * Set phone.
      *
-     * @param string $phone
+     * @param string|null $phone
      *
      * @return self Return self to enable chaining.
      */
-    public function setPhone(?string $phone) : CustomerInterface
+    public function setPhone(?string $phone): CustomerInterface
     {
         $this->phone = $phone;
-
         return $this;
     }
 
@@ -186,21 +185,42 @@ class Customer implements \JsonSerializable, CustomerInterface
      */
     public function getVatId(): ?string
     {
-
         return $this->vatId;
     }
 
     /**
      * Set VAT id.
      *
-     * @param string $vatId
+     * @param string|null $vatId
      *
      * @return self Return self to enable chaining.
      */
-    public function setVatId(?string $vatId) : CustomerInterface
+    public function setVatId(?string $vatId): CustomerInterface
     {
         $this->vatId = $vatId;
+        return $this;
+    }
 
+    /**
+     * Get Company name.
+     *
+     * @return string
+     */
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+
+    /**
+     * Set Company Name.
+     *
+     * @param string|null $companyName
+     *
+     * @return self Return self to enable chaining.
+     */
+    public function setCompanyName(?string $companyName): CustomerInterface
+    {
+        $this->companyName = $companyName;
         return $this;
     }
 }
