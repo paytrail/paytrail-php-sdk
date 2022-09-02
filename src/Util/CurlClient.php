@@ -27,7 +27,7 @@ class CurlClient
     public function request(string $method, string $uri, array $options)
     {
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $uri);
+        curl_setopt($curl, CURLOPT_URL, $this->buildUrl($uri, $options));
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, true);
@@ -53,6 +53,23 @@ class CurlClient
         curl_close($curl);
 
         return $curlResponse;
+    }
+
+    /**
+     * Build URL by prefixing endpoint with base URL and possible query parameters.
+     *
+     * @param string $uri
+     * @param array $options
+     * @return string
+     */
+    private function buildUrl(string $uri, array $options): string
+    {
+        $query = '';
+        if (isset($options['query'])) {
+            $uri .= '?' . http_build_query($options['query']);
+        }
+
+        return $this->baseUrl . $uri . $query;
     }
 
     /**
