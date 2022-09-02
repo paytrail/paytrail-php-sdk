@@ -35,7 +35,7 @@ interface CustomerInterface
     /**
      * Set email.
      *
-     * @param string $email
+     * @param string|null $email
      *
      * @return self Return self to enable chaining.
      */
@@ -51,7 +51,7 @@ interface CustomerInterface
     /**
      * Set first name.
      *
-     * @param string $firstName
+     * @param string|null $firstName
      *
      * @return self Return self to enable chaining.
      */
@@ -67,7 +67,7 @@ interface CustomerInterface
     /**
      * Set last name.
      *
-     * @param string $lastName
+     * @param string|null $lastName
      *
      * @return self Return self to enable chaining.
      */
@@ -83,7 +83,7 @@ interface CustomerInterface
     /**
      * Set phone.
      *
-     * @param string $phone
+     * @param string|null $phone
      *
      * @return self Return self to enable chaining.
      */
@@ -99,9 +99,25 @@ interface CustomerInterface
     /**
      * Set VAT id.
      *
-     * @param string $vatId
+     * @param string|null $vatId
      *
      * @return self Return self to enable chaining.
      */
     public function setVatId(?string $vatId) : CustomerInterface;
+
+    /**
+     * Get Company name.
+     *
+     * @return string
+     */
+    public function getCompanyName(): ?string;
+
+    /**
+     * Set Company Name.
+     *
+     * @param string|null $companyName
+     *
+     * @return self Return self to enable chaining.
+     */
+    public function setCompanyName(?string $companyName) : CustomerInterface;
 }
