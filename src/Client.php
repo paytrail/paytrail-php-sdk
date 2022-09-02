@@ -13,6 +13,7 @@ use Paytrail\SDK\Request\CitPaymentRequest;
 use Paytrail\SDK\Request\GetTokenRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
+use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 use Paytrail\SDK\Request\PaymentStatusRequest;
 use Paytrail\SDK\Request\RefundRequest;
@@ -25,6 +26,7 @@ use Paytrail\SDK\Response\PaymentResponse;
 use Paytrail\SDK\Response\PaymentStatusResponse;
 use Paytrail\SDK\Response\RefundResponse;
 use Paytrail\SDK\Response\EmailRefundResponse;
+use Paytrail\SDK\Response\ReportRequestResponse;
 use Paytrail\SDK\Response\RevertPaymentAuthHoldResponse;
 use Paytrail\SDK\Response\SettlementResponse;
 use Paytrail\SDK\Util\Signature;
@@ -643,7 +645,7 @@ class Client extends PaytrailClient
             'submerchant' => $subMerchant,
         ];
 
-        $query = http_build_query($parameters);
+        $query = http_build_query(array_filter($parameters));
 
         if (!empty($query)) {
             $uri .= '?' . $query;
@@ -654,6 +656,37 @@ class Client extends PaytrailClient
             return (new SettlementResponse())
                 ->setSettlements($decoded);
         });
+    }
+
+    /**
+     * Request payment report.
+     * Report is sent to callbackUrl defined in ReportRequest.
+     *
+     * @param ReportRequest $reportRequest
+     * @return ReportRequestResponse
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    public function requestPaymentReport(ReportRequest $reportRequest) {
+        $this->validateRequestItem($reportRequest);
+        $uri = '/payments/report';
+
+        $reportRequestResponse = $this->post(
+            $uri,
+            $reportRequest,
+            /**
+             * Create the response instance.
+             *
+             * @param mixed $decoded The decoded body.
+             * @return ReportRequestResponse
+             */
+            function ($decoded) {
+                return (new ReportRequestResponse())
+                    ->setRequestId($decoded->requestId ?? null);
+            },
+        );
+
+        return $reportRequestResponse;
     }
 
     /**

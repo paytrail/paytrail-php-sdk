@@ -14,11 +14,18 @@ To use the payment service, you need to sign up for a Paytrail account. Transact
 ### General requirements
 
 - PHP version >= 7.3
-- [Guzzle](https://github.com/guzzle/guzzle) 7 or 6 - PHP HTTP client for performing HTTP request.
+- ext-curl PHP cURL extension
+- ext-json PHP JSON extension
 
 ### Development requirements
 
 - [PHPUnit](https://github.com/sebastianbergmann/phpunit) - A programmer-oriented testing framework for running unit tests in PHP.
+- [Guzzle](https://github.com/guzzle/guzzle) 7 or 6 - PHP HTTP client for performing HTTP request.
+
+### Guzzle
+PHP-SDK will use Guzzle 6 or 7, if in present application, otherwise it will fall back to cURL. Guzzle is still used as dev dependency to make testing easier.
+
+Using Guzzle is recommended on applications using PHP-SDK.
 
 ## Installation
 
@@ -76,6 +83,10 @@ Some of the key features are:
 
 - [Requesting merchant settlements](https://docs.paytrail.com/#/?id=settlements)
 
+### Reports
+
+- [Request payment report](https://docs.paytrail.com/#/?id=payment-report-request)
+
 ## Methods
 
 List of `Client::class` methods
@@ -99,3 +110,4 @@ List of `Client::class` methods
 | createMitPaymentCommit()            | Commit MiT authorization hold                        |
 | revertPaymentAuthorizationHold()    | Revert existing Mit or CiT authorization hold        |
 | getSettlements()                    | Request settlements                                  |
+| requestPaymentReport()              |  Request payment report                              |
