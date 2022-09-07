@@ -117,9 +117,9 @@ class RefundRequest implements \JsonSerializable
     /**
      * Get the amount.
      *
-     * @return int
+     * @return int|null
      */
-    public function getAmount() : int
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
@@ -127,14 +127,13 @@ class RefundRequest implements \JsonSerializable
     /**
      * Set the amount.
      *
-     * @param int $amount
+     * @param int|null $amount
      *
      * @return RefundRequest Return self to enable chaining.
      */
-    public function setAmount(?int $amount) : RefundRequest
+    public function setAmount(?int $amount): RefundRequest
     {
         $this->amount = $amount;
-
         return $this;
     }
 
@@ -143,7 +142,7 @@ class RefundRequest implements \JsonSerializable
      *
      * @return RefundItem[]
      */
-    public function getItems() : array
+    public function getItems(): array
     {
         return $this->items ?? [];
     }
@@ -155,19 +154,18 @@ class RefundRequest implements \JsonSerializable
      *
      * @return RefundRequest Return self to enable chaining.
      */
-    public function setItems(?array $items) : RefundRequest
+    public function setItems(?array $items): RefundRequest
     {
         $this->items = $items;
-
         return $this;
     }
 
     /**
      * Get the callback urls.
      *
-     * @return CallbackUrl
+     * @return CallbackUrl|null
      */
-    public function getCallbackUrls() : CallbackUrl
+    public function getCallbackUrls(): ?CallbackUrl
     {
         return $this->callbackUrls;
     }
@@ -175,23 +173,22 @@ class RefundRequest implements \JsonSerializable
     /**
      * Set the callback urls.
      *
-     * @param CallbackUrl $callbackUrls The callback url instance holding success and cancel urls.
+     * @param CallbackUrl|null $callbackUrls The callback url instance holding success and cancel urls.
      *
      * @return RefundRequest Return self to enable chaining.
      */
     public function setCallbackUrls(?CallbackUrl $callbackUrls) : RefundRequest
     {
         $this->callbackUrls = $callbackUrls;
-
         return $this;
     }
 
     /**
      * Get customer email.
      *
-     * @return string
+     * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -200,19 +197,20 @@ class RefundRequest implements \JsonSerializable
      * Set customer email
      *
      * @param string|null $email
-     * @return void
+     * @return RefundRequest
      */
-    public function setEmail(?string $email): void
+    public function setEmail(?string $email): RefundRequest
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
      * Get refund stamp.
      *
-     * @return string
+     * @return string|null
      */
-    public function getRefundStamp(): string
+    public function getRefundStamp(): ?string
     {
         return $this->refundStamp;
     }
@@ -220,20 +218,21 @@ class RefundRequest implements \JsonSerializable
     /**
      * Set refund stamp.
      *
-     * @param string $refundStamp
-     * @return void
+     * @param string|null $refundStamp
+     * @return RefundRequest
      */
-    public function setRefundStamp(string $refundStamp): void
+    public function setRefundStamp(?string $refundStamp): RefundRequest
     {
         $this->refundStamp = $refundStamp;
+        return $this;
     }
 
     /**
      * Get refund reference.
      *
-     * @return string
+     * @return string|null
      */
-    public function getRefundReference(): string
+    public function getRefundReference(): ?string
     {
         return $this->refundReference;
     }
@@ -241,11 +240,12 @@ class RefundRequest implements \JsonSerializable
     /**
      * Set refund reference.
      *
-     * @param string $refundReference
-     * @return void
+     * @param string|null $refundReference
+     * @return RefundRequest
      */
-    public function setRefundReference(string $refundReference): void
+    public function setRefundReference(?string $refundReference): RefundRequest
     {
         $this->refundReference = $refundReference;
+        return $this;
     }
 }
