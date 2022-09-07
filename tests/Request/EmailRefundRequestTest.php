@@ -34,6 +34,9 @@ class EmailRefundRequestTest extends TestCase
 
         $er->setCallbackUrls($cb);
 
+        $er->setRefundReference('ref-1234')
+            ->setRefundStamp('c7557cd5d5f548daa5332ccc4abb264f');
+
         $this->assertEquals(true, $er->validate());
     }
 
