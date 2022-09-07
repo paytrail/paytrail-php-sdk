@@ -94,6 +94,27 @@ class RefundRequest implements \JsonSerializable
     protected $callbackUrls;
 
     /**
+     * Refund recipient email address.
+     *
+     * @var $mail
+     */
+    protected $email;
+
+    /**
+     * Merchant unique identifier for the refund.
+     *
+     * @var $refundStamp
+     */
+    protected $refundStamp;
+
+    /**
+     * Refund reference.
+     *
+     * @var $refundReference
+     */
+    protected $refundReference;
+
+    /**
      * Get the amount.
      *
      * @return int
@@ -163,5 +184,68 @@ class RefundRequest implements \JsonSerializable
         $this->callbackUrls = $callbackUrls;
 
         return $this;
+    }
+
+    /**
+     * Get customer email.
+     *
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set customer email
+     *
+     * @param string|null $email
+     * @return void
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Get refund stamp.
+     *
+     * @return string
+     */
+    public function getRefundStamp(): string
+    {
+        return $this->refundStamp;
+    }
+
+    /**
+     * Set refund stamp.
+     *
+     * @param string $refundStamp
+     * @return void
+     */
+    public function setRefundStamp(string $refundStamp): void
+    {
+        $this->refundStamp = $refundStamp;
+    }
+
+    /**
+     * Get refund reference.
+     *
+     * @return string
+     */
+    public function getRefundReference(): string
+    {
+        return $this->refundReference;
+    }
+
+    /**
+     * Set refund reference.
+     *
+     * @param string $refundReference
+     * @return void
+     */
+    public function setRefundReference(string $refundReference): void
+    {
+        $this->refundReference = $refundReference;
     }
 }
