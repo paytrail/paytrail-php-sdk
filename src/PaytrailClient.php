@@ -47,7 +47,7 @@ abstract class PaytrailClient
      * A wrapper for post requests.
      *
      * @param string $uri The uri for the request.
-     * @param \JsonSerializable $data The request payload.
+     * @param \JsonSerializable|null $data The request payload.
      * @param callable|null $callback The callback method to run for the decoded response. If left empty, the response is returned.
      * @param string|null $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
      * @param bool $signatureInHeader Checks if signature is calculated from header/body parameters
@@ -56,7 +56,7 @@ abstract class PaytrailClient
      * @return mixed
      * @throws HmacException
      */
-    protected function post(string $uri, \JsonSerializable $data, callable $callback = null, string $transactionId = null, bool $signatureInHeader = true, string $paytrailTokenizationId = null)
+    protected function post(string $uri, \JsonSerializable $data = null, callable $callback = null, string $transactionId = null, bool $signatureInHeader = true, string $paytrailTokenizationId = null)
     {
         $body = json_encode($data, JSON_UNESCAPED_SLASHES);
 
