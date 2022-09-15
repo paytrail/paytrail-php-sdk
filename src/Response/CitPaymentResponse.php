@@ -53,7 +53,7 @@ class CitPaymentResponse implements ResponseInterface
     }
 
     /**
-     * @param string $threeDSecureUrl
+     * @param string|null $threeDSecureUrl
      * @return CitPaymentResponse
      */
     public function setThreeDSecureUrl(?string $threeDSecureUrl): CitPaymentResponse

@@ -54,11 +54,11 @@ class PaymentResponse implements ResponseInterface
     /**
      * Set the transaction id.
      *
-     * @param string $transactionId
+     * @param string|null $transactionId
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setTransactionId(string $transactionId) : PaymentResponse
+    public function setTransactionId(?string $transactionId) : PaymentResponse
     {
         $this->transactionId = $transactionId;
 
@@ -78,11 +78,11 @@ class PaymentResponse implements ResponseInterface
     /**
      * Set the href.
      *
-     * @param string $href
+     * @param string|null $href
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setHref(string $href) : PaymentResponse
+    public function setHref(?string $href) : PaymentResponse
     {
         $this->href = $href;
 
