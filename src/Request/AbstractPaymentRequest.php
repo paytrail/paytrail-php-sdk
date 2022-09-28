@@ -215,7 +215,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @var boolean
      */
-    protected $manualInvoiceActivation = false;
+    protected $manualInvoiceActivation;
 
     /**
      * Get the stamp.
