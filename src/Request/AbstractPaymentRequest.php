@@ -543,12 +543,19 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
         return $this->groups;
     }
 
-    public function setManualInvoiceActivation($value = false): PaymentRequestInterface
+    /**
+     * @param bool $value
+     * @return PaymentRequestInterface
+     */
+    public function setManualInvoiceActivation(bool $value = false): PaymentRequestInterface
     {
         $this->manualInvoiceActivation = $value;
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function getManualInvoiceActivation(): bool
     {
         return $this->manualInvoiceActivation;
