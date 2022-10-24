@@ -217,7 +217,7 @@ class Client extends PaytrailClient
                 return (new PaymentResponse())
                     ->setTransactionId($decoded->transactionId ?? null)
                     ->setHref($decoded->href ?? null)
-                    ->setProviders($decoded->providers ?? null);
+                    ->setProviders($decoded->providers ?? []);
             }
         );
 
@@ -252,7 +252,7 @@ class Client extends PaytrailClient
                  return (new PaymentResponse())
                      ->setTransactionId($decoded->transactionId ?? null)
                      ->setHref($decoded->href ?? null)
-                     ->setProviders($decoded->providers ?? null);
+                     ->setProviders($decoded->providers ?? []);
              }
          );
 

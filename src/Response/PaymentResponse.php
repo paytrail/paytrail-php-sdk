@@ -23,14 +23,14 @@ class PaymentResponse implements ResponseInterface
     /**
      * The transaction id.
      *
-     * @var string
+     * @var string|null
      */
     protected $transactionId;
 
     /**
      * Payment API url.
      *
-     * @var string
+     * @var string|null
      */
     protected $href;
 
@@ -44,7 +44,7 @@ class PaymentResponse implements ResponseInterface
     /**
      * Get the transaction id.
      *
-     * @return string
+     * @return string|null
      */
     public function getTransactionId() : ?string
     {
@@ -54,11 +54,11 @@ class PaymentResponse implements ResponseInterface
     /**
      * Set the transaction id.
      *
-     * @param string $transactionId
+     * @param string|null $transactionId
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setTransactionId(string $transactionId) : PaymentResponse
+    public function setTransactionId(?string $transactionId) : PaymentResponse
     {
         $this->transactionId = $transactionId;
 
@@ -68,7 +68,7 @@ class PaymentResponse implements ResponseInterface
     /**
      * Get the href.
      *
-     * @return string
+     * @return string|null
      */
     public function getHref() : ?string
     {
@@ -78,11 +78,11 @@ class PaymentResponse implements ResponseInterface
     /**
      * Set the href.
      *
-     * @param string $href
+     * @param string|null $href
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setHref(string $href) : PaymentResponse
+    public function setHref(?string $href) : PaymentResponse
     {
         $this->href = $href;
 
@@ -92,11 +92,10 @@ class PaymentResponse implements ResponseInterface
     /**
      * Get providers.
      *
-     * @return Provider[]
+     * @return Provider[]|null
      */
     public function getProviders() : ?array
     {
-
         return $this->providers;
     }
 
@@ -111,7 +110,7 @@ class PaymentResponse implements ResponseInterface
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setProviders(?array $providers) : PaymentResponse
+    public function setProviders(array $providers) : PaymentResponse
     {
         if (empty($providers)) {
             return $this;
