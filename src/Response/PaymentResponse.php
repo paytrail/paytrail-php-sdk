@@ -197,19 +197,13 @@ class PaymentResponse implements ResponseInterface
      */
     public function setProviders(array $providers) : PaymentResponse
     {
-        if (empty($providers)) {
-            return $this;
-        }
-
-        array_walk($providers, function ($provider) {
-            if (! $provider instanceof  Provider) {
-                $instance = new Provider();
-                $instance->bindProperties($provider);
-                $this->providers[] = $instance;
-            } else {
-                $this->providers[] = $provider;
+        $this->providers = array_map(function ($provider) {
+            if (! $provider instanceof Provider) {
+                return (new Provider())->bindProperties($provider);
             }
-        });
+
+            return $provider;
+        }, $providers);
 
         return $this;
     }
