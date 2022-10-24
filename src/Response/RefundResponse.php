@@ -52,7 +52,7 @@ class RefundResponse implements ResponseInterface
     /**
      * Set the provider.
      *
-     * @param string $provider
+     * @param string|null $provider
      *
      * @return RefundResponse Return self to enable chaining.
      */
@@ -78,7 +78,7 @@ class RefundResponse implements ResponseInterface
     /**
      * Set the status.
      *
-     * @param string $status
+     * @param string|null $status
      *
      * @return RefundResponse Return self to enable chaining.
      */
@@ -104,7 +104,7 @@ class RefundResponse implements ResponseInterface
     /**
      * Set the transactionId.
      *
-     * @param string $transactionId
+     * @param string|null $transactionId
      *
      * @return RefundResponse Return self to enable chaining.
      */
