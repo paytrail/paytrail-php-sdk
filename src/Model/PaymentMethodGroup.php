@@ -1,9 +1,6 @@
 <?php
-declare(strict_types=1);
 
-/**
- * Class PaymentMethodGroup
- */
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Model;
 
@@ -18,7 +15,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 class PaymentMethodGroup implements \JsonSerializable
 {
-
     use JsonSerializable;
     use PropertyBinder;
 
@@ -55,7 +51,7 @@ class PaymentMethodGroup implements \JsonSerializable
      *
      * @return string
      */
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -66,7 +62,7 @@ class PaymentMethodGroup implements \JsonSerializable
      * @param string|null $id
      * @return self
      */
-    public function setId(?string $id) : self
+    public function setId(?string $id): self
     {
         $this->id = $id;
 
@@ -78,7 +74,7 @@ class PaymentMethodGroup implements \JsonSerializable
      *
      * @return string|null
      */
-    public function getName() : ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -89,7 +85,7 @@ class PaymentMethodGroup implements \JsonSerializable
      * @param string|null $name
      * @return self
      */
-    public function setName(?string $name) : self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -101,7 +97,7 @@ class PaymentMethodGroup implements \JsonSerializable
      *
      * @return string|null
      */
-    public function getSvg() : ?string
+    public function getSvg(): ?string
     {
         return $this->svg;
     }
@@ -112,7 +108,7 @@ class PaymentMethodGroup implements \JsonSerializable
      * @param string|null $svg
      * @return self
      */
-    public function setSvg(?string $svg) : self
+    public function setSvg(?string $svg): self
     {
         $this->svg = $svg;
 
@@ -124,7 +120,7 @@ class PaymentMethodGroup implements \JsonSerializable
      *
      * @return string|null
      */
-    public function getIcon() : ?string
+    public function getIcon(): ?string
     {
         return $this->icon;
     }
@@ -135,7 +131,7 @@ class PaymentMethodGroup implements \JsonSerializable
      * @param string|null $icon
      * @return self
      */
-    public function setIcon(?string $icon) : self
+    public function setIcon(?string $icon): self
     {
         $this->icon = $icon;
 

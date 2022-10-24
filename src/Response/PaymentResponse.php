@@ -1,9 +1,6 @@
 <?php
-declare(strict_types=1);
 
-/**
- * Class PaymentResponse
- */
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Response;
 
@@ -20,7 +17,6 @@ use Paytrail\SDK\Interfaces\ResponseInterface;
  */
 class PaymentResponse implements ResponseInterface
 {
-
     /**
      * Assigned transaction ID for the payment.
      *
@@ -68,7 +64,7 @@ class PaymentResponse implements ResponseInterface
      *
      * @return string|null
      */
-    public function getTransactionId() : ?string
+    public function getTransactionId(): ?string
     {
         return $this->transactionId;
     }
@@ -80,7 +76,7 @@ class PaymentResponse implements ResponseInterface
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setTransactionId(?string $transactionId) : PaymentResponse
+    public function setTransactionId(?string $transactionId): PaymentResponse
     {
         $this->transactionId = $transactionId;
 
@@ -92,7 +88,7 @@ class PaymentResponse implements ResponseInterface
      *
      * @return string|null
      */
-    public function getHref() : ?string
+    public function getHref(): ?string
     {
         return $this->href;
     }
@@ -104,7 +100,7 @@ class PaymentResponse implements ResponseInterface
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setHref(?string $href) : PaymentResponse
+    public function setHref(?string $href): PaymentResponse
     {
         $this->href = $href;
 
@@ -179,7 +175,7 @@ class PaymentResponse implements ResponseInterface
      *
      * @return Provider[]|null
      */
-    public function getProviders() : ?array
+    public function getProviders(): ?array
     {
         return $this->providers;
     }
@@ -195,7 +191,7 @@ class PaymentResponse implements ResponseInterface
      *
      * @return PaymentResponse Return self to enable chaining.
      */
-    public function setProviders(array $providers) : PaymentResponse
+    public function setProviders(array $providers): PaymentResponse
     {
         $this->providers = array_map(function ($provider) {
             if (! $provider instanceof Provider) {

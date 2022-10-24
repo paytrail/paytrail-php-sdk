@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests;
@@ -169,7 +170,7 @@ class ClientTest extends PaymentRequestTestCase
             $res = $this->client->getPaymentStatus($psr);
             $this->assertEquals('new', $res->getStatus());
             $this->assertEquals($transactionId, $res->getTransactionId());
-        } catch (HmacException|ValidationException $e) {
+        } catch (HmacException | ValidationException $e) {
             $this->fail($e->getMessage());
         }
     }
@@ -189,7 +190,7 @@ class ClientTest extends PaymentRequestTestCase
             $res = $this->sisClient->getPaymentStatus($psr);
             $this->assertEquals('new', $res->getStatus());
             $this->assertEquals($transactionId, $res->getTransactionId());
-        } catch (HmacException|ValidationException $e) {
+        } catch (HmacException | ValidationException $e) {
             $this->fail($e->getMessage());
         }
     }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests;
@@ -14,12 +15,12 @@ use PHPUnit\Framework\TestCase;
 
 abstract class PaymentRequestTestCase extends TestCase
 {
-    const SECRET = 'SAIPPUAKAUPPIAS';
-    const MERCHANT_ID = 375917;
-    const SHOP_IN_SHOP_SECRET = 'MONISAIPPUAKAUPPIAS';
-    const SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID = 695861;
-    const SHOP_IN_SHOP_SUB_MERCHANT_ID = '695874';
-    const COF_PLUGIN_VERSION = 'phpunit-test';
+    protected const SECRET = 'SAIPPUAKAUPPIAS';
+    protected const MERCHANT_ID = 375917;
+    protected const SHOP_IN_SHOP_SECRET = 'MONISAIPPUAKAUPPIAS';
+    protected const SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID = 695861;
+    protected const SHOP_IN_SHOP_SUB_MERCHANT_ID = '695874';
+    protected const COF_PLUGIN_VERSION = 'phpunit-test';
 
     /**
      * Paytrail client instance.
@@ -39,8 +40,11 @@ abstract class PaymentRequestTestCase extends TestCase
     {
         parent::setUp();
         $this->client = new Client(self::MERCHANT_ID, self::SECRET, self::COF_PLUGIN_VERSION);
-        $this->sisClient = new Client(self::SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID, self::SHOP_IN_SHOP_SECRET,
-            self::COF_PLUGIN_VERSION);
+        $this->sisClient = new Client(
+            self::SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID,
+            self::SHOP_IN_SHOP_SECRET,
+            self::COF_PLUGIN_VERSION
+        );
     }
 
     /**
@@ -53,8 +57,9 @@ abstract class PaymentRequestTestCase extends TestCase
     {
         try {
             $paymentRequest->validate();
+
             return $this->client->createPayment($paymentRequest);
-        } catch (HmacException|ValidationException $e) {
+        } catch (HmacException | ValidationException $e) {
             $this->fail($e->getMessage());
         }
     }
@@ -69,8 +74,9 @@ abstract class PaymentRequestTestCase extends TestCase
     {
         try {
             $paymentRequest->validate();
+
             return $this->sisClient->createShopInShopPayment($paymentRequest);
-        } catch (HmacException|ValidationException $e) {
+        } catch (HmacException | ValidationException $e) {
             $this->fail($e->getMessage());
         }
     }
