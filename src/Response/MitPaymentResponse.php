@@ -28,14 +28,13 @@ class MitPaymentResponse implements ResponseInterface
     /**
      * Set the transaction id.
      *
-     * @param string $transactionId
+     * @param string|null $transactionId
      *
      * @return MitPaymentResponse Return self to enable chaining.
      */
-    public function setTransactionId(string $transactionId): MitPaymentResponse
+    public function setTransactionId(?string $transactionId): MitPaymentResponse
     {
         $this->transactionId = $transactionId;
-
         return $this;
     }
 

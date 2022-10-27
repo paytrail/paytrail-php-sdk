@@ -31,14 +31,13 @@ class CitPaymentResponse implements ResponseInterface
     /**
      * Set the transaction id.
      *
-     * @param string $transactionId
+     * @param string|null $transactionId
      *
      * @return CitPaymentResponse Return self to enable chaining.
      */
-    public function setTransactionId(string $transactionId): CitPaymentResponse
+    public function setTransactionId(?string $transactionId): CitPaymentResponse
     {
         $this->transactionId = $transactionId;
-
         return $this;
     }
 
@@ -53,7 +52,7 @@ class CitPaymentResponse implements ResponseInterface
     }
 
     /**
-     * @param string $threeDSecureUrl
+     * @param string|null $threeDSecureUrl
      * @return CitPaymentResponse
      */
     public function setThreeDSecureUrl(?string $threeDSecureUrl): CitPaymentResponse

@@ -35,7 +35,7 @@ class PaymentStatusResponse implements ResponseInterface
 
     /**
      * Total amount of the payment in currency's minor units,
-     * eg. for Euros means cents.
+     * e.g. for Euros means cents.
      *
      * @var integer
      */
@@ -137,7 +137,7 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set the payment status.
      *
-     * @param string $status Possible values: new, ok, fail,
+     * @param string|null $status Possible values: new, ok, fail,
      * pending, or delayed
      *
      * @return PaymentStatusResponse Return self to enable chaining.
@@ -145,7 +145,6 @@ class PaymentStatusResponse implements ResponseInterface
     public function setStatus(?string $status): PaymentStatusResponse
     {
         $this->status = $status;
-
         return $this;
     }
 
@@ -161,16 +160,15 @@ class PaymentStatusResponse implements ResponseInterface
 
     /**
      * Set the total amount of the payment in currency's minor units,
-     * eg. for Euros means cents.
+     * e.g. for Euros means cents.
      *
-     * @param integer $amount
+     * @param integer|null $amount
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setAmount(?int $amount): PaymentStatusResponse
     {
         $this->amount = $amount;
-
         return $this;
     }
 
@@ -187,14 +185,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set currency.
      *
-     * @param string $currency
+     * @param string|null $currency
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setCurrency(?string $currency): PaymentStatusResponse
     {
         $this->currency = $currency;
-
         return $this;
     }
 
@@ -211,14 +208,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set merchant unique identifier for the order.
      *
-     * @param string $stamp
+     * @param string|null $stamp
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setStamp(?string $stamp): PaymentStatusResponse
     {
         $this->stamp = $stamp;
-
         return $this;
     }
 
@@ -227,7 +223,7 @@ class PaymentStatusResponse implements ResponseInterface
      *
      * @return string
      */ 
-    public function getReference()
+    public function getReference(): string
     {
         return $this->reference;
     }
@@ -235,14 +231,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set the order reference.
      *
-     * @param string $reference
+     * @param string|null $reference
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setReference(?string $reference): PaymentStatusResponse
     {
         $this->reference = $reference;
-
         return $this;
     }
 
@@ -259,14 +254,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set the transaction creation timestamp.
      *
-     * @param string $createdAt
+     * @param string|null $createdAt
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setCreatedAt(?string $createdAt): PaymentStatusResponse
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -283,14 +277,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set payment API url.
      *
-     * @param string $href
+     * @param string|null $href
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setHref(?string $href): PaymentStatusResponse
     {
         $this->href = $href;
-
         return $this;
     }
 
@@ -307,14 +300,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set provider name.
      *
-     * @param string $provider If processed, the name of the payment method provider
+     * @param string|null $provider If processed, the name of the payment method provider
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setProvider(?string $provider): PaymentStatusResponse
     {
         $this->provider = $provider;
-
         return $this;
     }
 
@@ -331,14 +323,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set filing code.
      *
-     * @param string $filingCode
+     * @param string|null $filingCode
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setFilingCode(?string $filingCode): PaymentStatusResponse
     {
         $this->filingCode = $filingCode;
-
         return $this;
     }
 
@@ -355,14 +346,13 @@ class PaymentStatusResponse implements ResponseInterface
     /**
      * Set timestamp when the transaction was paid
      *
-     * @param string $paidAt
+     * @param string|null $paidAt
      *
      * @return PaymentStatusResponse Return self to enable chaining.
      */ 
     public function setPaidAt(?string $paidAt): PaymentStatusResponse
     {
         $this->paidAt = $paidAt;
-
         return $this;
     }
 }
