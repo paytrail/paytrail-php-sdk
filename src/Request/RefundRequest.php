@@ -94,11 +94,32 @@ class RefundRequest implements \JsonSerializable
     protected $callbackUrls;
 
     /**
+     * Refund recipient email address.
+     *
+     * @var $mail
+     */
+    protected $email;
+
+    /**
+     * Merchant unique identifier for the refund.
+     *
+     * @var $refundStamp
+     */
+    protected $refundStamp;
+
+    /**
+     * Refund reference.
+     *
+     * @var $refundReference
+     */
+    protected $refundReference;
+
+    /**
      * Get the amount.
      *
-     * @return int
+     * @return int|null
      */
-    public function getAmount() : int
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
@@ -106,14 +127,13 @@ class RefundRequest implements \JsonSerializable
     /**
      * Set the amount.
      *
-     * @param int $amount
+     * @param int|null $amount
      *
      * @return RefundRequest Return self to enable chaining.
      */
-    public function setAmount(?int $amount) : RefundRequest
+    public function setAmount(?int $amount): RefundRequest
     {
         $this->amount = $amount;
-
         return $this;
     }
 
@@ -122,7 +142,7 @@ class RefundRequest implements \JsonSerializable
      *
      * @return RefundItem[]
      */
-    public function getItems() : array
+    public function getItems(): array
     {
         return $this->items ?? [];
     }
@@ -134,19 +154,18 @@ class RefundRequest implements \JsonSerializable
      *
      * @return RefundRequest Return self to enable chaining.
      */
-    public function setItems(?array $items) : RefundRequest
+    public function setItems(?array $items): RefundRequest
     {
         $this->items = $items;
-
         return $this;
     }
 
     /**
      * Get the callback urls.
      *
-     * @return CallbackUrl
+     * @return CallbackUrl|null
      */
-    public function getCallbackUrls() : CallbackUrl
+    public function getCallbackUrls(): ?CallbackUrl
     {
         return $this->callbackUrls;
     }
@@ -154,14 +173,79 @@ class RefundRequest implements \JsonSerializable
     /**
      * Set the callback urls.
      *
-     * @param CallbackUrl $callbackUrls The callback url instance holding success and cancel urls.
+     * @param CallbackUrl|null $callbackUrls The callback url instance holding success and cancel urls.
      *
      * @return RefundRequest Return self to enable chaining.
      */
     public function setCallbackUrls(?CallbackUrl $callbackUrls) : RefundRequest
     {
         $this->callbackUrls = $callbackUrls;
+        return $this;
+    }
 
+    /**
+     * Get customer email.
+     *
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set customer email
+     *
+     * @param string|null $email
+     * @return RefundRequest
+     */
+    public function setEmail(?string $email): RefundRequest
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Get refund stamp.
+     *
+     * @return string|null
+     */
+    public function getRefundStamp(): ?string
+    {
+        return $this->refundStamp;
+    }
+
+    /**
+     * Set refund stamp.
+     *
+     * @param string|null $refundStamp
+     * @return RefundRequest
+     */
+    public function setRefundStamp(?string $refundStamp): RefundRequest
+    {
+        $this->refundStamp = $refundStamp;
+        return $this;
+    }
+
+    /**
+     * Get refund reference.
+     *
+     * @return string|null
+     */
+    public function getRefundReference(): ?string
+    {
+        return $this->refundReference;
+    }
+
+    /**
+     * Set refund reference.
+     *
+     * @param string|null $refundReference
+     * @return RefundRequest
+     */
+    public function setRefundReference(?string $refundReference): RefundRequest
+    {
+        $this->refundReference = $refundReference;
         return $this;
     }
 }
