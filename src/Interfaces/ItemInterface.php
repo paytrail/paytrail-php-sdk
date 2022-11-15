@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Interface Item
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Interfaces;
 
@@ -38,7 +39,7 @@ interface ItemInterface
      * @param int/null $unitPrice
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setUnitPrice(?int $unitPrice) : ItemInterface;
+    public function setUnitPrice(?int $unitPrice): ItemInterface;
 
     /**
      * Get the units.
@@ -53,7 +54,7 @@ interface ItemInterface
      * @param int/null $units
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setUnits(?int $units) : ItemInterface;
+    public function setUnits(?int $units): ItemInterface;
 
     /**
      * Get the VAT percentage.
@@ -68,7 +69,7 @@ interface ItemInterface
      * @param int|null $vatPercentage
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setVatPercentage(?int $vatPercentage) : ItemInterface;
+    public function setVatPercentage(?int $vatPercentage): ItemInterface;
 
     /**
      * Get the product code.
@@ -83,7 +84,7 @@ interface ItemInterface
      * @param string|null $productCode
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setProductCode(?string $productCode) : ItemInterface;
+    public function setProductCode(?string $productCode): ItemInterface;
 
     /**
      * Get the delivery date.
@@ -98,7 +99,7 @@ interface ItemInterface
      * @param string|null $deliveryDate
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setDeliveryDate(?string $deliveryDate) : ItemInterface;
+    public function setDeliveryDate(?string $deliveryDate): ItemInterface;
 
     /**
      * Get the description.
@@ -113,7 +114,7 @@ interface ItemInterface
      * @param string|null $description
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setDescription(?string $description) : ItemInterface;
+    public function setDescription(?string $description): ItemInterface;
 
     /**
      * Get the category.
@@ -128,7 +129,7 @@ interface ItemInterface
      * @param string|null $category
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setCategory(?string $category) : ItemInterface;
+    public function setCategory(?string $category): ItemInterface;
 
     /**
      * Get the stamp.
@@ -143,7 +144,7 @@ interface ItemInterface
      * @param string|null $stamp
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setStamp(?string $stamp) : ItemInterface;
+    public function setStamp(?string $stamp): ItemInterface;
 
     /**
      * Get the reference.
@@ -158,7 +159,7 @@ interface ItemInterface
      * @param string $reference
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setReference(?string $reference) : ItemInterface;
+    public function setReference(?string $reference): ItemInterface;
 
     /**
      * Get the merchant.
@@ -173,7 +174,7 @@ interface ItemInterface
      * @param string $merchant
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setMerchant(?string $merchant) : ItemInterface;
+    public function setMerchant(?string $merchant): ItemInterface;
 
     /**
      * Get the commission.
@@ -188,5 +189,5 @@ interface ItemInterface
      * @param CommissionInterface $commission
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setCommission(?CommissionInterface $commission) : ItemInterface;
+    public function setCommission(?CommissionInterface $commission): ItemInterface;
 }

@@ -1,11 +1,12 @@
 <?php
-declare(strict_types=1);
-
-namespace Paytrail\SDK;
 
 /**
  * Class Client
  */
+
+declare(strict_types=1);
+
+namespace Paytrail\SDK;
 
 use Paytrail\SDK\Model\Provider;
 use Paytrail\SDK\Request\AddCardFormRequest;
@@ -48,12 +49,12 @@ class Client extends PaytrailClient
     /**
      * The Paytrail API endpoint.
      */
-    const API_ENDPOINT = 'https://services.paytrail.com';
+    public const API_ENDPOINT = 'https://services.paytrail.com';
 
     /**
      * Http client timeout seconds
      */
-    const DEFAULT_TIMEOUT = 10;
+    public const DEFAULT_TIMEOUT = 10;
 
     /**
      * Client constructor.
@@ -227,7 +228,7 @@ class Client extends PaytrailClient
 
         return $payment_response;
     }
-    
+
     /**
       * Create a shop-in-shop payment request.
       *
@@ -237,35 +238,34 @@ class Client extends PaytrailClient
       * @throws HmacException        Thrown if HMAC calculation fails for responses.
       * @throws ValidationException  Thrown if payment validation fails.
       */
-     public function createShopInShopPayment(ShopInShopPaymentRequest $payment): PaymentResponse
-     {
-         $this->validateRequestItem($payment);
+    public function createShopInShopPayment(ShopInShopPaymentRequest $payment): PaymentResponse
+    {
+        $this->validateRequestItem($payment);
 
-         $uri = '/payments';
+        $uri = '/payments';
 
-         $payment_response = $this->post(
-             $uri,
-             $payment,
-             /**
-              * Create the response instance.
-              *
-              * @param mixed $decoded The decoded body.
-              * @return PaymentResponse
-              */
-             function ($decoded) {
-                 return (new PaymentResponse())
-                     ->setTransactionId($decoded->transactionId ?? null)
-                     ->setHref($decoded->href ?? null)
-                     ->setTerms($decoded->terms ?? null)
-                     ->setGroups($decoded->groups ?? [])
-                     ->setReference($decoded->reference ?? null)
-                     ->setProviders($decoded->providers ?? []);
-             }
-         );
+        $paymentResponse = $this->post(
+            $uri,
+            $payment,
+            /**
+            * Create the response instance.
+            *
+            * @param mixed $decoded The decoded body.
+            * @return PaymentResponse
+            */
+            function ($decoded) {
+                return (new PaymentResponse())
+                ->setTransactionId($decoded->transactionId ?? null)
+                ->setHref($decoded->href ?? null)
+                ->setTerms($decoded->terms ?? null)
+                ->setGroups($decoded->groups ?? [])
+                ->setReference($decoded->reference ?? null)
+                ->setProviders($decoded->providers ?? []);
+            }
+        );
+        return $paymentResponse;
+    }
 
-         return $payment_response;
-     }
-    
     /**
      * Create a payment status request.
      *
@@ -454,7 +454,6 @@ class Client extends PaytrailClient
                 true,
                 $paytrailTokenizationId
             );
-
         } catch (HmacException $e) {
             throw $e;
         }
@@ -525,8 +524,10 @@ class Client extends PaytrailClient
      * @throws HmacException Thrown if HMAC calculation fails for responses.
      * @throws ValidationException Thrown if payment validation fails.
      */
-    public function createCitPaymentCommit(CitPaymentRequest $citPayment, string $transactionId = ''): CitPaymentResponse
-    {
+    public function createCitPaymentCommit(
+        CitPaymentRequest $citPayment,
+        string $transactionId = ''
+    ): CitPaymentResponse {
         $this->validateRequestItem($citPayment);
 
         $uri = '/payments/' . $transactionId . '/token/commit';
@@ -558,8 +559,10 @@ class Client extends PaytrailClient
      * @throws HmacException Thrown if HMAC calculation fails for responses.
      * @throws ValidationException Thrown if payment validation fails.
      */
-    public function createMitPaymentCommit(MitPaymentRequest $mitPayment, string $transactionId = ''): MitPaymentResponse
-    {
+    public function createMitPaymentCommit(
+        MitPaymentRequest $mitPayment,
+        string $transactionId = ''
+    ): MitPaymentResponse {
         $this->validateRequestItem($mitPayment);
 
         $uri = '/payments/' . $transactionId . '/token/commit';
@@ -591,8 +594,9 @@ class Client extends PaytrailClient
      * @throws HmacException Thrown if HMAC calculation fails for responses.
      * @throws ValidationException Thrown if payment validation fails.
      */
-    public function revertPaymentAuthorizationHold(RevertPaymentAuthHoldRequest $revertPaymentAuthHoldRequest): RevertPaymentAuthHoldResponse
-    {
+    public function revertPaymentAuthorizationHold(
+        RevertPaymentAuthHoldRequest $revertPaymentAuthHoldRequest
+    ): RevertPaymentAuthHoldResponse {
         $this->validateRequestItem($revertPaymentAuthHoldRequest);
         $transactionId = $revertPaymentAuthHoldRequest->getTransactionId();
 
@@ -628,8 +632,13 @@ class Client extends PaytrailClient
      * @return SettlementResponse
      * @throws HmacException
      */
-    public function getSettlements(?string $startDate = null, ?string $endDate = null, ?string $reference = null, ?int $limit = null, ?int $subMerchant = null)
-    {
+    public function getSettlements(
+        ?string $startDate = null,
+        ?string $endDate = null,
+        ?string $reference = null,
+        ?int $limit = null,
+        ?int $subMerchant = null
+    ) {
         if ($startDate) {
             if ((new \DateTime())->createFromFormat('Y-m-d', $startDate) == false) {
                 throw new ValidationException('startDate must be in Y-m-d format');
@@ -658,11 +667,13 @@ class Client extends PaytrailClient
             $uri .= '?' . $query;
         }
 
-        return $this->get($uri,
-        function ($decoded) {
-            return (new SettlementResponse())
-                ->setSettlements($decoded);
-        });
+        return $this->get(
+            $uri,
+            function ($decoded) {
+                return (new SettlementResponse())
+                    ->setSettlements($decoded);
+            }
+        );
     }
 
     /**
@@ -674,7 +685,8 @@ class Client extends PaytrailClient
      * @throws HmacException
      * @throws ValidationException
      */
-    public function requestPaymentReport(ReportRequest $reportRequest) {
+    public function requestPaymentReport(ReportRequest $reportRequest)
+    {
         $this->validateRequestItem($reportRequest);
         $uri = '/payments/report';
 

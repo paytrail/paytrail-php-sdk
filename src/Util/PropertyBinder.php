@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Trait PropertyBinder
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Util;
 
@@ -15,7 +16,6 @@ namespace Paytrail\SDK\Util;
  */
 trait PropertyBinder
 {
-
     /**
      * Binds the passed properties to a class instance.
      *

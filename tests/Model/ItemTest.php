@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Model;
@@ -11,7 +12,7 @@ class ItemTest extends TestCase
 {
     public function testIsItemValid()
     {
-        $i = new Item;
+        $i = new Item();
 
         $this->assertInstanceOf(
             Item::class,
@@ -31,13 +32,13 @@ class ItemTest extends TestCase
     public function testExceptions()
     {
         $this->expectException(ValidationException::class);
-        $i = new Item;
+        $i = new Item();
         $i->validate();
     }
 
     public function testExceptionMessages()
     {
-        $i = new Item;
+        $i = new Item();
 
         try {
             $i->validate();
@@ -86,8 +87,5 @@ class ItemTest extends TestCase
             $this->assertIsBool($i->validate(), 'Item::validate returns bool');
         } catch (ValidationException $e) {
         }
-
-
     }
-
 }

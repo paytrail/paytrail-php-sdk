@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Interface PaymentRequest
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Interfaces;
 
@@ -30,7 +31,7 @@ interface PaymentRequestInterface
      *
      * @return string
      */
-    public function getStamp() : ?string;
+    public function getStamp(): ?string;
 
     /**
      * Set the stamp.
@@ -46,7 +47,7 @@ interface PaymentRequestInterface
      *
      * @return string
      */
-    public function getReference() : ?string;
+    public function getReference(): ?string;
 
     /**
      * Set the reference.
@@ -62,7 +63,7 @@ interface PaymentRequestInterface
      *
      * @return int
      */
-    public function getAmount() : ?int;
+    public function getAmount(): ?int;
 
     /**
      * Set the amount.
@@ -71,14 +72,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setAmount(?int $amount) : PaymentRequestInterface;
+    public function setAmount(?int $amount): PaymentRequestInterface;
 
     /**
      * Get currency.
      *
      * @return string
      */
-    public function getCurrency() : ?string;
+    public function getCurrency(): ?string;
 
     /**
      * Set currency.
@@ -87,14 +88,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCurrency(?string $currency) : PaymentRequestInterface;
+    public function setCurrency(?string $currency): PaymentRequestInterface;
 
     /**
      * Get the language.
      *
      * @return string
      */
-    public function getLanguage() : ?string;
+    public function getLanguage(): ?string;
 
     /**
      * Set the language.
@@ -103,14 +104,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setLanguage(?string $language) : PaymentRequestInterface;
+    public function setLanguage(?string $language): PaymentRequestInterface;
 
     /**
      * Get the items.
      *
      * @return ItemInterface[]
      */
-    public function getItems() : ?array;
+    public function getItems(): ?array;
 
     /**
      * Set the items.
@@ -119,14 +120,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setItems(?array $items) : PaymentRequestInterface;
+    public function setItems(?array $items): PaymentRequestInterface;
 
     /**
      * Get the customer.
      *
      * @return CustomerInterface
      */
-    public function getCustomer() : ?CustomerInterface;
+    public function getCustomer(): ?CustomerInterface;
 
     /**
      * Set the customer.
@@ -135,14 +136,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCustomer(?CustomerInterface $customer) : PaymentRequestInterface;
+    public function setCustomer(?CustomerInterface $customer): PaymentRequestInterface;
 
     /**
      * Get the delivery address.
      *
      * @return AddressInterface
      */
-    public function getDeliveryAddress() : ?AddressInterface;
+    public function getDeliveryAddress(): ?AddressInterface;
 
     /**
      * Set the delivery address.
@@ -151,14 +152,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setDeliveryAddress(?AddressInterface $deliveryAddress) : PaymentRequestInterface;
+    public function setDeliveryAddress(?AddressInterface $deliveryAddress): PaymentRequestInterface;
 
     /**
      * Get the invoicing address.
      *
      * @return AddressInterface
      */
-    public function getInvoicingAddress() : ?AddressInterface;
+    public function getInvoicingAddress(): ?AddressInterface;
 
     /**
      * Set the invoicing address.
@@ -167,14 +168,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setInvoicingAddress(?AddressInterface $invoicingAddress) : PaymentRequestInterface;
+    public function setInvoicingAddress(?AddressInterface $invoicingAddress): PaymentRequestInterface;
 
     /**
      * Get the redirect urls.
      *
      * @return CallbackUrlInterface
      */
-    public function getRedirectUrls() : ?CallbackUrlInterface;
+    public function getRedirectUrls(): ?CallbackUrlInterface;
 
     /**
      * Set the redirect urls.
@@ -183,14 +184,14 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setRedirectUrls(?CallbackUrlInterface $redirectUrls) : PaymentRequestInterface;
+    public function setRedirectUrls(?CallbackUrlInterface $redirectUrls): PaymentRequestInterface;
 
     /**
      * Get callback urls.
      *
      * @return CallbackUrlInterface
      */
-    public function getCallbackUrls() : ?CallbackUrlInterface;
+    public function getCallbackUrls(): ?CallbackUrlInterface;
 
     /**
      * Set callback urls.
@@ -199,7 +200,7 @@ interface PaymentRequestInterface
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCallbackUrls(?CallbackUrlInterface $callbackUrls) : PaymentRequestInterface;
+    public function setCallbackUrls(?CallbackUrlInterface $callbackUrls): PaymentRequestInterface;
 
     /**
      * @return int
@@ -210,16 +211,16 @@ interface PaymentRequestInterface
      * @param int $callbackDelay
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCallbackDelay(int $callbackDelay) : PaymentRequestInterface;
+    public function setCallbackDelay(int $callbackDelay): PaymentRequestInterface;
 
     /**
      * @param string[] $groups
      * @return PaymentRequestInterface
      */
-    public function setGroups(array $groups) : PaymentRequestInterface;
+    public function setGroups(array $groups): PaymentRequestInterface;
 
     /**
      * @return string[]
      */
-    public function getGroups() : array;
+    public function getGroups(): array;
 }

@@ -1,12 +1,12 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class ValidationException
  */
 
-namespace Paytrail\SDK\Exception;
+declare(strict_types=1);
 
+namespace Paytrail\SDK\Exception;
 
 /**
  * Class ValidationException
@@ -19,7 +19,6 @@ namespace Paytrail\SDK\Exception;
  */
 class ValidationException extends \Exception
 {
-
     /**
      * Holds the previous NestedValidationException instance.
      *
@@ -40,7 +39,7 @@ class ValidationException extends \Exception
      * @param array $messages The error messages.
      * @return ValidationException Return self to enable chaining.
      */
-    public function setMessages(array $messages = []) : ValidationException
+    public function setMessages(array $messages = []): ValidationException
     {
         $this->messages = $messages;
 
@@ -52,7 +51,7 @@ class ValidationException extends \Exception
      *
      * @return array
      */
-    public function getMessages() : array
+    public function getMessages(): array
     {
         return $this->messages;
     }

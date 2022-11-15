@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paytrail\SDK;
@@ -48,16 +49,24 @@ abstract class PaytrailClient
      *
      * @param string $uri The uri for the request.
      * @param \JsonSerializable|null $data The request payload.
-     * @param callable|null $callback The callback method to run for the decoded response. If left empty, the response is returned.
-     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
+     * @param callable|null $callback The callback method to run for the decoded response.
+     * If left empty, the response is returned.
+     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction.
+     * Not required for a new payment request.
      * @param bool $signatureInHeader Checks if signature is calculated from header/body parameters
      * @param string|null $paytrailTokenizationId Paytrail tokenization ID for getToken request
      *
      * @return mixed
      * @throws HmacException
      */
-    protected function post(string $uri, \JsonSerializable $data = null, callable $callback = null, string $transactionId = null, bool $signatureInHeader = true, string $paytrailTokenizationId = null)
-    {
+    protected function post(
+        string $uri,
+        \JsonSerializable $data = null,
+        callable $callback = null,
+        string $transactionId = null,
+        bool $signatureInHeader = true,
+        string $paytrailTokenizationId = null
+    ) {
         $body = json_encode($data, JSON_UNESCAPED_SLASHES);
 
         if ($signatureInHeader) {
@@ -101,8 +110,10 @@ abstract class PaytrailClient
      * A wrapper for get requests.
      *
      * @param string $uri The uri for the request.
-     * @param callable|null $callback The callback method to run for the decoded response. If left empty, the response is returned.
-     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
+     * @param callable|null $callback The callback method to run for the decoded response.
+     * If left empty, the response is returned.
+     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction.
+     * Not required for a new payment request.
      *
      * @return mixed
      * @throws HmacException
@@ -136,13 +147,17 @@ abstract class PaytrailClient
      * Format request headers.
      *
      * @param string $method The request method. GET or POST.
-     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction not required for a new payment request.
+     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction.
+     * Not required for a new payment request.
      * @param string|null $checkoutTokenizationId Paytrail tokenization ID for getToken request
      *
      * @return array
      */
-    protected function getHeaders(string $method, string $transactionId = null, string $checkoutTokenizationId = null): array
-    {
+    protected function getHeaders(
+        string $method,
+        string $transactionId = null,
+        string $checkoutTokenizationId = null
+    ): array {
         $datetime = new \DateTime();
 
         $headers = [

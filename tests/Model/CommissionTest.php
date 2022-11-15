@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Model;
@@ -35,5 +36,4 @@ class CommissionTest extends TestCase
         $commission->setMerchant('123456');
         $commission->validate();
     }
-
-} 
+}

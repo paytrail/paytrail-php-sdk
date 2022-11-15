@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class PaymentRequest
  */
@@ -16,5 +17,4 @@ namespace Paytrail\SDK\Request;
  */
 class PaymentRequest extends AbstractPaymentRequest
 {
-
 }

@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class RefundResponse
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Response;
 
@@ -16,7 +17,6 @@ use Paytrail\SDK\Interfaces\ResponseInterface;
  */
 class InvoiceActivationResponse implements ResponseInterface
 {
-
     /**
      * Request status, ok / error.
      *

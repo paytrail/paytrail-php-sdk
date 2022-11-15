@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class RefundItem
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Model;
 
@@ -19,7 +20,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 class RefundItem implements \JsonSerializable
 {
-
     use JsonSerializable;
 
     /**
@@ -65,7 +65,7 @@ class RefundItem implements \JsonSerializable
      *
      * @return int
      */
-    public function getAmount() : int
+    public function getAmount(): int
     {
         return $this->amount;
     }
@@ -76,7 +76,7 @@ class RefundItem implements \JsonSerializable
      * @param int $amount The amount.
      * @return RefundItem Return self to enable chaining.
      */
-    public function setAmount(? int $amount) : RefundItem
+    public function setAmount(?int $amount): RefundItem
     {
         $this->amount = $amount;
 
@@ -88,7 +88,7 @@ class RefundItem implements \JsonSerializable
      *
      * @return string
      */
-    public function getStamp() : string
+    public function getStamp(): string
     {
         return $this->stamp;
     }
@@ -99,7 +99,7 @@ class RefundItem implements \JsonSerializable
      * @param string $stamp The stamp.
      * @return RefundItem Return self to enable chaining.
      */
-    public function setStamp(?string $stamp) : RefundItem
+    public function setStamp(?string $stamp): RefundItem
     {
         $this->stamp = $stamp;
 

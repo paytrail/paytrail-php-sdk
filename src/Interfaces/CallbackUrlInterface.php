@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Interface CallbackUrl
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Interfaces;
 

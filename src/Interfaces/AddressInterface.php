@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Interface Addresss
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Interfaces;
 
@@ -39,7 +40,7 @@ interface AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setStreetAddress(?string $streetAddress) : AddressInterface;
+    public function setStreetAddress(?string $streetAddress): AddressInterface;
 
     /**
      * Get the postal code.
@@ -55,7 +56,7 @@ interface AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setPostalCode(?string $postalCode) : AddressInterface;
+    public function setPostalCode(?string $postalCode): AddressInterface;
 
     /**
      * Get the city.
@@ -71,7 +72,7 @@ interface AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setCity(?string $city) : AddressInterface;
+    public function setCity(?string $city): AddressInterface;
 
     /**
      * Get the county.
@@ -87,7 +88,7 @@ interface AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setCounty(?string $county) : AddressInterface;
+    public function setCounty(?string $county): AddressInterface;
 
     /**
      * Get the country.
@@ -103,5 +104,5 @@ interface AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setCountry(?string $country) : AddressInterface;
+    public function setCountry(?string $country): AddressInterface;
 }

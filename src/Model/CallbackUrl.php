@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class CallbackUrl
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Model;
 
@@ -21,7 +22,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 class CallbackUrl implements \JsonSerializable, CallbackUrlInterface
 {
-
     use JsonSerializable;
 
     /**
@@ -73,7 +73,6 @@ class CallbackUrl implements \JsonSerializable, CallbackUrlInterface
      */
     public function getSuccess(): ?string
     {
-
         return $this->success;
     }
 
@@ -97,7 +96,6 @@ class CallbackUrl implements \JsonSerializable, CallbackUrlInterface
      */
     public function getCancel(): ?string
     {
-
         return $this->cancel;
     }
 

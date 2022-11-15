@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paytrail\SDK\Util;
@@ -43,14 +44,13 @@ class RequestClient
             $clientException = new ClientException($exception->getMessage());
             if ($exception->hasResponse()) {
                 $responseBody = $exception->getResponse()->getBody()->getContents();
-                $clientException->SetResponseBody($responseBody);
+                $clientException->setResponseBody($responseBody);
                 $clientException->setResponseCode($exception->getCode());
             }
             throw $clientException;
         } catch (GuzzleConnectException $exception) {
             throw new RequestException($exception->getMessage());
-        }
-        catch (GuzzleRequestException $exception) {
+        } catch (GuzzleRequestException $exception) {
             throw new RequestException($exception->getMessage());
         }
     }
@@ -70,8 +70,7 @@ class RequestClient
                     'timeout' => Client::DEFAULT_TIMEOUT,
                 ]
             );
-        }
-        else {
+        } else {
             $this->client = new CurlClient(Client::API_ENDPOINT, Client::DEFAULT_TIMEOUT);
         }
     }

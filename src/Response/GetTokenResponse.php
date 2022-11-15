@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class GetTokenResponse
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Response;
 

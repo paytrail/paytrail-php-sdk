@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Interface ResponseInterface
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Interfaces;
 
@@ -16,5 +17,4 @@ namespace Paytrail\SDK\Interfaces;
  */
 interface ResponseInterface
 {
-
 }

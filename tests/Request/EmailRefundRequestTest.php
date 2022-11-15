@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Request;
@@ -11,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class EmailRefundRequestTest extends TestCase
 {
-
     public function testEmailRefundRequest()
     {
         $er = new EmailRefundRequest();
@@ -42,7 +42,6 @@ class EmailRefundRequestTest extends TestCase
 
     public function testExceptions()
     {
-
         $er = new EmailRefundRequest();
 
         try {

@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class CustomerInterface
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Model;
 
@@ -21,7 +22,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 class Customer implements \JsonSerializable, CustomerInterface
 {
-
     use JsonSerializable;
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paytrail\SDK\Exception;
@@ -8,7 +9,7 @@ class ClientException extends \Exception
     private $responseBody;
     private $responseCode;
 
-    public function SetResponseBody($responseBody): void
+    public function setResponseBody($responseBody): void
     {
         $this->responseBody = $responseBody;
     }

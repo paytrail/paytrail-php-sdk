@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class Provider
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Model;
 
@@ -21,7 +22,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 class Provider implements \JsonSerializable
 {
-
     use JsonSerializable;
     use PropertyBinder;
 
@@ -79,9 +79,8 @@ class Provider implements \JsonSerializable
      *
      * @return string
      */
-    public function getUrl() : ?string
+    public function getUrl(): ?string
     {
-
         return $this->url;
     }
 
@@ -91,7 +90,7 @@ class Provider implements \JsonSerializable
      * @param string $url
      * @return Provider Return self to enable chaining.
      */
-    public function setUrl(?string $url) : Provider
+    public function setUrl(?string $url): Provider
     {
         $this->url = $url;
 
@@ -103,9 +102,8 @@ class Provider implements \JsonSerializable
      *
      * @return string
      */
-    public function getIcon() : ?string
+    public function getIcon(): ?string
     {
-
         return $this->icon;
     }
 
@@ -115,7 +113,7 @@ class Provider implements \JsonSerializable
      * @param string $icon
      * @return Provider Return self to enable chaining.
      */
-    public function setIcon(?string $icon) : Provider
+    public function setIcon(?string $icon): Provider
     {
         $this->icon = $icon;
 
@@ -127,9 +125,8 @@ class Provider implements \JsonSerializable
      *
      * @return string
      */
-    public function getSvg() : ?string
+    public function getSvg(): ?string
     {
-
         return $this->svg;
     }
 
@@ -139,7 +136,7 @@ class Provider implements \JsonSerializable
      * @param string $svg
      * @return Provider Return self to enable chaining.
      */
-    public function setSvg(?string $svg) : Provider
+    public function setSvg(?string $svg): Provider
     {
         $this->svg = $svg;
 
@@ -151,9 +148,8 @@ class Provider implements \JsonSerializable
      *
      * @return string
      */
-    public function getName() : ?string
+    public function getName(): ?string
     {
-
         return $this->name;
     }
 
@@ -163,7 +159,7 @@ class Provider implements \JsonSerializable
      * @param string $name
      * @return Provider Return self to enable chaining.
      */
-    public function setName(?string $name) : Provider
+    public function setName(?string $name): Provider
     {
         $this->name = $name;
 
@@ -175,9 +171,8 @@ class Provider implements \JsonSerializable
      *
      * @return string
      */
-    public function getGroup() : ?string
+    public function getGroup(): ?string
     {
-
         return $this->group;
     }
 
@@ -187,7 +182,7 @@ class Provider implements \JsonSerializable
      * @param string $group
      * @return Provider Return self to enable chaining.
      */
-    public function setGroup(?string $group) : Provider
+    public function setGroup(?string $group): Provider
     {
         $this->group = $group;
 
@@ -199,9 +194,8 @@ class Provider implements \JsonSerializable
      *
      * @return string
      */
-    public function getId() : ?string
+    public function getId(): ?string
     {
-
         return $this->id;
     }
 
@@ -211,7 +205,7 @@ class Provider implements \JsonSerializable
      * @param string $id
      * @return Provider Return self to enable chaining.
      */
-    public function setId(?string $id) : Provider
+    public function setId(?string $id): Provider
     {
         $this->id = $id;
 
@@ -223,9 +217,8 @@ class Provider implements \JsonSerializable
      *
      * @return array
      */
-    public function getParameters() : ?array
+    public function getParameters(): ?array
     {
-
         return $this->parameters;
     }
 
@@ -235,7 +228,7 @@ class Provider implements \JsonSerializable
      * @param array $parameters
      * @return Provider Return self to enable chaining.
      */
-    public function setParameters(?array $parameters) : Provider
+    public function setParameters(?array $parameters): Provider
     {
         $this->parameters = $parameters;
 

@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class RefundResponse
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Response;
 
@@ -16,7 +17,6 @@ use Paytrail\SDK\Interfaces\ResponseInterface;
  */
 class RefundResponse implements ResponseInterface
 {
-
     /**
      * The provider id.
      *
@@ -45,7 +45,6 @@ class RefundResponse implements ResponseInterface
      */
     public function getProvider(): string
     {
-
         return $this->provider;
     }
 
@@ -58,7 +57,6 @@ class RefundResponse implements ResponseInterface
      */
     public function setProvider(?string $provider): RefundResponse
     {
-
         $this->provider = $provider;
 
         return $this;
@@ -71,7 +69,6 @@ class RefundResponse implements ResponseInterface
      */
     public function getStatus(): string
     {
-
         return $this->status;
     }
 
@@ -84,7 +81,6 @@ class RefundResponse implements ResponseInterface
      */
     public function setStatus(?string $status): RefundResponse
     {
-
         $this->status = $status;
 
         return $this;
@@ -97,7 +93,6 @@ class RefundResponse implements ResponseInterface
      */
     public function getTransactionId(): string
     {
-
         return $this->transactionId;
     }
 
@@ -110,7 +105,6 @@ class RefundResponse implements ResponseInterface
      */
     public function setTransactionId(?string $transactionId): RefundResponse
     {
-
         $this->transactionId = $transactionId;
 
         return $this;

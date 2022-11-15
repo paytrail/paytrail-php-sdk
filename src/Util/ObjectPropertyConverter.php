@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Trait ObjectPropertyConverter
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Util;
 

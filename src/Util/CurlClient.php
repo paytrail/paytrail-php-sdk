@@ -82,7 +82,7 @@ class CurlClient
         $headers = $options['headers'] ?? [];
         $result = [];
         foreach ($headers as $key => $value) {
-            $result[] = $key .': ' . $value;
+            $result[] = $key . ': ' . $value;
         }
 
         return $result;
@@ -99,6 +99,6 @@ class CurlClient
         if (!is_array($body)) {
             return $body;
         }
-        return http_build_query($body,'','&');
+        return http_build_query($body, '', '&');
     }
 }

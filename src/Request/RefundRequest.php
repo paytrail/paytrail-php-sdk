@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Refund
  */
@@ -19,7 +20,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 class RefundRequest implements \JsonSerializable
 {
-
     use JsonSerializable;
 
     /**
@@ -177,7 +177,7 @@ class RefundRequest implements \JsonSerializable
      *
      * @return RefundRequest Return self to enable chaining.
      */
-    public function setCallbackUrls(?CallbackUrl $callbackUrls) : RefundRequest
+    public function setCallbackUrls(?CallbackUrl $callbackUrls): RefundRequest
     {
         $this->callbackUrls = $callbackUrls;
         return $this;

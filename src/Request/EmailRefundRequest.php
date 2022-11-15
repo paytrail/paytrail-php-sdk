@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class EmailRefund
  */
@@ -16,7 +17,6 @@ use Paytrail\SDK\Exception\ValidationException;
  */
 class EmailRefundRequest extends RefundRequest
 {
-
     /**
      * Email to which the refund message will be sent.
      *
