@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests;
@@ -6,7 +7,6 @@ namespace Tests;
 use Paytrail\SDK\Client;
 use Paytrail\SDK\Exception\ClientException;
 use Paytrail\SDK\Exception\HmacException;
-use Paytrail\SDK\Exception\RequestException;
 use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Model\Address;
 use Paytrail\SDK\Model\CallbackUrl;
@@ -22,24 +22,9 @@ use Paytrail\SDK\Request\PaymentStatusRequest;
 use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
-use PHPUnit\Framework\TestCase;
 
-class ClientTest extends TestCase
+class ClientTest extends PaymentRequestTestCase
 {
-    const SECRET = 'SAIPPUAKAUPPIAS';
-
-    const MERCHANT_ID = 375917;
-
-    const SHOP_IN_SHOP_SECRET = 'MONISAIPPUAKAUPPIAS';
-
-    const SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID = 695861;
-
-    const SHOP_IN_SHOP_SUB_MERCHANT_ID = '695874';
-
-    const COF_PLUGIN_VERSION = 'phpunit-test';
-
-    protected $client;
-
     protected $item;
 
     protected $item2;
@@ -62,7 +47,7 @@ class ClientTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->client = new Client(self::MERCHANT_ID, self::SECRET, self::COF_PLUGIN_VERSION);
+        parent::setUp();
 
         $this->item = (new Item())
             ->setDeliveryDate('2020-12-12')
@@ -172,93 +157,41 @@ class ClientTest extends TestCase
 
     public function testPaymentRequest()
     {
-        $client = $this->client;
-        $paymentRequest = $this->paymentRequest;
+        $response = $this->createPayment($this->paymentRequest);
+        $this->assertPaymentResponseIsValid($response);
 
-        $transactionId = '';
-
-        if ($paymentRequest->validate()) {
-            try {
-                $response = $client->createPayment($paymentRequest);
-
-                $this->assertObjectHasAttribute('transactionId', $response);
-                $this->assertObjectHasAttribute('href', $response);
-                $this->assertObjectHasAttribute('providers', $response);
-                $this->assertIsArray($response->getProviders());
-
-                $transactionId = $response->getTransactionId();
-
-            } catch (HmacException $e) {
-                var_dump($e->getMessage());
-            } catch (ValidationException $e) {
-                var_dump($e->getMessage());
-            } catch (RequestException $e) {
-                var_dump(json_decode($e->getResponse()->getBody()));
-            }
-
-        } else {
-            echo 'PaymentRequest is not valid';
-        }
+        $transactionId = $response->getTransactionId();
 
         // Test payment status request with the transactionId we got from the PaymentRequest
         $psr = new PaymentStatusRequest();
         $psr->setTransactionId($transactionId);
 
-        $client = new Client(self::MERCHANT_ID, self::SECRET, self::COF_PLUGIN_VERSION);
-
         try {
-            $res = $client->getPaymentStatus($psr);
+            $res = $this->client->getPaymentStatus($psr);
             $this->assertEquals('new', $res->getStatus());
-            $this->assertEquals($res->getTransactionId(), $transactionId);
-        } catch (HmacException $e) {
-            var_dump('hmac error');
-        } catch (ValidationException $e) {
-            var_dump('validation error');
+            $this->assertEquals($transactionId, $res->getTransactionId());
+        } catch (HmacException | ValidationException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
     public function testShopInShopPaymentRequest()
     {
-        $client = new Client(self::SHOP_IN_SHOP_AGGREGATE_MERCHANT_ID, self::SHOP_IN_SHOP_SECRET, self::COF_PLUGIN_VERSION);
-        $paymentRequest = $this->shopInShopPaymentRequest;
+        $response = $this->createShopInShopPayment($this->shopInShopPaymentRequest);
+        $this->assertPaymentResponseIsValid($response);
 
-        $transactionId = '';
-
-        if ($paymentRequest->validate()) {
-            try {
-                $response = $client->createShopInShopPayment($paymentRequest);
-
-                $this->assertObjectHasAttribute('transactionId', $response);
-                $this->assertObjectHasAttribute('href', $response);
-                $this->assertObjectHasAttribute('providers', $response);
-                $this->assertIsArray($response->getProviders());
-
-                $transactionId = $response->getTransactionId();
-
-            } catch (HmacException $e) {
-                var_dump($e->getMessage());
-            } catch (ValidationException $e) {
-                var_dump($e->getMessage());
-            } catch (RequestException $e) {
-                var_dump(json_decode($e->getResponse()->getBody()));
-            }
-
-        } else {
-            echo 'ShopInShopPaymentRequest is not valid';
-        }
+        $transactionId = $response->getTransactionId();
 
         // Test payment status request with the transactionId we got from the PaymentRequest
         $psr = new PaymentStatusRequest();
         $psr->setTransactionId($transactionId);
 
         try {
-            $res = $client->getPaymentStatus($psr);
+            $res = $this->sisClient->getPaymentStatus($psr);
             $this->assertEquals('new', $res->getStatus());
-            $this->assertEquals($res->getTransactionId(), $transactionId);
-        } catch (HmacException $e) {
-            var_dump('hmac error');
-        } catch (ValidationException $e) {
-            var_dump('validation error');
+            $this->assertEquals($transactionId, $res->getTransactionId());
+        } catch (HmacException | ValidationException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
