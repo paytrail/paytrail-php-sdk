@@ -211,6 +211,13 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
     protected $groups;
 
     /**
+     * Activate invoices manually
+     *
+     * @var boolean
+     */
+    protected $manualInvoiceActivation;
+
+    /**
      * Get the stamp.
      *
      * @return string
@@ -534,5 +541,23 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
     public function getGroups(): array
     {
         return $this->groups;
+    }
+
+    /**
+     * @param bool $value
+     * @return PaymentRequestInterface
+     */
+    public function setManualInvoiceActivation(bool $value = false): PaymentRequestInterface
+    {
+        $this->manualInvoiceActivation = $value;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getManualInvoiceActivation(): bool
+    {
+        return $this->manualInvoiceActivation;
     }
 }

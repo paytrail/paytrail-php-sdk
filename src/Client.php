@@ -29,6 +29,7 @@ use Paytrail\SDK\Response\EmailRefundResponse;
 use Paytrail\SDK\Response\ReportRequestResponse;
 use Paytrail\SDK\Response\RevertPaymentAuthHoldResponse;
 use Paytrail\SDK\Response\SettlementResponse;
+use Paytrail\SDK\Response\InvoiceActivationResponse;
 use Paytrail\SDK\Util\Signature;
 use Paytrail\SDK\Exception\HmacException;
 use Paytrail\SDK\Exception\ValidationException;
@@ -693,6 +694,33 @@ class Client extends PaytrailClient
         );
 
         return $reportRequestResponse;
+    }
+
+    /**
+     * Activate invoice created with manualInvoiceActivation set to true
+     *
+     * @param string $transactionId
+     * @return InvoiceActivationResponse
+     * @throws HmacException
+     */
+    public function activateInvoice(string $transactionId)
+    {
+        $uri = "/payments/{$transactionId}/activate-invoice";
+
+        return $this->post(
+            $uri,
+            null,
+            /**
+             * Create the response instance.
+             *
+             * @param mixed $decoded The decoded body.
+             * @return InvoiceActivationResponse
+             */
+            function ($decoded) {
+                return (new InvoiceActivationResponse())
+                    ->setStatus($decoded->status);
+            }
+        );
     }
 
     /**
