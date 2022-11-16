@@ -60,7 +60,7 @@ class CurlResponse
                 continue;
             }
             [$key, $value] = explode(': ', $header);
-            $responseHeaders[$key] = [rtrim($value)];
+            $responseHeaders[strtolower($key)] = [rtrim($value)];
         }
         $this->headers = $responseHeaders;
     }
