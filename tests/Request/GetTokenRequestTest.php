@@ -13,8 +13,12 @@ class GetTokenRequestTest extends TestCase
     public function validationProvider()
     {
         return [
-            'checkout-tokenization-id is empty' => [['checkoutTokenizationId' => ''],
-                'checkout-tokenization-id is empty']
+            'checkout-tokenization-id is empty' => [
+                [
+                    'checkoutTokenizationId' => ''
+                ],
+                'checkout-tokenization-id is empty'
+            ]
         ];
     }
 

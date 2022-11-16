@@ -13,9 +13,19 @@ class CustomerTest extends TestCase
     public function validationProvider()
     {
         return [
-            'Network address is empty' => [['networkAddress' => ''], 'Network address is empty'],
-            'Country code is empty' => [['networkAddress' => '93.174.192.154',
-                'countryCode' => ''], 'Country code is empty']
+            'Network address is empty' => [
+                [
+                    'networkAddress' => ''
+                ],
+                'Network address is empty'
+            ],
+            'Country code is empty' => [
+                [
+                    'networkAddress' => '93.174.192.154',
+                    'countryCode' => ''
+                ],
+                'Country code is empty'
+            ]
         ];
     }
 
