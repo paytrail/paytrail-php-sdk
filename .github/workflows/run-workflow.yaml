@@ -4,6 +4,9 @@ on:
   - push
   - pull_request
   - fork
+
+env:
+  ACTION_PHP_VERSION: 8.2
       
 jobs:
   run-checks:
