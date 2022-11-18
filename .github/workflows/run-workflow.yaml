@@ -16,9 +16,9 @@ jobs:
         include:
           - php-version: 8.2
             experimental: true
-            extensions: json, curl, mbstring
             env:
-              ACTION_PHP_VERSION: 8.2
+              - ACTION_PHP_VERSION: 8.2
+              - ACTION_PHP_EXTENSIONS: json curl mbstring
     steps:
       - uses: actions/checkout@v3
 
