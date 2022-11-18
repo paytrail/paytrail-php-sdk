@@ -13,12 +13,6 @@ jobs:
       matrix:
         php-version: ['7.3', '7.4', '8.0', '8.1']
         experimental: [false]
-        include:
-          - php-version: 8.2
-            experimental: true
-            env:
-              - ACTION_PHP_VERSION: 8.2
-              - ACTION_PHP_EXTENSIONS: json curl mbstring
     steps:
       - uses: actions/checkout@v3
 
