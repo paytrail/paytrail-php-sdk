@@ -729,7 +729,8 @@ class Client extends PaytrailClient
             function ($decoded) {
                 return (new InvoiceActivationResponse())
                     ->setStatus($decoded->status);
-            }
+            },
+            $transactionId
         );
     }
 
