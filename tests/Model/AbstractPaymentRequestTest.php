@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Model;
@@ -12,7 +13,6 @@ use ReflectionProperty;
 
 class AbstractPaymentRequestTest extends MockeryTestCase
 {
-
     public function testValidationExceptionMessages(): void
     {
         $paymentRequest = $this->getMockForAbstractClass(AbstractPaymentRequest::class);
@@ -90,15 +90,18 @@ class AbstractPaymentRequestTest extends MockeryTestCase
         }
 
         try {
-            $paymentRequest->setCustomer(new Customer);
+            $paymentRequest->setCustomer(new Customer());
             $paymentRequest->validate();
         } catch (Exception $e) {
             $this->assertEquals('RedirectUrls is empty', $e->getMessage());
         }
     }
 
-    private function setProtectedProperty(AbstractPaymentRequest $paymentRequest, string $propertyName, string $value): void
-    {
+    private function setProtectedProperty(
+        AbstractPaymentRequest $paymentRequest,
+        string $propertyName,
+        string $value
+    ): void {
         $attribute = new ReflectionProperty($paymentRequest, $propertyName);
         $attribute->setAccessible(true);
         $attribute->setValue($paymentRequest, $value);
@@ -107,14 +110,14 @@ class AbstractPaymentRequestTest extends MockeryTestCase
     private function getPaymentItems(): array
     {
         return [
-            (new Item)
+            (new Item())
                 ->setStamp('someStamp')
                 ->setDeliveryDate('12.12.2020')
                 ->setProductCode('pr1')
                 ->setVatPercentage(25)
                 ->setUnitPrice(10)
                 ->setUnits(1),
-            (new Item)
+            (new Item())
                 ->setStamp('someOtherStamp')
                 ->setDeliveryDate('12.12.2020')
                 ->setProductCode('pr2')
@@ -123,5 +126,4 @@ class AbstractPaymentRequestTest extends MockeryTestCase
                 ->setUnits(2),
         ];
     }
-
 }

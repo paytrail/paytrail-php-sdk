@@ -1,12 +1,6 @@
 <?php
-declare(strict_types=1);
 
-/**
- * Created by PhpStorm.
- * User: kimmok
- * Date: 14/04/2020
- * Time: 13.55
- */
+declare(strict_types=1);
 
 namespace Tests\Request;
 

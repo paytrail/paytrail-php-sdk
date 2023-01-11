@@ -1,18 +1,15 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Trait JsonSerializable
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Util;
 
-/**
- * Trait JsonSerializable
- */
 trait JsonSerializable
 {
-
     /**
      * Implements the json serialize method and
      * return all object variables including

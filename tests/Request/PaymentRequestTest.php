@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Request;
@@ -38,25 +39,25 @@ class PaymentRequestTest extends TestCase
 
     private function getPaymentRequest(): PaymentRequest
     {
-        $payment = (new PaymentRequest)
+        $payment = (new PaymentRequest())
             ->setAmount(30)
             ->setStamp('RequestStamp')
             ->setReference('RequestReference123')
             ->setCurrency('EUR')
             ->setLanguage('EN');
 
-        $customer = (new Customer)
+        $customer = (new Customer())
             ->setEmail('customer@email.com');
 
         $payment->setCustomer($customer);
 
-        $callback = (new CallbackUrl)
+        $callback = (new CallbackUrl())
             ->setCancel('https://somedomain.com/cancel')
             ->setSuccess('https://somedomain.com/success');
 
         $payment->setCallbackUrls($callback);
 
-        $redirect = (new CallbackUrl)
+        $redirect = (new CallbackUrl())
             ->setSuccess('https://someother.com/success')
             ->setCancel('https://someother.com/cancel');
 
@@ -68,14 +69,14 @@ class PaymentRequestTest extends TestCase
     private function getPaymentItems(): array
     {
         return [
-            (new Item)
+            (new Item())
                 ->setStamp('someStamp')
                 ->setDeliveryDate('12.12.2020')
                 ->setProductCode('pr1')
                 ->setVatPercentage(25)
                 ->setUnitPrice(10)
                 ->setUnits(1),
-            (new Item)
+            (new Item())
                 ->setStamp('someOtherStamp')
                 ->setDeliveryDate('12.12.2020')
                 ->setProductCode('pr2')

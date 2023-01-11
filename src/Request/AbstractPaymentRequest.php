@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class PaymentRequest
  */
@@ -28,7 +29,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentRequestInterface
 {
-
     use JsonSerializable;
 
     /**
@@ -222,9 +222,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return string
      */
-    public function getStamp() : ?string
+    public function getStamp(): ?string
     {
-
         return $this->stamp;
     }
 
@@ -247,9 +246,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return string
      */
-    public function getReference() : ?string
+    public function getReference(): ?string
     {
-
         return $this->reference;
     }
 
@@ -262,7 +260,6 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      */
     public function setReference(?string $reference): PaymentRequestInterface
     {
-
         $this->reference = $reference;
 
         return $this;
@@ -273,9 +270,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return int
      */
-    public function getAmount() : ?int
+    public function getAmount(): ?int
     {
-
         return $this->amount;
     }
 
@@ -286,9 +282,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setAmount(?int $amount) : PaymentRequestInterface
+    public function setAmount(?int $amount): PaymentRequestInterface
     {
-
         $this->amount = $amount;
 
         return $this;
@@ -299,9 +294,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return string
      */
-    public function getCurrency() : ?string
+    public function getCurrency(): ?string
     {
-
         return $this->currency;
     }
 
@@ -312,9 +306,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCurrency(?string $currency) : PaymentRequestInterface
+    public function setCurrency(?string $currency): PaymentRequestInterface
     {
-
         $this->currency = $currency;
 
         return $this;
@@ -325,9 +318,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage(): ?string
     {
-
         return $this->language;
     }
 
@@ -338,9 +330,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setLanguage(?string $language) : PaymentRequestInterface
+    public function setLanguage(?string $language): PaymentRequestInterface
     {
-
         $this->language = $language;
 
         return $this;
@@ -351,9 +342,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return ItemInterface[]
      */
-    public function getItems() : ?array
+    public function getItems(): ?array
     {
-
         return $this->items;
     }
 
@@ -364,7 +354,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setItems(?array $items) : PaymentRequestInterface
+    public function setItems(?array $items): PaymentRequestInterface
     {
         $this->items = $items;
 
@@ -380,9 +370,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return CustomerInterface
      */
-    public function getCustomer() : ?CustomerInterface
+    public function getCustomer(): ?CustomerInterface
     {
-
         return $this->customer;
     }
 
@@ -393,9 +382,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCustomer(?CustomerInterface $customer) : PaymentRequestInterface
+    public function setCustomer(?CustomerInterface $customer): PaymentRequestInterface
     {
-
         $this->customer = $customer;
 
         return $this;
@@ -406,9 +394,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return AddressInterface
      */
-    public function getDeliveryAddress() : ?AddressInterface
+    public function getDeliveryAddress(): ?AddressInterface
     {
-
         return $this->deliveryAddress;
     }
 
@@ -419,9 +406,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setDeliveryAddress(?AddressInterface $deliveryAddress) : PaymentRequestInterface
+    public function setDeliveryAddress(?AddressInterface $deliveryAddress): PaymentRequestInterface
     {
-
         $this->deliveryAddress = $deliveryAddress;
 
         return $this;
@@ -432,9 +418,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return AddressInterface
      */
-    public function getInvoicingAddress() : ?AddressInterface
+    public function getInvoicingAddress(): ?AddressInterface
     {
-
         return $this->invoicingAddress;
     }
 
@@ -445,9 +430,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setInvoicingAddress(?AddressInterface $invoicingAddress) : PaymentRequestInterface
+    public function setInvoicingAddress(?AddressInterface $invoicingAddress): PaymentRequestInterface
     {
-
         $this->invoicingAddress = $invoicingAddress;
 
         return $this;
@@ -458,9 +442,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return CallbackUrlInterface
      */
-    public function getRedirectUrls() : ?CallbackUrlInterface
+    public function getRedirectUrls(): ?CallbackUrlInterface
     {
-
         return $this->redirectUrls;
     }
 
@@ -471,9 +454,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setRedirectUrls(?CallbackUrlInterface $redirectUrls) : PaymentRequestInterface
+    public function setRedirectUrls(?CallbackUrlInterface $redirectUrls): PaymentRequestInterface
     {
-
         $this->redirectUrls = $redirectUrls;
 
         return $this;
@@ -484,9 +466,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return CallbackUrlInterface
      */
-    public function getCallbackUrls() : ?CallbackUrlInterface
+    public function getCallbackUrls(): ?CallbackUrlInterface
     {
-
         return $this->callbackUrls;
     }
 
@@ -497,9 +478,8 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      *
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCallbackUrls(?CallbackUrlInterface $callbackUrls) : PaymentRequestInterface
+    public function setCallbackUrls(?CallbackUrlInterface $callbackUrls): PaymentRequestInterface
     {
-
         $this->callbackUrls = $callbackUrls;
 
         return $this;
@@ -517,7 +497,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      * @param int $callbackDelay
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setCallbackDelay(int $callbackDelay) : PaymentRequestInterface
+    public function setCallbackDelay(int $callbackDelay): PaymentRequestInterface
     {
         $this->callbackDelay = $callbackDelay;
 
@@ -528,7 +508,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      * @param array $groups
      * @return PaymentRequestInterface Return self to enable chaining.
      */
-    public function setGroups(array $groups) : PaymentRequestInterface
+    public function setGroups(array $groups): PaymentRequestInterface
     {
         $this->groups = $groups;
 

@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class HmacException
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Exception;
 
@@ -16,5 +17,4 @@ namespace Paytrail\SDK\Exception;
  */
 class HmacException extends \Exception
 {
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Model;
@@ -9,18 +10,17 @@ use PHPUnit\Framework\TestCase;
 
 class AddressTest extends TestCase
 {
-
     public function testExceptions()
     {
         $this->expectException(ValidationException::class);
-        $a = new Address;
+        $a = new Address();
         $a->validate();
     }
 
 
     public function testIsAddressValid()
     {
-        $a = new Address;
+        $a = new Address();
 
         $this->assertInstanceOf(
             Address::class,
@@ -40,7 +40,7 @@ class AddressTest extends TestCase
 
     public function testExeceptionMessages()
     {
-        $a = new Address;
+        $a = new Address();
 
         try {
             $a->validate();
@@ -86,5 +86,4 @@ class AddressTest extends TestCase
         $addressModel->setStreetAddress(null);
         $this->assertNull($addressModel->getStreetAddress());
     }
-
 }

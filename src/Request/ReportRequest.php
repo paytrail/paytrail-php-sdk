@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Paytrail\SDK\Request;
@@ -6,10 +7,11 @@ namespace Paytrail\SDK\Request;
 use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Util\ObjectPropertyConverter;
 
-
 class ReportRequest implements \JsonSerializable
 {
-    const PAYMENT_STATUSES = [
+    use ObjectPropertyConverter;
+
+    public const PAYMENT_STATUSES = [
         'default',
         'paid',
         'all',
@@ -24,8 +26,6 @@ class ReportRequest implements \JsonSerializable
     private $limit;
     private $reportFields;
     private $subMerchant;
-
-    use ObjectPropertyConverter;
 
     public function validate()
     {

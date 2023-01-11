@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class AddressInterface
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Model;
 
@@ -21,7 +22,6 @@ use Paytrail\SDK\Util\JsonSerializable;
  */
 class Address implements \JsonSerializable, AddressInterface
 {
-
     use JsonSerializable;
 
     /**
@@ -104,7 +104,7 @@ class Address implements \JsonSerializable, AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setStreetAddress(?string $streetAddress) : AddressInterface
+    public function setStreetAddress(?string $streetAddress): AddressInterface
     {
         if (!$streetAddress) {
             return $this;
@@ -125,7 +125,6 @@ class Address implements \JsonSerializable, AddressInterface
      */
     public function getPostalCode(): ?string
     {
-
         return $this->postalCode;
     }
 
@@ -136,7 +135,7 @@ class Address implements \JsonSerializable, AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setPostalCode(?string $postalCode) : AddressInterface
+    public function setPostalCode(?string $postalCode): AddressInterface
     {
         $this->postalCode = $postalCode;
 
@@ -150,7 +149,6 @@ class Address implements \JsonSerializable, AddressInterface
      */
     public function getCity(): ?string
     {
-
         return $this->city;
     }
 
@@ -161,7 +159,7 @@ class Address implements \JsonSerializable, AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setCity(?string $city) : AddressInterface
+    public function setCity(?string $city): AddressInterface
     {
         $this->city = $city;
 
@@ -175,7 +173,6 @@ class Address implements \JsonSerializable, AddressInterface
      */
     public function getCounty(): ?string
     {
-
         return $this->county;
     }
 
@@ -186,7 +183,7 @@ class Address implements \JsonSerializable, AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setCounty(?string $county) : AddressInterface
+    public function setCounty(?string $county): AddressInterface
     {
         $this->county = $county;
 
@@ -200,7 +197,6 @@ class Address implements \JsonSerializable, AddressInterface
      */
     public function getCountry(): ?string
     {
-
         return $this->country;
     }
 
@@ -211,7 +207,7 @@ class Address implements \JsonSerializable, AddressInterface
      *
      * @return AddressInterface Return self to enable chaining.
      */
-    public function setCountry(?string $country) : AddressInterface
+    public function setCountry(?string $country): AddressInterface
     {
         $this->country = $country;
 

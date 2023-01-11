@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Class ItemTest
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Model;
 
@@ -124,7 +125,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param int $unitPrice
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setUnitPrice(?int $unitPrice) : ItemInterface
+    public function setUnitPrice(?int $unitPrice): ItemInterface
     {
         $this->unitPrice = $unitPrice;
 
@@ -147,7 +148,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param int $units
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setUnits(?int $units) : ItemInterface
+    public function setUnits(?int $units): ItemInterface
     {
         $this->units = $units;
 
@@ -170,7 +171,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param int $vatPercentage
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setVatPercentage(?int $vatPercentage) : ItemInterface
+    public function setVatPercentage(?int $vatPercentage): ItemInterface
     {
         $this->vatPercentage = $vatPercentage;
 
@@ -193,7 +194,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param string $productCode
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setProductCode(?string $productCode) : ItemInterface
+    public function setProductCode(?string $productCode): ItemInterface
     {
         $this->productCode = $productCode;
 
@@ -216,7 +217,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param string $deliveryDate
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setDeliveryDate(?string $deliveryDate) : ItemInterface
+    public function setDeliveryDate(?string $deliveryDate): ItemInterface
     {
         $this->deliveryDate = $deliveryDate;
 
@@ -239,7 +240,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param string $description
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setDescription(?string $description) : ItemInterface
+    public function setDescription(?string $description): ItemInterface
     {
         $this->description = $description;
 
@@ -262,7 +263,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param string $category
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setCategory(?string $category) : ItemInterface
+    public function setCategory(?string $category): ItemInterface
     {
         $this->category = $category;
 
@@ -285,7 +286,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param string $stamp
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setStamp(?string $stamp) : ItemInterface
+    public function setStamp(?string $stamp): ItemInterface
     {
         $this->stamp = $stamp;
 
@@ -308,7 +309,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param string $reference
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setReference(?string $reference) : ItemInterface
+    public function setReference(?string $reference): ItemInterface
     {
         $this->reference = $reference;
 
@@ -331,7 +332,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param string $merchant
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setMerchant(?string $merchant) : ItemInterface
+    public function setMerchant(?string $merchant): ItemInterface
     {
         $this->merchant = $merchant;
 
@@ -354,7 +355,7 @@ class Item implements \JsonSerializable, ItemInterface
      * @param CommissionInterface $commission
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setCommission(?CommissionInterface $commission) : ItemInterface
+    public function setCommission(?CommissionInterface $commission): ItemInterface
     {
         $this->commission = $commission;
 
@@ -391,19 +392,19 @@ class Item implements \JsonSerializable, ItemInterface
         return true;
     }
 
-     /**
-      * Validates shop-in-shop props with Respect\Validation library and throws an exception for invalid objects
-      *
-      * @throws ValidationException
-      */
-     public function validateShopInShop()
-     {
-         $props = get_object_vars($this);
+    /**
+     * Validates shop-in-shop props with Respect\Validation library and throws an exception for invalid objects
+     *
+     * @throws ValidationException
+     */
+    public function validateShopInShop()
+    {
+        $props = get_object_vars($this);
 
-         if (empty($props['merchant'])) {
-             throw new ValidationException('merchant is empty');
-         }
+        if (empty($props['merchant'])) {
+            throw new ValidationException('merchant is empty');
+        }
 
-         return true;
-     }
+        return true;
+    }
 }

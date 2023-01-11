@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Model;
@@ -12,13 +13,13 @@ class CallbackUrlTest extends TestCase
     public function testExceptions()
     {
         $this->expectException(ValidationException::class);
-        $a = new CallbackUrl;
+        $a = new CallbackUrl();
         $a->validate();
     }
 
     public function testIsCallbackUrlValid()
     {
-        $c = new CallbackUrl;
+        $c = new CallbackUrl();
 
         $this->assertInstanceOf(CallbackUrl::class, $c);
 
@@ -28,14 +29,12 @@ class CallbackUrlTest extends TestCase
         try {
             $this->assertIsBool($c->validate(), 'CallbackUrl::validate is bool');
         } catch (ValidationException $e) {
-
         }
-
     }
 
     public function testExceptionMessages()
     {
-        $c = new CallbackUrl;
+        $c = new CallbackUrl();
 
         try {
             $c->validate();
@@ -57,8 +56,5 @@ class CallbackUrlTest extends TestCase
             $this->assertIsBool($c->validate(), 'CallbackUrl::validate is bool');
         } catch (ValidationException $e) {
         }
-
-
     }
-
 }

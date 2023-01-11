@@ -1,9 +1,10 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Interface Customer
  */
+
+declare(strict_types=1);
 
 namespace Paytrail\SDK\Interfaces;
 
@@ -39,7 +40,7 @@ interface CustomerInterface
      *
      * @return self Return self to enable chaining.
      */
-    public function setEmail(?string $email) : CustomerInterface;
+    public function setEmail(?string $email): CustomerInterface;
 
     /**
      * Get first name.
@@ -55,7 +56,7 @@ interface CustomerInterface
      *
      * @return self Return self to enable chaining.
      */
-    public function setFirstName(?string $firstName) : CustomerInterface;
+    public function setFirstName(?string $firstName): CustomerInterface;
 
     /**
      * Get last name.
@@ -71,7 +72,7 @@ interface CustomerInterface
      *
      * @return self Return self to enable chaining.
      */
-    public function setLastName(?string $lastName) : CustomerInterface;
+    public function setLastName(?string $lastName): CustomerInterface;
 
     /**
      * Get phone.
@@ -87,7 +88,7 @@ interface CustomerInterface
      *
      * @return self Return self to enable chaining.
      */
-    public function setPhone(?string $phone) : CustomerInterface;
+    public function setPhone(?string $phone): CustomerInterface;
 
     /**
      * Get VAT id.
@@ -103,7 +104,7 @@ interface CustomerInterface
      *
      * @return self Return self to enable chaining.
      */
-    public function setVatId(?string $vatId) : CustomerInterface;
+    public function setVatId(?string $vatId): CustomerInterface;
 
     /**
      * Get Company name.
@@ -119,5 +120,5 @@ interface CustomerInterface
      *
      * @return self Return self to enable chaining.
      */
-    public function setCompanyName(?string $companyName) : CustomerInterface;
+    public function setCompanyName(?string $companyName): CustomerInterface;
 }

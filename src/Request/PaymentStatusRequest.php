@@ -11,7 +11,6 @@ use Paytrail\SDK\Exception\ValidationException;
  */
 class PaymentStatusRequest
 {
-
     /**
      * Payment transaction id.
      *
@@ -38,7 +37,7 @@ class PaymentStatusRequest
      *
      * @return string
      */
-    public function getTransactionId() : string
+    public function getTransactionId(): string
     {
         return $this->transactionId;
     }
@@ -50,7 +49,7 @@ class PaymentStatusRequest
      *
      * @return PaymentStatusRequest Return self to enable chaining.
      */
-    public function setTransactionId(?string $transactionId) : PaymentStatusRequest
+    public function setTransactionId(?string $transactionId): PaymentStatusRequest
     {
         $this->transactionId = $transactionId;
 

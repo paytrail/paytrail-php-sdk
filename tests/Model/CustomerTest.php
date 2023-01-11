@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Model;
@@ -26,5 +27,4 @@ class CustomerTest extends TestCase
         $c2->setEmail('notAnEmailAddress');
         $c2->validate();
     }
-
 }

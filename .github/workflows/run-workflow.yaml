@@ -1,23 +1,33 @@
-name: Run PHPUnit
+name: Run Checks
 
 on:
-  push:
+  - push
+  - pull_request
+  - fork
       
 jobs:
-  run-phpunit:
+  run-checks:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        php-version: ['7.3', '7.4', '8.0', '8.1', latest]
+        php-version: ['7.3', '7.4', '8.0', '8.1']
+        experimental: [false]
     steps:
       - uses: actions/checkout@v3
+
+      - name: Validate Composer Files
+        run: composer validate --strict
 
       - name: Run composer install
         uses: php-actions/composer@v6
         with:
           php_version: ${{ matrix.php-version }}
           args: --ignore-platform-reqs
-          
+
+      - name: Run linter
+        run: composer lint
+
       - name: Run tests
         uses: php-actions/phpunit@v3.0.0
         with:
