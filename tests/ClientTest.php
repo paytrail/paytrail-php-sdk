@@ -25,36 +25,25 @@ use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 
 class ClientTest extends PaymentRequestTestCase
 {
-    protected $item;
+    private $item;
+    private $item2;
+    private $shopInShopItem;
+    private $shopInShopItem2;
+    private $redirect;
+    private $callback;
+    private $customer;
+    private $address;
+    private $paymentRequest;
+    private $shopInShopPaymentRequest;
+    private $citPaymentRequest;
+    private $mitPaymentRequest;
 
-    protected $item2;
-
-    protected $shopInShopItem;
-
-    protected $shopInShopItem2;
-
-    protected $redirect;
-
-    protected $callback;
-
-    protected $customer;
-
-    protected $address;
-
-    protected $paymentRequest;
-
-    protected $shopInShopPaymentRequest;
-
-    protected $citPaymentRequest;
-
-    protected $mitPaymentRequest;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->item = (new Item())
-            ->setDeliveryDate('2020-12-12')
             ->setProductCode('pr1')
             ->setVatPercentage(24)
             ->setReference('itemReference123')
@@ -572,6 +561,37 @@ class ClientTest extends PaymentRequestTestCase
         $reportRequest = (new ReportRequest())
             ->setRequestType('json')
             ->setCallbackUrl('invalid-url');
+        $this->client->requestPaymentReport($reportRequest);
+    }
+
+    public function testRequestPaymentReportThrowsExceptionWhenEndDateIsLowerThanStartDate()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test')
+            ->setStartDate('2023-01-20')
+            ->setEndDate('2023-01-01');
+        $this->client->requestPaymentReport($reportRequest);
+    }
+
+    public function testRequestPaymentReportThrowsExceptionWhenStartDateIsInWrongFormat()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test')
+            ->setStartDate('1.1.2023');
+        $this->client->requestPaymentReport($reportRequest);
+    }
+
+    public function testRequestPaymentReportThrowsExceptionWhenEndDateIsInWrongFormat()
+    {
+        $this->expectException(ValidationException::class);
+        $reportRequest = (new ReportRequest())
+            ->setRequestType('json')
+            ->setCallbackUrl('https://nourl.test')
+            ->setEndDate('1.1.2023');
         $this->client->requestPaymentReport($reportRequest);
     }
 }

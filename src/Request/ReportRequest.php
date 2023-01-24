@@ -59,6 +59,24 @@ class ReportRequest implements \JsonSerializable
             throw new ValidationException('ReportFields must be type of array');
         }
 
+        if (!empty($props['startDate'])) {
+            if (!(new \DateTime())->createFromFormat('Y-m-d', $props['startDate'])) {
+                throw new ValidationException('startDate must be in Y-m-d format');
+            }
+        }
+
+        if (!empty($props['endDate'])) {
+            if (!(new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])) {
+                throw new ValidationException('endDate must be in Y-m-d format');
+            }
+        }
+
+        if (!empty($props['startDate']) && !empty($props['endDate'])) {
+            if ((new \DateTime())->createFromFormat('Y-m-d', $props['startDate']) > (new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])) {
+                throw new ValidationException('startDate cannot be lower than endDate');
+            }
+        }
+
         return true;
     }
 

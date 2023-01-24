@@ -641,7 +641,7 @@ class Client extends PaytrailClient
 
         if ($endDate) {
             if ((new \DateTime())->createFromFormat('Y-m-d', $endDate) == false) {
-                throw new ValidationException('startDate must be in Y-m-d format');
+                throw new ValidationException('endDate must be in Y-m-d format');
             }
         }
 
