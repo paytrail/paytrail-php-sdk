@@ -72,7 +72,10 @@ class ReportRequest implements \JsonSerializable
         }
 
         if (!empty($props['startDate']) && !empty($props['endDate'])) {
-            if ((new \DateTime())->createFromFormat('Y-m-d', $props['startDate']) > (new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])) {
+            if (
+                (new \DateTime())->createFromFormat('Y-m-d', $props['startDate'])
+                > (new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])
+            ) {
                 throw new ValidationException('startDate cannot be lower than endDate');
             }
         }
