@@ -141,8 +141,8 @@ class PaymentResponse implements ResponseInterface
     public function setGroups(array $groups): PaymentResponse
     {
         $this->groups = array_map(function ($group) {
-            if (! $group instanceof Provider) {
-                return (new Provider())->bindProperties($group);
+            if (! $group instanceof PaymentMethodGroup) {
+                return (new PaymentMethodGroup())->bindProperties($group);
             }
 
             return $group;
