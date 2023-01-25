@@ -29,6 +29,10 @@ class ClientTest extends PaymentRequestTestCase
 
     protected $item2;
 
+    protected $shopInShopItem;
+
+    protected $shopInShopItem2;
+
     protected $redirect;
 
     protected $callback;
