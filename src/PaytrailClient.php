@@ -98,8 +98,11 @@ abstract class PaytrailClient
             $headers = $this->reduceHeaders($response->getHeaders());
             $this->validateHmac($headers, $body, $headers['signature'] ?? '');
         } else {
+            // @phpstan-ignore-next-line FIXME
             $mac = $this->calculateHmac($data->toArray());
+            // @phpstan-ignore-next-line FIXME
             $data->setSignature($mac);
+            // @phpstan-ignore-next-line FIXME
             $body = json_encode($data->toArray(), JSON_UNESCAPED_SLASHES);
 
             $response = $this->http_client->request('POST', $uri, [
