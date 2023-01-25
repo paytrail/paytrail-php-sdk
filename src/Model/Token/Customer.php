@@ -22,7 +22,7 @@ class Customer implements \JsonSerializable
     use ObjectPropertyConverter;
 
     /**
-     * Validates with Respect\Validation library and throws an exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
      * @throws ValidationException
      */

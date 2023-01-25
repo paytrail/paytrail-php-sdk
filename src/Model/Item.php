@@ -363,7 +363,7 @@ class Item implements \JsonSerializable, ItemInterface
     }
 
     /**
-     * Validates with Respect\Validation library and throws an exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
      * @throws ValidationException
      */
@@ -393,7 +393,7 @@ class Item implements \JsonSerializable, ItemInterface
     }
 
     /**
-     * Validates shop-in-shop props with Respect\Validation library and throws an exception for invalid objects
+     * Validates shop-in-shop props and throws an exception for invalid values
      *
      * @throws ValidationException
      */

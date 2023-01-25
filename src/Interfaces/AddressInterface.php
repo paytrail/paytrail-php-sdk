@@ -20,7 +20,7 @@ use Paytrail\SDK\Exception\ValidationException;
 interface AddressInterface
 {
     /**
-     * Validates with Respect\Validation library and throws exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
      * @throws ValidationException
      */
