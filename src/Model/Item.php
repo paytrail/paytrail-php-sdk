@@ -97,7 +97,7 @@ class Item implements \JsonSerializable, ItemInterface
      * Merchant ID for the item.
      * Required for Shop-in-Shop payments, do not use for normal payments.
      *
-     * @var int
+     * @var string|null
      */
     protected $merchant;
 

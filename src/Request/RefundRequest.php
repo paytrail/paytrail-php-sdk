@@ -96,21 +96,21 @@ class RefundRequest implements \JsonSerializable
     /**
      * Refund recipient email address.
      *
-     * @var $mail
+     * @var string|null $email
      */
     protected $email;
 
     /**
      * Merchant unique identifier for the refund.
      *
-     * @var $refundStamp
+     * @var string|null $refundStamp
      */
     protected $refundStamp;
 
     /**
      * Refund reference.
      *
-     * @var $refundReference
+     * @var string|null $refundReference
      */
     protected $refundReference;
 

@@ -156,42 +156,42 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
     /**
      * Array of items.
      *
-     * @var Item[]
+     * @var ItemInterface[]
      */
     protected $items;
 
     /**
      * Customer information.
      *
-     * @var Customer
+     * @var CustomerInterface
      */
     protected $customer;
 
     /**
      * Delivery address.
      *
-     * @var Address
+     * @var AddressInterface
      */
     protected $deliveryAddress;
 
     /**
      * Invoicing address.
      *
-     * @var Address
+     * @var AddressInterface
      */
     protected $invoicingAddress;
 
     /**
      * Where to redirect browser after a payment is paid or cancelled.
      *
-     * @var CallbackUrl;
+     * @var CallbackUrlInterface
      */
     protected $redirectUrls;
 
     /**
      * Which url to ping after this payment is paid or cancelled.
      *
-     * @var CallbackUrl;
+     * @var CallbackUrlInterface
      */
     protected $callbackUrls;
 
