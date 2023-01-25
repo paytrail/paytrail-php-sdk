@@ -20,13 +20,6 @@ namespace Paytrail\SDK\Exception;
 class ValidationException extends \Exception
 {
     /**
-     * Holds the previous NestedValidationException instance.
-     *
-     * $var NestedValidationException
-     */
-    protected $previous;
-
-    /**
      * Holds all error messages.
      *
      * @var array
