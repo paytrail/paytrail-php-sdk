@@ -6,6 +6,7 @@
 
 namespace Paytrail\SDK\Request;
 
+use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Model\Item;
 
 /**
