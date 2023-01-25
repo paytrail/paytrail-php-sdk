@@ -28,6 +28,14 @@ jobs:
       - name: Run linter
         run: composer lint
 
+      - name: Run phpstan
+        uses: php-actions/phpstan@v3.0.1
+        with:
+          php_version: ${{ matrix.php-version }}
+          version: 1.9.14
+          configuration: phpstan.neon
+          memory_limit: 256M
+
       - name: Run tests
         uses: php-actions/phpunit@v3.0.0
         with:
