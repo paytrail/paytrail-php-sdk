@@ -45,6 +45,18 @@ abstract class PaytrailClient
     }
 
     /**
+     * A proxy for the Signature class' static method
+     * to be used via a client instance.
+     *
+     * @param array $response The response parameters.
+     * @param string $body The response body.
+     * @param string $signature The response signature key.
+     *
+     * @throws HmacException
+     */
+    abstract public function validateHmac(array $response = [], string $body = '', string $signature = '');
+
+    /**
      * A wrapper for post requests.
      *
      * @param string $uri The uri for the request.
