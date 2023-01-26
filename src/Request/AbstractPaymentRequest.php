@@ -62,7 +62,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
             });
 
             // Count the total amount of the payment.
-            $items_total = array_reduce($this->getItems(), function ($carry = 0, ?Item $item = null) {
+            $items_total = array_reduce($this->getItems(), function ($carry = 0, ?ItemInterface $item = null) {
                 if ($item === null) {
                     return $carry;
                 }
