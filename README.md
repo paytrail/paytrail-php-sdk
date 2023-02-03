@@ -111,3 +111,8 @@ List of `Client::class` methods
 | revertPaymentAuthorizationHold()    | Revert existing Mit or CiT authorization hold        |
 | getSettlements()                    | Request settlements                                  |
 | requestPaymentReport()              |  Request payment report                              |
+
+
+---
+
+**_Disclaimer:_** *This open source project is made available to assist coders in getting started with our API. However, we do not provide any warranty or guarantee that the code will work as intended and offer limited support for it. Use at your own risk.*
