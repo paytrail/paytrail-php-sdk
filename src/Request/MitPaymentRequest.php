@@ -24,7 +24,7 @@ class MitPaymentRequest extends AbstractPaymentRequest implements TokenPaymentRe
     protected $token;
 
     /**
-     * Validates with Respect\Validation library and throws an exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
      * @throws ValidationException
      */

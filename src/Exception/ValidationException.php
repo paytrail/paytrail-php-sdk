@@ -10,8 +10,6 @@ namespace Paytrail\SDK\Exception;
 
 /**
  * Class ValidationException
- * This exception is a simple wrapper for
- * a Respect\Validation NestedValidationException instance.
  *
  * This exception holds the general expection message
  *
@@ -19,13 +17,6 @@ namespace Paytrail\SDK\Exception;
  */
 class ValidationException extends \Exception
 {
-    /**
-     * Holds the previous NestedValidationException instance.
-     *
-     * $var NestedValidationException
-     */
-    protected $previous;
-
     /**
      * Holds all error messages.
      *

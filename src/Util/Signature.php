@@ -26,10 +26,10 @@ class Signature
      * @see https://paytrail.github.io/api-documentation/#/?id=headers-and-request-signing
      * @see https://paytrail.github.io/api-documentation/#/?id=redirect-and-callback-url-parameters
      *
-     * @param array[string]  $params    HTTP headers in an associative array.
-     *
+     * @param array<string,mixed>   $params    HTTP headers in an associative array.
      * @param string                $body      HTTP request body, empty string for GET requests
      * @param string                $secretKey The merchant secret key.
+     *
      * @return string SHA-256 HMAC
      */
     public static function calculateHmac(array $params = [], string $body = '', string $secretKey = '')

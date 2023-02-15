@@ -89,8 +89,6 @@ class Commission implements \JsonSerializable, CommissionInterface
 
     /**
      * The getter for the amount.
-     *
-     * @return string
      */
     public function getAmount(): int
     {

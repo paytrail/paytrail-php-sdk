@@ -25,9 +25,8 @@ class EmailRefundRequest extends RefundRequest
     protected $email;
 
     /**
-     * Validates with Respect\Validation library and throws an exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
-     * @throws NestedValidationException Thrown when the validate() fails.
      * @throws ValidationException
      */
     public function validate()

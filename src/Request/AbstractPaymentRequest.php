@@ -32,7 +32,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
     use JsonSerializable;
 
     /**
-     * Validates with Respect\Validation library and throws an exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
      * @throws ValidationException
      */
@@ -62,7 +62,7 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
             });
 
             // Count the total amount of the payment.
-            $items_total = array_reduce($this->getItems(), function ($carry = 0, ?Item $item = null) {
+            $items_total = array_reduce($this->getItems(), function ($carry = 0, ?ItemInterface $item = null) {
                 if ($item === null) {
                     return $carry;
                 }
@@ -156,42 +156,42 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
     /**
      * Array of items.
      *
-     * @var Item[]
+     * @var ItemInterface[]
      */
     protected $items;
 
     /**
      * Customer information.
      *
-     * @var Customer
+     * @var CustomerInterface
      */
     protected $customer;
 
     /**
      * Delivery address.
      *
-     * @var Address
+     * @var AddressInterface
      */
     protected $deliveryAddress;
 
     /**
      * Invoicing address.
      *
-     * @var Address
+     * @var AddressInterface
      */
     protected $invoicingAddress;
 
     /**
      * Where to redirect browser after a payment is paid or cancelled.
      *
-     * @var CallbackUrl;
+     * @var CallbackUrlInterface
      */
     protected $redirectUrls;
 
     /**
      * Which url to ping after this payment is paid or cancelled.
      *
-     * @var CallbackUrl;
+     * @var CallbackUrlInterface
      */
     protected $callbackUrls;
 

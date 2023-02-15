@@ -6,6 +6,7 @@
 
 namespace Paytrail\SDK\Request;
 
+use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Model\Item;
 
 /**
@@ -20,7 +21,7 @@ use Paytrail\SDK\Model\Item;
 class ShopInShopPaymentRequest extends PaymentRequest
 {
     /**
-     * Validates with Respect\Validation library and throws an exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
      * @throws ValidationException
      */

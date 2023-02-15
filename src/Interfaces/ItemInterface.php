@@ -20,7 +20,7 @@ use Paytrail\SDK\Exception\ValidationException;
 interface ItemInterface
 {
     /**
-     * Validates with Respect\Validation library and throws an exception for invalid objects
+     * Validates properties and throws an exception for invalid values
      *
      * @throws ValidationException
      */
@@ -36,7 +36,7 @@ interface ItemInterface
     /**
      * Set the unit price.
      *
-     * @param int/null $unitPrice
+     * @param int|null $unitPrice
      * @return ItemInterface Return self to enable chaining.
      */
     public function setUnitPrice(?int $unitPrice): ItemInterface;
@@ -51,7 +51,7 @@ interface ItemInterface
     /**
      * Set the units.
      *
-     * @param int/null $units
+     * @param int|null $units
      * @return ItemInterface Return self to enable chaining.
      */
     public function setUnits(?int $units): ItemInterface;

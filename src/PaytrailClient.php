@@ -45,6 +45,18 @@ abstract class PaytrailClient
     }
 
     /**
+     * A proxy for the Signature class' static method
+     * to be used via a client instance.
+     *
+     * @param array $response The response parameters.
+     * @param string $body The response body.
+     * @param string $signature The response signature key.
+     *
+     * @throws HmacException
+     */
+    abstract public function validateHmac(array $response = [], string $body = '', string $signature = '');
+
+    /**
      * A wrapper for post requests.
      *
      * @param string $uri The uri for the request.
@@ -86,8 +98,11 @@ abstract class PaytrailClient
             $headers = $this->reduceHeaders($response->getHeaders());
             $this->validateHmac($headers, $body, $headers['signature'] ?? '');
         } else {
+            // @phpstan-ignore-next-line FIXME
             $mac = $this->calculateHmac($data->toArray());
+            // @phpstan-ignore-next-line FIXME
             $data->setSignature($mac);
+            // @phpstan-ignore-next-line FIXME
             $body = json_encode($data->toArray(), JSON_UNESCAPED_SLASHES);
 
             $response = $this->http_client->request('POST', $uri, [

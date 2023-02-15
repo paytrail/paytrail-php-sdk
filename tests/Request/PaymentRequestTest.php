@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Request;
 
 use Paytrail\SDK\Exception\ValidationException;
+use Paytrail\SDK\Interfaces\PaymentRequestInterface;
 use Paytrail\SDK\Model\CallbackUrl;
 use Paytrail\SDK\Model\Customer;
 use Paytrail\SDK\Model\Item;
@@ -37,7 +38,7 @@ class PaymentRequestTest extends TestCase
         }
     }
 
-    private function getPaymentRequest(): PaymentRequest
+    private function getPaymentRequest(): PaymentRequestInterface
     {
         $payment = (new PaymentRequest())
             ->setAmount(30)

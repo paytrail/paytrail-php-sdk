@@ -8,6 +8,7 @@ use Paytrail\SDK\Client;
 use Paytrail\SDK\Exception\HmacException;
 use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Interfaces\PaymentRequestInterface;
+use Paytrail\SDK\Model\PaymentMethodGroup;
 use Paytrail\SDK\Request\PaymentRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 use Paytrail\SDK\Response\PaymentResponse;
@@ -98,6 +99,7 @@ abstract class PaymentRequestTestCase extends TestCase
         static::assertNotEmpty($paymentResponse->getTerms());
         static::assertNotEmpty($paymentResponse->getReference());
         static::assertIsArray($paymentResponse->getGroups());
+        static::assertContainsOnlyInstancesOf(PaymentMethodGroup::class, $paymentResponse->getGroups());
         static::assertIsArray($paymentResponse->getProviders());
     }
 }
