@@ -167,10 +167,6 @@ class Client extends PaytrailClient
         // Instantiate providers.
         $decoded = json_decode($body);
 
-        array_map(function ($provider_data) {
-            return (new Provider())->bindProperties($provider_data);
-        }, $decoded->providers);
-
         $groups = array_map(function ($group_data) {
             return [
                 'id' => $group_data->id,
