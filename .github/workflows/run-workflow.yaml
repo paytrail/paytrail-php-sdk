@@ -23,7 +23,6 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: ${{ matrix.php-version }}
-          args: --ignore-platform-reqs
 
       - name: Run linter
         run: composer lint
