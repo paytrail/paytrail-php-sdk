@@ -90,10 +90,6 @@ abstract class PaymentRequestTestCase extends TestCase
      */
     public static function assertPaymentResponseIsValid(PaymentResponse $paymentResponse): void
     {
-        foreach (['transactionId', 'href', 'terms', 'groups', 'reference', 'providers'] as $field) {
-            static::assertObjectHasAttribute($field, $paymentResponse);
-        }
-
         static::assertNotEmpty($paymentResponse->getTransactionId());
         static::assertNotEmpty($paymentResponse->getHref());
         static::assertNotEmpty($paymentResponse->getTerms());
