@@ -173,11 +173,11 @@ class PaymentResponse implements ResponseInterface
     /**
      * Get providers.
      *
-     * @return Provider[]|null
+     * @return Provider[]
      */
-    public function getProviders(): ?array
+    public function getProviders(): array
     {
-        return $this->providers;
+        return $this->providers ?? [];
     }
 
     /**
