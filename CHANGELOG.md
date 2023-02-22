@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.3.2] - 2023-02-22
 ### Added
 - PHPStan (static analyser) added in workflow
+- Tests are now run also on PHP 8.2
 ### Fixed
 - Code quality improvements and other fixes
 
