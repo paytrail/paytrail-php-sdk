@@ -248,9 +248,9 @@ class ClientTest extends PaymentRequestTestCase
             ]
         ];
 
-        $this->assertObjectHasAttribute('token', $response);
-        $this->assertObjectHasAttribute('card', $response);
-        $this->assertObjectHasAttribute('customer', $response);
+        $this->assertNotEmpty($response->getToken());
+        $this->assertNotEmpty($response->getCard());
+        $this->assertNotEmpty($response->getCustomer());
         $this->assertJsonStringEqualsJsonString(json_encode($expectedArray), json_encode($responseJsonData));
     }
 
@@ -265,7 +265,7 @@ class ClientTest extends PaymentRequestTestCase
 
         $response = $client->createCitPaymentCharge($citPaymentRequest);
 
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
 
         $transactionId = $response->getTransactionId();
 
@@ -291,7 +291,7 @@ class ClientTest extends PaymentRequestTestCase
 
         $response = $client->createMitPaymentCharge($mitPaymentRequest);
 
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
 
         $transactionId = $response->getTransactionId();
 
@@ -317,8 +317,8 @@ class ClientTest extends PaymentRequestTestCase
 
         $response = $client->createCitPaymentCharge($citPaymentRequest);
 
-        $this->assertObjectHasAttribute('transactionId', $response);
-        $this->assertObjectHasAttribute('threeDSecureUrl', $response);
+        $this->assertNotEmpty($response->getTransactionId());
+        $this->assertNotEmpty($response->getThreeDSecureUrl());
     }
 
     public function testCitPaymentRequestAuthorizationHold()
@@ -332,7 +332,7 @@ class ClientTest extends PaymentRequestTestCase
 
         $response = $client->createCitPaymentAuthorizationHold($citPaymentRequest);
 
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
 
         $transactionId = $response->getTransactionId();
 
@@ -358,7 +358,7 @@ class ClientTest extends PaymentRequestTestCase
 
         $response = $client->createMitPaymentAuthorizationHold($mitPaymentRequest);
 
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
 
         $transactionId = $response->getTransactionId();
 
@@ -384,8 +384,8 @@ class ClientTest extends PaymentRequestTestCase
 
         $response = $client->createCitPaymentAuthorizationHold($citPaymentRequest);
 
-        $this->assertObjectHasAttribute('transactionId', $response);
-        $this->assertObjectHasAttribute('threeDSecureUrl', $response);
+        $this->assertNotEmpty($response->getTransactionId());
+        $this->assertNotEmpty($response->getThreeDSecureUrl());
     }
 
     public function testCitPaymentRequestCommit()
@@ -399,7 +399,7 @@ class ClientTest extends PaymentRequestTestCase
         $this->assertTrue($citPaymentRequest->validate());
 
         $response = $client->createCitPaymentCommit($citPaymentRequest, $transactionId);
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
     }
 
     public function testMitPaymentRequestCommit()
@@ -413,7 +413,7 @@ class ClientTest extends PaymentRequestTestCase
         $this->assertTrue($mitPaymentRequest->validate());
 
         $response = $client->createMitPaymentCommit($mitPaymentRequest, $transactionId);
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
     }
 
     public function testRevertCitPaymentAuthorizationHold()
@@ -427,7 +427,7 @@ class ClientTest extends PaymentRequestTestCase
 
         // Create new CitPaymentAuthorizationHold
         $response = $client->createCitPaymentAuthorizationHold($citPaymentRequest);
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
 
         $transactionId = $response->getTransactionId();
 
@@ -438,7 +438,7 @@ class ClientTest extends PaymentRequestTestCase
         $this->assertTrue($revertCitPaymentAuthHoldRequest->validate());
 
         $revertResponse = $client->revertPaymentAuthorizationHold($revertCitPaymentAuthHoldRequest);
-        $this->assertObjectHasAttribute('transactionId', $revertResponse);
+        $this->assertNotEmpty($revertResponse->getTransactionId());
     }
 
     public function testRevertMitPaymentAuthorizationHold()
@@ -452,7 +452,7 @@ class ClientTest extends PaymentRequestTestCase
 
         // Create new CitPaymentAuthorizationHold
         $response = $client->createMitPaymentAuthorizationHold($mitPaymentRequest);
-        $this->assertObjectHasAttribute('transactionId', $response);
+        $this->assertNotEmpty($response->getTransactionId());
 
         $transactionId = $response->getTransactionId();
 
@@ -463,7 +463,7 @@ class ClientTest extends PaymentRequestTestCase
         $this->assertTrue($revertCitPaymentAuthHoldRequest->validate());
 
         $revertResponse = $client->revertPaymentAuthorizationHold($revertCitPaymentAuthHoldRequest);
-        $this->assertObjectHasAttribute('transactionId', $revertResponse);
+        $this->assertNotEmpty($revertResponse->getTransactionId());
     }
 
     public function testRevertCitPaymentAuthorizationHoldException()
