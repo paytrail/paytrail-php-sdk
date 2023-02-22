@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.2] - 2023-02-22
+### Added
+- PHPStan (static analyser) added in workflow
+### Fixed
+- Code quality improvements and other fixes
+
 ## [2.4.1] - 2023-01-11
 - Add missing transaction property to activateInvoice request
 - Use PSR-12 standard
