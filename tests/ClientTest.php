@@ -21,6 +21,7 @@ use Paytrail\SDK\Request\PaymentRequest;
 use Paytrail\SDK\Request\PaymentStatusRequest;
 use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
+use Paytrail\SDK\Request\SettlementRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 
 class ClientTest extends PaymentRequestTestCase
@@ -484,12 +485,19 @@ class ClientTest extends PaymentRequestTestCase
         }
     }
 
-    public function testGetSettlementsWithInvalidDateThrowsException()
+    public function testRequestSettlementsWithInvalidDateThrowsException()
     {
+        $settlementRequest = (new SettlementRequest())->setStartDate('30.5.2022');
         $this->expectException(ValidationException::class);
-        $this->client->getSettlements('30.5.2022');
+        $this->client->requestSettlements($settlementRequest);
     }
 
+    public function testRequestSettlementsReturnsValidResponse()
+    {
+        $settlementRequest = new SettlementRequest();
+        $settlementResponse = $this->client->requestSettlements($settlementRequest);
+        $this->assertIsArray($settlementResponse->getSettlements());
+    }
 
     public function testGetGroupedPaymentProvidersAcceptsLanguageParameters()
     {

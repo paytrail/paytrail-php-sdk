@@ -59,6 +59,7 @@ class Item implements \JsonSerializable, ItemInterface
      * The delivery date.
      *
      * @var string
+     * @deprecated
      */
     protected $deliveryDate;
 
@@ -205,6 +206,8 @@ class Item implements \JsonSerializable, ItemInterface
      * Get the delivery date.
      *
      * @return string
+     *
+     * @deprecated Delivery date is deprecated
      */
     public function getDeliveryDate(): ?string
     {
@@ -216,6 +219,8 @@ class Item implements \JsonSerializable, ItemInterface
      *
      * @param string $deliveryDate
      * @return ItemInterface Return self to enable chaining.
+     *
+     * @deprecated Delivery date is deprecated
      */
     public function setDeliveryDate(?string $deliveryDate): ItemInterface
     {
