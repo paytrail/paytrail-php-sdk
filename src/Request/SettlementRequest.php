@@ -11,11 +11,11 @@ class SettlementRequest implements \JsonSerializable
 {
     use ObjectPropertyConverter;
 
-protected $startDate;
-protected $endDate;
-protected $reference;
-protected $limit;
-protected $subMerchant;
+    protected $startDate;
+    protected $endDate;
+    protected $reference;
+    protected $limit;
+    protected $subMerchant;
 
     public function validate()
     {
