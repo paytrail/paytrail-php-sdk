@@ -11,10 +11,10 @@ class ReportBySettlementRequest implements \JsonSerializable
 {
     use ObjectPropertyConverter;
 
-    private $requestType;
-    private $callbackUrl;
-    private $reportFields;
-    private $subMerchant;
+    protected $requestType;
+    protected $callbackUrl;
+    protected $reportFields;
+    protected $subMerchant;
 
     public function validate()
     {
