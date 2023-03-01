@@ -738,15 +738,17 @@ class Client extends PaytrailClient
      * @throws HmacException
      * @throws ValidationException
      */
-    public function requestPaymentReportBySettlement(ReportBySettlementRequest $reportRequest, int $settlementId): ReportRequestResponse
-    {
+    public function requestPaymentReportBySettlement(
+        ReportBySettlementRequest $reportRequest,
+        int $settlementId
+    ): ReportRequestResponse {
         $this->validateRequestItem($reportRequest);
         $uri = "/settlements/{$settlementId}/payments/report";
 
         return $this->post(
             $uri,
             $reportRequest,
-             function ($decoded) {
+            function ($decoded) {
                 return (new ReportRequestResponse())
                     ->setRequestId($decoded->requestId ?? null);
             },
