@@ -109,8 +109,9 @@ List of `Client::class` methods
 | createMitPaymentAuthorizationHold() | Create MiT authorization hold                        |
 | createMitPaymentCommit()            | Commit MiT authorization hold                        |
 | revertPaymentAuthorizationHold()    | Revert existing Mit or CiT authorization hold        |
-| getSettlements()                    | Request settlements                                  |
-| requestPaymentReport()              |  Request payment report                              |
+| getSettlements() [Deprecated]       | Deprecated Request settlements                       |
+| requestSettlements()                | Request settlements                                  |
+| requestPaymentReport()              | Request payment report                               |
 
 
 ---
