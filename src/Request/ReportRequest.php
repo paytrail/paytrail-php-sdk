@@ -61,7 +61,7 @@ class ReportRequest implements \JsonSerializable
 
         if (!empty($props['startDate'])) {
             if (!preg_match('/^\d{4}(-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d+)?\+\d{2}:\d{2}/', $props['startDate'])) {
-                throw new ValidationException('startDate must be in DateTimeInterface::ATOM, ISO8601 or RFC3339 format');
+                throw new ValidationException('startDate must be in ATOM, ISO8601 or RFC3339 format');
             }
         }
 
