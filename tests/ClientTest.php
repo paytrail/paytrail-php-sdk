@@ -570,8 +570,8 @@ class ClientTest extends PaymentRequestTestCase
         $reportRequest = (new ReportRequest())
             ->setRequestType('json')
             ->setCallbackUrl('https://nourl.test')
-            ->setStartDate('2023-01-20')
-            ->setEndDate('2023-01-01');
+            ->setStartDate('2023-01-20T12:00:00+02:00')
+            ->setEndDate('2023-01-01T23:59:50+02:00');
         $this->client->requestPaymentReport($reportRequest);
     }
 

@@ -60,22 +60,19 @@ class ReportRequest implements \JsonSerializable
         }
 
         if (!empty($props['startDate'])) {
-            if (!(new \DateTime())->createFromFormat('Y-m-d', $props['startDate'])) {
-                throw new ValidationException('startDate must be in Y-m-d format');
+            if (!preg_match('/^\d{4}(-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d+)?\+\d{2}:\d{2}/', $props['startDate'])) {
+                throw new ValidationException('startDate must be in ATOM, ISO8601 or RFC3339 format');
             }
         }
 
         if (!empty($props['endDate'])) {
-            if (!(new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])) {
-                throw new ValidationException('endDate must be in Y-m-d format');
+            if (!preg_match('/^\d{4}(-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d+)?\+\d{2}:\d{2}/', $props['endDate'])) {
+                throw new ValidationException('endDate must be in DateTimeInterface::ATOM, ISO8601 or RFC3339 format');
             }
         }
 
         if (!empty($props['startDate']) && !empty($props['endDate'])) {
-            if (
-                (new \DateTime())->createFromFormat('Y-m-d', $props['startDate'])
-                > (new \DateTime())->createFromFormat('Y-m-d', $props['endDate'])
-            ) {
+            if (substr($props['startDate'], 0, 10) > substr($props['endDate'], 0, 10)) {
                 throw new ValidationException('startDate cannot be lower than endDate');
             }
         }

@@ -2,6 +2,7 @@
 
 namespace Paytrail\SDK\Util;
 
+use Paytrail\SDK\Exception\ClientException;
 use Paytrail\SDK\Response\CurlResponse;
 
 class CurlClient
@@ -47,12 +48,13 @@ class CurlClient
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $headers = rtrim(substr($response, 0, $header_size));
         $body = substr($response, $header_size);
-
-        $curlResponse = new CurlResponse($headers, $body, $statusCode);
-
         curl_close($curl);
 
-        return $curlResponse;
+        if ($statusCode == 400) {
+            throw new ClientException($body, $statusCode);
+        }
+
+        return new CurlResponse($headers, $body, $statusCode);
     }
 
     /**
