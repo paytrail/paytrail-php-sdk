@@ -12,9 +12,7 @@ use Paytrail\SDK\Interfaces\CallbackUrlInterface;
 use Paytrail\SDK\Interfaces\CustomerInterface;
 use Paytrail\SDK\Interfaces\ItemInterface;
 use Paytrail\SDK\Interfaces\PaymentRequestInterface;
-use Paytrail\SDK\Model\Address;
 use Paytrail\SDK\Model\CallbackUrl;
-use Paytrail\SDK\Model\Customer;
 use Paytrail\SDK\Model\Item;
 use Paytrail\SDK\Util\JsonSerializable;
 

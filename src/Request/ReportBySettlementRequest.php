@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace Paytrail\SDK\Request;
 
 use Paytrail\SDK\Exception\ValidationException;
-use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 class ReportBySettlementRequest implements \JsonSerializable
 {
-    use ObjectPropertyConverter;
-
     protected $requestType;
     protected $callbackUrl;
     protected $reportFields;
