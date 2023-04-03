@@ -15,6 +15,7 @@ use Paytrail\SDK\Request\GetTokenRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
 use Paytrail\SDK\Request\ReportRequest;
+use Paytrail\SDK\Request\SettlementRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
 use Paytrail\SDK\Request\PaymentStatusRequest;
 use Paytrail\SDK\Request\RefundRequest;
@@ -618,6 +619,29 @@ class Client extends PaytrailClient
     /**
      * Get settlements for merchant
      *
+     * @param SettlementRequest $settlementRequest
+     * @return mixed
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    public function requestSettlements(SettlementRequest $settlementRequest)
+    {
+        $this->validateRequestItem($settlementRequest);
+
+        $uri = '/settlements';
+
+        return $this->get(
+            $uri,
+            function ($decoded) {
+                return (new SettlementResponse())
+                    ->setSettlements($decoded);
+            }
+        );
+    }
+
+    /**
+     * Get settlements for merchant
+     *
      * @param string|null $startDate Start date in Y-m-d format
      * @param string|null $endDate End date in Y-m-d format
      * @param string|null $reference
@@ -625,6 +649,8 @@ class Client extends PaytrailClient
      * @param int|null $subMerchant
      * @return SettlementResponse
      * @throws HmacException
+     *
+     * @deprecated Method deprecated, use requestSettlements()
      */
     public function getSettlements(
         ?string $startDate = null,
