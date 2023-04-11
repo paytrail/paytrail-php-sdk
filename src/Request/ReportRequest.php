@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace Paytrail\SDK\Request;
 
 use Paytrail\SDK\Exception\ValidationException;
-use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 class ReportRequest implements \JsonSerializable
 {
-    use ObjectPropertyConverter;
-
     public const PAYMENT_STATUSES = [
         'default',
         'paid',

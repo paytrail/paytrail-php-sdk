@@ -14,6 +14,7 @@ use Paytrail\SDK\Request\CitPaymentRequest;
 use Paytrail\SDK\Request\GetTokenRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
+use Paytrail\SDK\Request\ReportBySettlementRequest;
 use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\SettlementRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
@@ -705,7 +706,7 @@ class Client extends PaytrailClient
      * @throws HmacException
      * @throws ValidationException
      */
-    public function requestPaymentReport(ReportRequest $reportRequest)
+    public function requestPaymentReport(ReportRequest $reportRequest): ReportRequestResponse
     {
         $this->validateRequestItem($reportRequest);
         $uri = '/payments/report';
@@ -726,6 +727,32 @@ class Client extends PaytrailClient
         );
 
         return $reportRequestResponse;
+    }
+
+    /**
+     * Request payment report by settlement ID.
+     *
+     * @param ReportBySettlementRequest $reportRequest
+     * @param int $settlementId
+     * @return ReportRequestResponse
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    public function requestPaymentReportBySettlement(
+        ReportBySettlementRequest $reportRequest,
+        int $settlementId
+    ): ReportRequestResponse {
+        $this->validateRequestItem($reportRequest);
+        $uri = "/settlements/{$settlementId}/payments/report";
+
+        return $this->post(
+            $uri,
+            $reportRequest,
+            function ($decoded) {
+                return (new ReportRequestResponse())
+                    ->setRequestId($decoded->requestId ?? null);
+            },
+        );
     }
 
     /**

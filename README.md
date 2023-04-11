@@ -112,6 +112,7 @@ List of `Client::class` methods
 | getSettlements() [Deprecated]       | Deprecated Request settlements                       |
 | requestSettlements()                | Request settlements                                  |
 | requestPaymentReport()              | Request payment report                               |
+| requestPaymentReportBySettlement()  | Request payment report by settlement ID              |
 
 
 ---
