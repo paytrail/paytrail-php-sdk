@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class CustomerTest extends TestCase
 {
-    public function validationProvider()
+    public static function validationProvider()
     {
         return [
             'Network address is empty' => [

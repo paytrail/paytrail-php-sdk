@@ -376,19 +376,20 @@ class Item implements \JsonSerializable, ItemInterface
     {
         $props = get_object_vars($this);
 
+        if (empty($props['unitPrice'])) {
+            throw new ValidationException('Item unitPrice is empty');
+        }
         if ($props['unitPrice'] < 0) {
-            throw new ValidationException('Items UnitPrice can\'t be a negative number');
+            throw new ValidationException('Items unitPrice can\'t be a negative number');
         }
-
-        if (filter_var($props['unitPrice'], FILTER_VALIDATE_INT) === false) {
-            //throw new \Exception('UnitPrice is not an integer');
-            throw new ValidationException('UnitPrice is not an integer');
+        if (empty($props['units'])) {
+            throw new ValidationException('Item units is empty');
         }
-        if (filter_var($props['units'], FILTER_VALIDATE_INT) === false) {
-            throw new ValidationException('Units is not an integer');
+        if ($props['units'] < 0) {
+            throw new ValidationException('Items units can\'t be a negative number');
         }
-        if (filter_var($props['vatPercentage'], FILTER_VALIDATE_INT) === false) {
-            throw new ValidationException('vatPercentage is not an integer');
+        if ($props['vatPercentage'] < 0) {
+            throw new ValidationException('Items vatPercentage can\'t be a negative number');
         }
         if (empty($props['productCode'])) {
             throw new ValidationException('productCode is empty');

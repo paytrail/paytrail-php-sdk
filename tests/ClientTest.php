@@ -48,7 +48,7 @@ class ClientTest extends PaymentRequestTestCase
             ->setProductCode('pr1')
             ->setVatPercentage(24)
             ->setReference('itemReference123')
-            ->setStamp('itemStamp-' . rand(1, 999999))
+            ->setStamp('itemStamp-1' . rand(1, 999999))
             ->setUnits(1)
             ->setDescription('some description')
             ->setUnitPrice(100);
@@ -58,7 +58,7 @@ class ClientTest extends PaymentRequestTestCase
             ->setProductCode('pr2')
             ->setVatPercentage(24)
             ->setReference('itemReference123')
-            ->setStamp('itemStamp-' . rand(1, 999999))
+            ->setStamp('itemStamp-2' . rand(1, 999999))
             ->setUnits(2)
             ->setDescription('some description2')
             ->setUnitPrice(200);
