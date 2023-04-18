@@ -631,6 +631,12 @@ class Client extends PaytrailClient
 
         $uri = '/settlements';
 
+        $query = http_build_query($settlementRequest->jsonSerialize());
+
+        if (!empty($query)) {
+            $uri .= '?' . $query;
+        }
+
         return $this->get(
             $uri,
             function ($decoded) {
