@@ -31,8 +31,8 @@ class RefundRequest implements \JsonSerializable
     {
         $props = get_object_vars($this);
 
-        if (! empty($this->items)) {
-            // Count the total amount of the payment.
+        if (!empty($this->items)) {
+            // Count the total amount of the refund.
             $items_total = array_reduce($this->items, function ($carry = 0, ?RefundItem $item = null) {
                 if ($item === null) {
                     return $carry;
@@ -49,12 +49,8 @@ class RefundRequest implements \JsonSerializable
             $items_total = $this->amount;
         }
 
-        if (empty($props['amount'])) {
-            throw new ValidationException('Amount can not be empty');
-        }
-
-        if (filter_var($props['amount'], FILTER_VALIDATE_INT) === false) {
-            throw new ValidationException('Amount is not an integer');
+        if (empty($props['amount']) && empty($this->items)) {
+            throw new ValidationException('Amount can not be empty when making refund without items');
         }
 
         if ($items_total !== $props['amount']) {
@@ -65,6 +61,7 @@ class RefundRequest implements \JsonSerializable
             throw new ValidationException('CallbackUrls are not set');
         }
 
+        // Validate callbackUrls
         $this->callbackUrls->validate();
 
         return true;
