@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class GetTokenRequestTest extends TestCase
 {
-    public function validationProvider()
+    public static function validationProvider()
     {
         return [
             'checkout-tokenization-id is empty' => [

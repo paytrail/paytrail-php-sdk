@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class CardTest extends TestCase
 {
-    public function validationProvider()
+    public static function validationProvider()
     {
         return [
             'Type is empty' => [

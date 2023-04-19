@@ -17,19 +17,27 @@ class RefundItemTest extends TestCase
         $rfi->setAmount(123.2322323);
     }
 
-    public function testTypeError()
+
+    public function testRefundItemIsValid()
     {
-        $this->expectException(\TypeError::class);
-        $rfi = new RefundItem();
-        $rfi->setAmount("not a number");
+        $refundItem = (new RefundItem())->setAmount(123)
+            ->setStamp('thisIsStamp');
+
+        $this->assertEquals(true, $refundItem->validate());
     }
 
-    public function testValidationExceptions()
+    public function testRefundItemWithoutAmountThrowsError()
     {
         $this->expectException(ValidationException::class);
-        $rfi = new RefundItem();
-        $rfi->setAmount(123);
-        $rfi->setStamp('');
-        $rfi->validate();
+        (new RefundItem())->setStamp('thisIsStamp')
+            ->validate();
+    }
+
+    public function testRefundItemWithNegativeAmountThrowsError()
+    {
+        $this->expectException(ValidationException::class);
+        (new RefundItem())->setAmount(-1)
+            ->setStamp('thisIsStamp')
+            ->validate();
     }
 }

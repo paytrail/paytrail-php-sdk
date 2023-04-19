@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class AddCardFormRequestTest extends TestCase
 {
-    public function validationProvider()
+    public static function validationProvider()
     {
         return [
             'checkout-account is empty' => [

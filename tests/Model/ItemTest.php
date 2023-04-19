@@ -12,80 +12,83 @@ class ItemTest extends TestCase
 {
     public function testIsItemValid()
     {
-        $i = new Item();
-
-        $this->assertInstanceOf(
-            Item::class,
-            $i
-        );
-
-        $i->setUnitPrice(1)
+        $item = (new Item())->setUnitPrice(1)
             ->setUnits(2)
+            ->setStamp('thisIsStamp')
             ->setVatPercentage(0)
             ->setProductCode('productCode123')
-            ->setDeliveryDate('12.12.1999')
+            ->setDeliveryDate('2023-01-01')
             ->setDescription('description');
 
-        $this->assertEquals(true, $i->validate());
+        $this->assertEquals(true, $item->validate());
     }
 
-    public function testExceptions()
+    public function testItemWithoutUnitPriceThrowsError()
     {
         $this->expectException(ValidationException::class);
-        $i = new Item();
-        $i->validate();
+        (new Item())->setUnits(2)
+            ->setStamp('thisIsStamp')
+            ->setVatPercentage(0)
+            ->setProductCode('productCode123')
+            ->setDescription('description')
+            ->validate();
     }
 
-    public function testExceptionMessages()
+    public function testItemWithNegativeUnitPriceThrowsError()
     {
-        $i = new Item();
+        $this->expectException(ValidationException::class);
+        (new Item())->setUnitPrice(-1)
+            ->setUnits(2)
+            ->setStamp('thisIsStamp')
+            ->setVatPercentage(0)
+            ->setProductCode('productCode123')
+            ->setDescription('description')
+            ->validate();
+    }
 
-        try {
-            $i->validate();
-        } catch (\Exception $e) {
-            $this->assertStringContainsString('UnitPrice is not an integer', $e->getMessage());
-        }
+    public function testItemWithoutUnitsTrowsError()
+    {
+        $this->expectException(ValidationException::class);
+        (new Item())->setUnitPrice(1)
+            ->setStamp('thisIsStamp')
+            ->setVatPercentage(0)
+            ->setProductCode('productCode123')
+            ->setDescription('description')
+            ->validate();
+    }
 
-        try {
-            $i->setUnitPrice(-10);
-            $i->validate();
-        } catch (\Exception $e) {
-            $this->assertStringContainsString('UnitPrice can\'t be a negative number', $e->getMessage());
-        }
+    public function testItemWithNegativeUnitsThrowsError()
+    {
+        $this->expectException(ValidationException::class);
+        (new Item())->setUnitPrice(1)
+            ->setUnits(-1)
+            ->setStamp('thisIsStamp')
+            ->setVatPercentage(0)
+            ->setProductCode('productCode123')
+            ->setDescription('description')
+            ->validate();
+    }
 
-        try {
-            $i->setUnitPrice(2);
-            $i->validate();
-        } catch (\Exception $e) {
-            $this->assertStringContainsString('Units is not an integer', $e->getMessage());
-        }
+    public function testItemWIthNegativeVatThrowsError()
+    {
+        $this->expectException(ValidationException::class);
+        (new Item())->setUnitPrice(1)
+            ->setUnits(2)
+            ->setStamp('thisIsStamp')
+            ->setVatPercentage(-10)
+            ->setProductCode('productCode123')
+            ->setDescription('description')
+            ->validate();
+    }
 
-        try {
-            $i->setUnits(3);
-            $i->validate();
-        } catch (ValidationException $e) {
-            $this->assertStringContainsString('vatPercentage is not an integer', $e->getMessage());
-        }
-
-        try {
-            $i->setVatPercentage(12);
-            $i->validate();
-        } catch (ValidationException $e) {
-            $this->assertStringContainsString('productCode is empty', $e->getMessage());
-        }
-
-        try {
-            $i->setProductCode('productCode123');
-            $i->validate();
-        } catch (ValidationException $e) {
-            $this->assertStringContainsString('deliveryDate is empty', $e->getMessage());
-        }
-
-        $i->setDeliveryDate('12.12.1999');
-
-        try {
-            $this->assertIsBool($i->validate(), 'Item::validate returns bool');
-        } catch (ValidationException $e) {
-        }
+    public function testItemWithoutProductCodeThrowsError()
+    {
+        $this->expectException(ValidationException::class);
+        (new Item())->setUnitPrice(1)
+            ->setUnits(2)
+            ->setStamp('thisIsStamp')
+            ->setVatPercentage(10)
+            ->setDescription('description')
+            ->validate();
     }
 }
