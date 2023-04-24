@@ -31,7 +31,7 @@ jobs:
         run: composer lint
 
       - name: Run phpstan
-        uses: php-actions/phpstan@v3.0.1
+        uses: php-actions/phpstan@v3
         with:
           php_version: ${{ matrix.php-version }}
           version: 1.9.14
@@ -39,7 +39,7 @@ jobs:
           memory_limit: 256M
 
       - name: Run tests
-        uses: php-actions/phpunit@v3.0.0
+        uses: php-actions/phpunit@v3
         with:
           php_version: ${{ matrix.php-version }}
           version: 9

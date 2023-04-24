@@ -20,25 +20,13 @@ class ItemTest extends TestCase
             ->setDeliveryDate('2023-01-01')
             ->setDescription('description');
 
-        $this->assertEquals(true, $item->validate());
+        $this->assertTrue($item->validate());
     }
 
     public function testItemWithoutUnitPriceThrowsError()
     {
         $this->expectException(ValidationException::class);
         (new Item())->setUnits(2)
-            ->setStamp('thisIsStamp')
-            ->setVatPercentage(0)
-            ->setProductCode('productCode123')
-            ->setDescription('description')
-            ->validate();
-    }
-
-    public function testItemWithNegativeUnitPriceThrowsError()
-    {
-        $this->expectException(ValidationException::class);
-        (new Item())->setUnitPrice(-1)
-            ->setUnits(2)
             ->setStamp('thisIsStamp')
             ->setVatPercentage(0)
             ->setProductCode('productCode123')
@@ -90,5 +78,37 @@ class ItemTest extends TestCase
             ->setVatPercentage(10)
             ->setDescription('description')
             ->validate();
+    }
+
+    public static function providerForUnitPriceLimitValues()
+    {
+        return [
+            'Negative amount' => [-1, false],
+            'Zero amount' => [0, true],
+            'Maximum amount' => [99999999, true],
+            'Over maximum amount' => [100000000, false]
+        ];
+    }
+
+    /**
+     * @dataProvider providerForUnitPriceLimitValues
+     */
+    public function testUnitPriceLimitValues($unitPrice, $expectedResult)
+    {
+        $item = (new Item())->setUnitPrice($unitPrice)
+            ->setUnits(2)
+            ->setStamp('thisIsStamp')
+            ->setVatPercentage(0)
+            ->setProductCode('productCode123')
+            ->setDeliveryDate('2023-01-01')
+            ->setDescription('description');
+
+        try {
+            $validationResult = $item->validate();
+        } catch (ValidationException $exception) {
+            $validationResult = false;
+        }
+
+        $this->assertEquals($expectedResult, $validationResult);
     }
 }
