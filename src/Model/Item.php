@@ -376,13 +376,16 @@ class Item implements \JsonSerializable, ItemInterface
     {
         $props = get_object_vars($this);
 
-        if (empty($props['unitPrice'])) {
+        if ($props['unitPrice'] === null) {
             throw new ValidationException('Item unitPrice is empty');
         }
         if ($props['unitPrice'] < 0) {
             throw new ValidationException('Items unitPrice can\'t be a negative number');
         }
-        if (empty($props['units'])) {
+        if ($props['unitPrice'] > 99999999) {
+            throw new ValidationException('Items unitPrice can\'t be over 99999999');
+        }
+        if ($props['units'] === null) {
             throw new ValidationException('Item units is empty');
         }
         if ($props['units'] < 0) {

@@ -495,7 +495,8 @@ class ClientTest extends PaymentRequestTestCase
     public function testRequestSettlementsReturnsValidResponse()
     {
         $settlementRequest = (new SettlementRequest());
-        $this->client->requestSettlements($settlementRequest);
+        $settlementResponse = $this->client->requestSettlements($settlementRequest);
+        $this->assertIsArray($settlementResponse->getSettlements());
     }
 
     public function testGetSettlementsReturnsValidResponse()
