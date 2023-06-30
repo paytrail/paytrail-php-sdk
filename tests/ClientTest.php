@@ -609,4 +609,11 @@ class ClientTest extends PaymentRequestTestCase
             ->setEndDate('1.1.2023');
         $this->client->requestPaymentReport($reportRequest);
     }
+
+    public function testPayAndAddCardReturnsTransactionIdAndUrl()
+    {
+        $response = $this->client->createPaymentAndAddCard($this->paymentRequest);
+        $this->assertIsString($response->getTransactionId());
+        $this->assertIsString($response->getRedirectUrl());
+    }
 }
