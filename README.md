@@ -113,6 +113,7 @@ List of `Client::class` methods
 | requestSettlements()                | Request settlements                                  |
 | requestPaymentReport()              | Request payment report                               |
 | requestPaymentReportBySettlement()  | Request payment report by settlement ID              |
+| createPaymentAndAddCard()           | Create payment and save card details                 |
 
 
 ---
