@@ -23,6 +23,7 @@ use Paytrail\SDK\Request\ReportRequest;
 use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
 use Paytrail\SDK\Request\SettlementRequest;
 use Paytrail\SDK\Request\ShopInShopPaymentRequest;
+use Paytrail\SDK\Model\Provider;
 
 class ClientTest extends PaymentRequestTestCase
 {
@@ -510,7 +511,8 @@ class ClientTest extends PaymentRequestTestCase
     {
         $providers = $this->client->getGroupedPaymentProviders(100, 'EN');
         $this->assertIsArray($providers);
-        $this->assertEquals('Mobile payment methods', $providers['groups'][0]['name']);
+        // Get first provider groups providers and select first provider from array.
+        $this->assertInstanceOf(Provider::class, $providers['groups'][0]['providers'][0]);
     }
 
     public function testRequestPaymentReportReturnsRequestId()
