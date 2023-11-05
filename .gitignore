@@ -1,3 +1,5 @@
+.idea
 test-reports/
+vendor/
 composer.lock
 *.cache

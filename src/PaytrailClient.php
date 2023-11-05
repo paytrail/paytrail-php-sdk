@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Paytrail\SDK;
 
+use JsonSerializable;
+use Paytrail\SDK\Exception\ClientException;
 use Paytrail\SDK\Exception\HmacException;
 use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Util\RequestClient;
 use Paytrail\SDK\Util\Signature;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 abstract class PaytrailClient
 {
@@ -39,9 +43,17 @@ abstract class PaytrailClient
      */
     protected $http_client;
 
-    protected function createHttpClient()
-    {
-        $this->http_client = new RequestClient();
+    /**
+     * @param ClientInterface|null         $client
+     * @param RequestFactoryInterface|null $requestFactory
+     *
+     * @return void
+     */
+    protected function createHttpClient(
+        ?ClientInterface $client = null,
+        ?RequestFactoryInterface $requestFactory = null
+    ): void {
+        $this->http_client = new RequestClient($client, $requestFactory);
     }
 
     /**
@@ -59,21 +71,22 @@ abstract class PaytrailClient
     /**
      * A wrapper for post requests.
      *
-     * @param string $uri The uri for the request.
-     * @param \JsonSerializable|null $data The request payload.
-     * @param callable|null $callback The callback method to run for the decoded response.
-     * If left empty, the response is returned.
-     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction.
-     * Not required for a new payment request.
-     * @param bool $signatureInHeader Checks if signature is calculated from header/body parameters
-     * @param string|null $paytrailTokenizationId Paytrail tokenization ID for getToken request
+     * @param string                $uri The uri for the request.
+     * @param JsonSerializable|null $data The request payload.
+     * @param callable|null         $callback The callback method to run for the decoded response.
+     *                                         If left empty, the response is returned.
+     * @param string|null           $transactionId Paytrail transaction ID when accessing single transaction.
+     *                                             Not required for a new payment request.
+     * @param bool                  $signatureInHeader Checks if signature is calculated from header/body parameters
+     * @param string|null           $paytrailTokenizationId Paytrail tokenization ID for getToken request
      *
      * @return mixed
      * @throws HmacException
+     * @throws ClientException
      */
     protected function post(
         string $uri,
-        \JsonSerializable $data = null,
+        JsonSerializable $data = null,
         callable $callback = null,
         string $transactionId = null,
         bool $signatureInHeader = true,
@@ -86,11 +99,15 @@ abstract class PaytrailClient
             $mac = $this->calculateHmac($headers, $body);
             $headers['signature'] = $mac;
 
-            $response = $this->http_client->request('POST', $uri, [
-                'headers' => $headers,
-                'body' => $body,
-                'allow_redirects' => false
-            ]);
+            $response = $this->http_client->request(
+                'POST',
+                $uri,
+                [
+                    'allow_redirects' => false
+                ],
+                $headers,
+                $body
+            );
 
             $body = (string)$response->getBody();
 
@@ -105,10 +122,15 @@ abstract class PaytrailClient
             // @phpstan-ignore-next-line FIXME
             $body = json_encode($data->toArray(), JSON_UNESCAPED_SLASHES);
 
-            $response = $this->http_client->request('POST', $uri, [
-                'body' => $body,
-                'allow_redirects' => false
-            ], true);
+            $response = $this->http_client->request(
+                'POST',
+                $uri,
+                [
+                    'allow_redirects' => false
+                ],
+                [],
+                $body
+            );
 
             $body = (string)$response->getBody();
         }
@@ -124,13 +146,14 @@ abstract class PaytrailClient
     /**
      * A wrapper for get requests.
      *
-     * @param string $uri The uri for the request.
-     * @param callable|null $callback The callback method to run for the decoded response.
-     * If left empty, the response is returned.
-     * @param string|null $transactionId Paytrail transaction ID when accessing single transaction.
-     * Not required for a new payment request.
+     * @param string        $uri           The uri for the request.
+     * @param callable|null $callback      The callback method to run for the decoded response.
+     *                                     If left empty, the response is returned.
+     * @param string|null   $transactionId Paytrail transaction ID when accessing single transaction.
+     *                                     Not required for a new payment request.
      *
      * @return mixed
+     * @throws ClientException
      * @throws HmacException
      */
     protected function get(string $uri, callable $callback = null, string $transactionId = null)
@@ -140,9 +163,12 @@ abstract class PaytrailClient
 
         $headers['signature'] = $mac;
 
-        $response = $this->http_client->request('GET', $uri, [
-            'headers' => $headers
-        ]);
+        $response = $this->http_client->request(
+            'GET',
+            $uri,
+            [],
+            $headers
+        );
 
         $body = (string)$response->getBody();
 

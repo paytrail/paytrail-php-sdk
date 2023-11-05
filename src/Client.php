@@ -39,6 +39,8 @@ use Paytrail\SDK\Exception\ValidationException;
 use Paytrail\SDK\Exception\RequestException;
 use Paytrail\SDK\Exception\ClientException;
 use Paytrail\SDK\Response\AddCardPaymentResponse;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 /**
  * Class Client
@@ -65,14 +67,21 @@ class Client extends PaytrailClient
      * @param int $merchantId The merchant.
      * @param string $secretKey The secret key.
      * @param string $platformName Platform name.
+     * @param ClientInterface|null $client HTTP client
+     * @param RequestFactoryInterface|null $requestFactory HTTP request factory
      */
-    public function __construct(int $merchantId, string $secretKey, string $platformName)
-    {
+    public function __construct(
+        int $merchantId,
+        string $secretKey,
+        string $platformName,
+        ?ClientInterface $client = null,
+        ?RequestFactoryInterface $requestFactory = null
+    ) {
         $this->merchantId = $merchantId;
         $this->secretKey = $secretKey;
         $this->platformName = $platformName;
 
-        $this->createHttpClient();
+        $this->createHttpClient($client, $requestFactory);
     }
 
     /**
@@ -94,18 +103,21 @@ class Client extends PaytrailClient
 
         // Sign the request.
         $headers['signature'] = $mac;
-        $request_params = [
-            'headers' => $headers,
-        ];
+        $queryParams = [];
 
         // Set the amount query parameter.
         if ($amount !== null) {
-            $request_params['query'] = [
+            $queryParams = [
                 'amount' => $amount
             ];
         }
 
-        $response = $this->http_client->request('GET', $uri, $request_params);
+        $response = $this->http_client->request(
+            'GET',
+            $uri,
+            $queryParams,
+            $headers
+        );
         $body = (string)$response->getBody();
 
         // Validate the signature.
@@ -144,23 +156,25 @@ class Client extends PaytrailClient
 
         // Sign the request.
         $headers['signature'] = $mac;
-        $request_params = [
-            'headers' => $headers,
-            'query' => [
-                'language' => $locale
-            ]
+        $queryParams = [
+            'language' => $locale
         ];
 
         // Set the amount query parameter.
         if (null !== $amount) {
-            $request_params['query']['amount'] = $amount;
+            $queryParams['amount'] = $amount;
         }
 
         if (!empty($groups)) {
-            $request_params['query']['groups'] = join(',', $groups);
+            $queryParams['groups'] = join(',', $groups);
         }
 
-        $response = $this->http_client->request('GET', $uri, $request_params);
+        $response = $this->http_client->request(
+            'GET',
+            $uri,
+            $queryParams,
+            $headers
+        );
         $body = (string)$response->getBody();
 
         // Validate the signature.
