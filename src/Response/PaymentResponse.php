@@ -214,7 +214,7 @@ class PaymentResponse implements ResponseInterface
     /**
      * Get custom providers.
      *
-     * @return array|string
+     * @return array
      */
     public function getCustomProviders(): array
     {
