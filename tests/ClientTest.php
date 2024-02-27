@@ -237,7 +237,7 @@ class ClientTest extends PaymentRequestTestCase
                 'partial_pan' => '0024',
                 'expire_year' => '2023',
                 'expire_month' => '11',
-                'cvc_required' => 'no',
+                'cvc_required' => 'not_tested',
                 'funding' => 'debit',
                 'category' => 'unknown',
                 'country_code' => 'FI',
