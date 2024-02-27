@@ -62,9 +62,9 @@ class PaymentResponse implements ResponseInterface
     /**
      * Custom providers.
      *
-     * @var object
+     * @var array
      */
-    protected $customProviders = \stdClass::class;
+    protected $customProviders = [];
 
     /**
      * Get the transaction id.
