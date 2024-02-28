@@ -216,6 +216,12 @@ class ClientTest extends PaymentRequestTestCase
 
     public function testGetTokenRequest()
     {
+        //  To update after 11/2026
+        //  Get new tokenization_id, card and customer details.
+        //  'add-card' action will return tokenization_id,
+        //  and with tokenization_id we could get card and customer details.
+        //  Card used: 0024 https://docs.paytrail.com/#/payment-method-providers?id=test-cards-for-payments
+
         $checkoutTokenizationId = 'b34e5821-2a85-4840-8b27-21ef81168bec';
 
         $client = $this->client;
@@ -310,6 +316,10 @@ class ClientTest extends PaymentRequestTestCase
 
     public function testCitPaymentRequestCharge3DS()
     {
+        //  To update after 11/2026
+        //  Card required with 3DS
+        //  Card: 0170 https://docs.paytrail.com/#/payment-method-providers?id=test-cards-for-payments
+
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
