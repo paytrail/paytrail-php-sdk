@@ -216,7 +216,7 @@ class ClientTest extends PaymentRequestTestCase
 
     public function testGetTokenRequest()
     {
-        $checkoutTokenizationId = '818c478e-5682-46bf-97fd-b9c2b93a3fcd';
+        $checkoutTokenizationId = 'b34e5821-2a85-4840-8b27-21ef81168bec';
 
         $client = $this->client;
 
@@ -230,19 +230,19 @@ class ClientTest extends PaymentRequestTestCase
         $responseJsonData = $response->jsonSerialize();
 
         $expectedArray = [
-            'token' => 'c7441208-c2a1-4a10-8eb6-458bd8eaa64f',
+            'token' => '798b445a-2216-46b7-ad1a-000f40ced6e8',
             'card' => [
                 'type' => 'Visa',
                 'bin' => '415301',
                 'partial_pan' => '0024',
                 'expire_year' => '2026',
                 'expire_month' => '11',
-                'cvc_required' => 'no',
+                'cvc_required' => 'not_tested',
                 'funding' => 'debit',
                 'category' => 'unknown',
                 'country_code' => 'FI',
                 'pan_fingerprint' => '693a68deec6d6fa363c72108f8d656d4fd0b6765f5457dd1c139523f4daaafce',
-                'card_fingerprint' => 'c34cdd1952deb81734c012fbb11eabc56c4d61d198f28b448327ccf13f45417f'
+                'card_fingerprint' => '24973f9037d418c0258ee61d90970c15a1c434a457d3974c9cdc12742f87c673'
             ],
             'customer' => [
                 'network_address' => '93.174.192.154',
