@@ -313,7 +313,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('40037d79-5c7f-4ffe-bf86-2d2025b64c36');
+        $citPaymentRequest = $paymentRequest->setToken('8d3cb70a-7911-42c4-81cd-5318a5f269a4');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -380,7 +380,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('40037d79-5c7f-4ffe-bf86-2d2025b64c36');
+        $citPaymentRequest = $paymentRequest->setToken('8d3cb70a-7911-42c4-81cd-5318a5f269a4');
 
         $this->assertTrue($citPaymentRequest->validate());
 
