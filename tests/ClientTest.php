@@ -245,8 +245,8 @@ class ClientTest extends PaymentRequestTestCase
                 'card_fingerprint' => '24973f9037d418c0258ee61d90970c15a1c434a457d3974c9cdc12742f87c673'
             ],
             'customer' => [
-                'network_address' => '93.174.192.154',
-                'country_code' => 'FI'
+                'network_address' => '89.35.145.204',
+                'country_code' => 'PL'
             ]
         ];
 
