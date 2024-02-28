@@ -261,7 +261,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -287,7 +287,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->mitPaymentRequest;
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
@@ -328,7 +328,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -354,7 +354,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->mitPaymentRequest;
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
@@ -396,7 +396,7 @@ class ClientTest extends PaymentRequestTestCase
         $paymentRequest = $this->citPaymentRequest;
         $transactionId = 'c12e224e-806f-11ea-9de3-33451a6f6d70';
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -410,7 +410,7 @@ class ClientTest extends PaymentRequestTestCase
         $paymentRequest = $this->mitPaymentRequest;
         $transactionId = 'c12e224e-806f-11ea-9de3-33451a6f6d70';
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
@@ -423,7 +423,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -448,7 +448,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->mitPaymentRequest;
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
