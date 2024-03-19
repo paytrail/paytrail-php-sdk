@@ -60,6 +60,13 @@ class PaymentResponse implements ResponseInterface
     protected $providers = [];
 
     /**
+     * Custom providers.
+     *
+     * @var array
+     */
+    protected $customProviders = [];
+
+    /**
      * Get the transaction id.
      *
      * @return string|null
@@ -200,6 +207,29 @@ class PaymentResponse implements ResponseInterface
 
             return $provider;
         }, $providers);
+
+        return $this;
+    }
+
+    /**
+     * Get custom providers.
+     *
+     * @return array
+     */
+    public function getCustomProviders(): array
+    {
+        return $this->customProviders ?? [];
+    }
+
+    /**
+     * Set custom providers.
+     *
+     * @param array|null $customProviders
+     * @return PaymentResponse
+     */
+    public function setCustomProviders(?array $customProviders): PaymentResponse
+    {
+        $this->customProviders = $customProviders;
 
         return $this;
     }

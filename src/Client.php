@@ -219,7 +219,8 @@ class Client extends PaytrailClient
                     ->setTerms($decoded->terms ?? null)
                     ->setGroups($decoded->groups ?? [])
                     ->setReference($decoded->reference ?? null)
-                    ->setProviders($decoded->providers ?? []);
+                    ->setProviders($decoded->providers ?? [])
+                    ->setCustomProviders((array)$decoded->customProviders ?? []);
             }
         );
 

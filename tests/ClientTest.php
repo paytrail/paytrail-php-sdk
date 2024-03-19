@@ -216,7 +216,13 @@ class ClientTest extends PaymentRequestTestCase
 
     public function testGetTokenRequest()
     {
-        $checkoutTokenizationId = '818c478e-5682-46bf-97fd-b9c2b93a3fcd';
+        //  To update after 11/2026
+        //  Get new tokenization_id, card and customer details.
+        //  'add-card' action will return tokenization_id,
+        //  and with tokenization_id we could get card and customer details.
+        //  Card used: 0024 https://docs.paytrail.com/#/payment-method-providers?id=test-cards-for-payments
+
+        $checkoutTokenizationId = 'b34e5821-2a85-4840-8b27-21ef81168bec';
 
         $client = $this->client;
 
@@ -230,23 +236,23 @@ class ClientTest extends PaymentRequestTestCase
         $responseJsonData = $response->jsonSerialize();
 
         $expectedArray = [
-            'token' => 'c7441208-c2a1-4a10-8eb6-458bd8eaa64f',
+            'token' => '798b445a-2216-46b7-ad1a-000f40ced6e8',
             'card' => [
                 'type' => 'Visa',
                 'bin' => '415301',
                 'partial_pan' => '0024',
-                'expire_year' => '2023',
+                'expire_year' => '2026',
                 'expire_month' => '11',
-                'cvc_required' => 'no',
+                'cvc_required' => 'not_tested',
                 'funding' => 'debit',
                 'category' => 'unknown',
                 'country_code' => 'FI',
                 'pan_fingerprint' => '693a68deec6d6fa363c72108f8d656d4fd0b6765f5457dd1c139523f4daaafce',
-                'card_fingerprint' => 'c34cdd1952deb81734c012fbb11eabc56c4d61d198f28b448327ccf13f45417f'
+                'card_fingerprint' => '24973f9037d418c0258ee61d90970c15a1c434a457d3974c9cdc12742f87c673'
             ],
             'customer' => [
-                'network_address' => '93.174.192.154',
-                'country_code' => 'FI'
+                'network_address' => '89.35.145.204',
+                'country_code' => 'PL'
             ]
         ];
 
@@ -261,7 +267,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -287,7 +293,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->mitPaymentRequest;
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
@@ -310,10 +316,14 @@ class ClientTest extends PaymentRequestTestCase
 
     public function testCitPaymentRequestCharge3DS()
     {
+        //  To update after 11/2026
+        //  Card required with 3DS
+        //  Card: 0170 https://docs.paytrail.com/#/payment-method-providers?id=test-cards-for-payments
+
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('40037d79-5c7f-4ffe-bf86-2d2025b64c36');
+        $citPaymentRequest = $paymentRequest->setToken('8d3cb70a-7911-42c4-81cd-5318a5f269a4');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -328,7 +338,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -354,7 +364,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->mitPaymentRequest;
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
@@ -380,7 +390,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('40037d79-5c7f-4ffe-bf86-2d2025b64c36');
+        $citPaymentRequest = $paymentRequest->setToken('8d3cb70a-7911-42c4-81cd-5318a5f269a4');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -396,7 +406,7 @@ class ClientTest extends PaymentRequestTestCase
         $paymentRequest = $this->citPaymentRequest;
         $transactionId = 'c12e224e-806f-11ea-9de3-33451a6f6d70';
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -410,7 +420,7 @@ class ClientTest extends PaymentRequestTestCase
         $paymentRequest = $this->mitPaymentRequest;
         $transactionId = 'c12e224e-806f-11ea-9de3-33451a6f6d70';
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
@@ -423,7 +433,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->citPaymentRequest;
 
-        $citPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $citPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($citPaymentRequest->validate());
 
@@ -448,7 +458,7 @@ class ClientTest extends PaymentRequestTestCase
         $client = $this->client;
         $paymentRequest = $this->mitPaymentRequest;
 
-        $mitPaymentRequest = $paymentRequest->setToken('c7441208-c2a1-4a10-8eb6-458bd8eaa64f');
+        $mitPaymentRequest = $paymentRequest->setToken('798b445a-2216-46b7-ad1a-000f40ced6e8');
 
         $this->assertTrue($mitPaymentRequest->validate());
 
