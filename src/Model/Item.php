@@ -397,6 +397,9 @@ class Item implements \JsonSerializable, ItemInterface
         if (empty($props['productCode'])) {
             throw new ValidationException('productCode is empty');
         }
+        if ($props['description'] !== null && mb_strlen($props['description']) > 1000) {
+            throw new ValidationException('description does not meet maximum length of 1000');
+        }
 
         return true;
     }
