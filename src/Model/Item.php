@@ -414,6 +414,10 @@ class Item implements \JsonSerializable, ItemInterface
             throw new ValidationException('merchant is empty');
         }
 
+        if ($props['unitPrice'] < 0) {
+            throw new ValidationException('Shop-in-shop item unitPrice can\'t be a negative number');
+        }
+
         return true;
     }
 }
