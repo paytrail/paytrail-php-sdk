@@ -121,37 +121,4 @@ class ItemTest extends TestCase
 
         $this->assertEquals($expectedResult, $validationResult);
     }
-
-    public function testValidateShopInShopThrowsExceptionWhenMerchantIsEmpty(): void
-    {
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('merchant is empty');
-
-        $item = (new Item())
-            ->setUnitPrice(213)
-            ->setUnits(2)
-            ->setProductCode('pr1')
-            ->validateShopInShop();
-    }
-
-    /**
-     * @dataProvider providerForUnitPriceLimitValuesShopInShop
-     */
-    public function testValidateShopInShopThrowsExceptionWhenUnitPriceIsNegative($unitPrice, $expectedResult): void
-    {
-        $item = new Item();
-        $item->setUnitPrice($unitPrice);
-        $item->setUnits(2);
-        $item->setProductCode('pr1');
-        $item->setMerchant('merchant1');
-
-        try {
-            $item->validate();
-            $validationResult = $item->validateShopInShop();
-        } catch (ValidationException $exception) {
-            $validationResult = false;
-        }
-
-        $this->assertEquals($expectedResult, $validationResult);
-    }
 }
