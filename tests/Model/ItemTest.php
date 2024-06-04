@@ -83,9 +83,19 @@ class ItemTest extends TestCase
     public static function providerForUnitPriceLimitValues()
     {
         return [
-            'Negative amount' => [-1, false],
-            'Zero amount' => [0, true],
-            'Maximum amount' => [99999999, true],
+            'Negative amount'     => [-1, true],
+            'Zero amount'         => [0, true],
+            'Maximum amount'      => [99999999, true],
+            'Over maximum amount' => [100000000, false]
+        ];
+    }
+
+    public static function providerForUnitPriceLimitValuesShopInShop()
+    {
+        return [
+            'Negative amount'     => [-1, false],
+            'Zero amount'         => [0, true],
+            'Maximum amount'      => [99999999, true],
             'Over maximum amount' => [100000000, false]
         ];
     }
@@ -110,5 +120,40 @@ class ItemTest extends TestCase
         }
 
         $this->assertEquals($expectedResult, $validationResult);
+    }
+
+    public function testValidateShopInShopThrowsExceptionWhenMerchantIsEmpty(): void
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('merchant is empty');
+
+        $item = (new Item())
+            ->setUnitPrice(213)
+            ->setUnits(2)
+            ->setProductCode('pr1')
+            ->validateShopInShop();
+    }
+
+    /**
+     * @dataProvider providerForUnitPriceLimitValuesShopInShop
+     */
+    public function testValidateShopInShopThrowsExceptionWhenUnitPriceIsNegative($unitPrice, $expectedResult): void
+    {
+        $item = new Item();
+        $item->setUnitPrice($unitPrice);
+        $item->setUnits(2);
+        $item->setProductCode('pr1');
+        $item->setMerchant('merchant1');
+
+
+        try {
+            $item->validate();
+            $validationResult = $item->validateShopInShop();
+        } catch (ValidationException $exception) {
+            $validationResult = false;
+        }
+
+        $this->assertEquals($expectedResult, $validationResult);
+
     }
 }
