@@ -14,8 +14,6 @@ use PHPUnit\Framework\TestCase;
 
 class ShopInShopPaymentRequestTest extends TestCase
 {
-
-
     public function testShopInShopPaymentRequest()
     {
         $r = new ShopInShopPaymentRequest();
@@ -140,7 +138,7 @@ class ShopInShopPaymentRequestTest extends TestCase
                 'amount'         => 10,
                 'expectedResult' => false
             ],
-            'positive validation'              =>  [
+            'positive validation'              => [
                 'itemsPrice'     => [20, 10],
                 'amount'         => 30,
                 'expectedResult' => true
@@ -160,7 +158,7 @@ class ShopInShopPaymentRequestTest extends TestCase
         $r->setCurrency('EUR');
         $r->setLanguage('EN');
 
-        $i = 0;
+        $i     = 0;
         $items = [];
         foreach ($itemsPrice as $price) {
             $com = new Commission();
@@ -202,10 +200,8 @@ class ShopInShopPaymentRequestTest extends TestCase
         $r->setRedirectUrls($redirect);
 
         try {
-
             $result = $r->validate();
         } catch (ValidationException $e) {
-            echo $e->getMessage();
             $result = false;
         }
 
