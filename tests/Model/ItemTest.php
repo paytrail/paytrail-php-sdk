@@ -145,7 +145,6 @@ class ItemTest extends TestCase
         $item->setProductCode('pr1');
         $item->setMerchant('merchant1');
 
-
         try {
             $item->validate();
             $validationResult = $item->validateShopInShop();
@@ -154,6 +153,5 @@ class ItemTest extends TestCase
         }
 
         $this->assertEquals($expectedResult, $validationResult);
-
     }
 }
