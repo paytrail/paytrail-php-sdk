@@ -379,9 +379,6 @@ class Item implements \JsonSerializable, ItemInterface
         if ($props['unitPrice'] === null) {
             throw new ValidationException('Item unitPrice is empty');
         }
-        if ($props['unitPrice'] < 0) {
-            throw new ValidationException('Items unitPrice can\'t be a negative number');
-        }
         if ($props['unitPrice'] > 99999999) {
             throw new ValidationException('Items unitPrice can\'t be over 99999999');
         }
@@ -415,6 +412,10 @@ class Item implements \JsonSerializable, ItemInterface
 
         if (empty($props['merchant'])) {
             throw new ValidationException('merchant is empty');
+        }
+
+        if ($props['unitPrice'] < 0) {
+            throw new ValidationException('Shop-in-shop item unitPrice can\'t be a negative number');
         }
 
         return true;

@@ -83,9 +83,19 @@ class ItemTest extends TestCase
     public static function providerForUnitPriceLimitValues()
     {
         return [
-            'Negative amount' => [-1, false],
-            'Zero amount' => [0, true],
-            'Maximum amount' => [99999999, true],
+            'Negative amount'     => [-1, true],
+            'Zero amount'         => [0, true],
+            'Maximum amount'      => [99999999, true],
+            'Over maximum amount' => [100000000, false]
+        ];
+    }
+
+    public static function providerForUnitPriceLimitValuesShopInShop()
+    {
+        return [
+            'Negative amount'     => [-1, false],
+            'Zero amount'         => [0, true],
+            'Maximum amount'      => [99999999, true],
             'Over maximum amount' => [100000000, false]
         ];
     }
