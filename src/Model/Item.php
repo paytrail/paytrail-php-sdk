@@ -43,7 +43,7 @@ class Item implements \JsonSerializable, ItemInterface
     /**
      * The VAT percentage.
      *
-     * @var integer
+     * @var float
      */
     protected $vatPercentage;
 
@@ -159,9 +159,9 @@ class Item implements \JsonSerializable, ItemInterface
     /**
      * Get the VAT percentage.
      *
-     * @return int
+     * @return float
      */
-    public function getVatPercentage(): ?int
+    public function getVatPercentage(): ?float
     {
         return $this->vatPercentage;
     }
@@ -169,10 +169,10 @@ class Item implements \JsonSerializable, ItemInterface
     /**
      * Set the VAT percentage.
      *
-     * @param int $vatPercentage
+     * @param float $vatPercentage
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setVatPercentage(?int $vatPercentage): ItemInterface
+    public function setVatPercentage(?float $vatPercentage): ItemInterface
     {
         $this->vatPercentage = $vatPercentage;
 
