@@ -129,4 +129,82 @@ class ShopInShopPaymentRequestTest extends TestCase
 
         $r->validate();
     }
+
+    public static function shopInShopPaymentRequestItems()
+    {
+        return [
+            'negative item failing validation' => [
+                'itemsPrice'     => [20, -10],
+                'amount'         => 10,
+                'expectedResult' => false
+            ],
+            'positive validation'              => [
+                'itemsPrice'     => [20, 10],
+                'amount'         => 30,
+                'expectedResult' => true
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider shopInShopPaymentRequestItems
+     */
+    public function testNegativeRowsValidation($itemsPrice, $amount, $expectedResult)
+    {
+        $r = new ShopInShopPaymentRequest();
+        $r->setAmount($amount);
+        $r->setStamp('RequestStamp');
+        $r->setReference('RequestReference123');
+        $r->setCurrency('EUR');
+        $r->setLanguage('EN');
+
+        $i     = 0;
+        $items = [];
+        foreach ($itemsPrice as $price) {
+            $com = new Commission();
+            $com->setMerchant('123456');
+            $com->setAmount(2);
+
+            $item = new Item();
+            $item->setStamp('someStamp' . $i)
+                ->setDeliveryDate('12.12.2020')
+                ->setProductCode('pr1' . $i)
+                ->setVatPercentage(25)
+                ->setUnitPrice($price)
+                ->setUnits(1)
+                ->setMerchant('222222')
+                ->setReference('1-2')
+                ->setCommission($com);
+
+            $items[] = $item;
+            $i++;
+        }
+
+        $r->setItems($items);
+
+        $c = new Customer();
+        $c->setEmail('customer@email.com');
+
+        $r->setCustomer($c);
+
+        $cb = new CallbackUrl();
+        $cb->setCancel('https://somedomain.com/cancel')
+            ->setSuccess('https://somedomain.com/success');
+
+        $r->setCallbackUrls($cb);
+
+        $redirect = new CallbackUrl();
+        $redirect->setSuccess('https://someother.com/success')
+            ->setCancel('https://someother.com/cancel');
+
+        $r->setRedirectUrls($redirect);
+
+        try {
+            $result = $r->validate();
+        } catch (ValidationException $e) {
+            $result = false;
+        }
+
+        $this->assertEquals($expectedResult, $result);
+    }
 }

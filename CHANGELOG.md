@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.7.2] - 2024-06-06
+### Changed
+- Updated validation to support negative item rows
+
+## [2.7.1] - 2024-04-16
+### Added
+- Run tests on PHP 8.3
+### Fixed
+- Fix access to possibly undefined property
+- Validate too long item descriptions on client side
+
+## [2.7.0] - 2024-03-21
+### Added
+- Added customProviders to createPayment() response
+
 ## [2.6.0] - 2023-10-12
 ### Added
 - Add pay and add card endpoint

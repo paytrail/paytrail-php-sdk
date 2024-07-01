@@ -219,7 +219,8 @@ class Client extends PaytrailClient
                     ->setTerms($decoded->terms ?? null)
                     ->setGroups($decoded->groups ?? [])
                     ->setReference($decoded->reference ?? null)
-                    ->setProviders($decoded->providers ?? []);
+                    ->setProviders($decoded->providers ?? [])
+                    ->setCustomProviders((array)($decoded->customProviders ?? []));
             }
         );
 
@@ -234,6 +235,7 @@ class Client extends PaytrailClient
       * @return PaymentResponse
       * @throws HmacException        Thrown if HMAC calculation fails for responses.
       * @throws ValidationException  Thrown if payment validation fails.
+      * @throws ClientException      Thrown if API call fails.
       */
     public function createShopInShopPayment(ShopInShopPaymentRequest $payment): PaymentResponse
     {
