@@ -11,7 +11,7 @@ class ReportBySettlementRequest implements \JsonSerializable
     protected $requestType;
     protected $callbackUrl;
     protected $reportFields;
-    protected $subMerchant;
+    protected $submerchant;
 
     public function validate()
     {
@@ -74,12 +74,12 @@ class ReportBySettlementRequest implements \JsonSerializable
     /**
      * Set submerchant.
      *
-     * @param int $subMerchant
+     * @param int $submerchant
      * @return $this
      */
-    public function setSubMerchant(int $subMerchant): self
+    public function setSubMerchant(int $submerchant): self
     {
-        $this->subMerchant = $subMerchant;
+        $this->submerchant = $submerchant;
         return $this;
     }
 
