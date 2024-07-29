@@ -47,7 +47,7 @@ class ClientTest extends PaymentRequestTestCase
 
         $this->item = (new Item())
             ->setProductCode('pr1')
-            ->setVatPercentage(24)
+            ->setVatPercentage(25.5)
             ->setReference('itemReference123')
             ->setStamp('itemStamp-1' . rand(1, 999999))
             ->setUnits(1)
@@ -57,7 +57,7 @@ class ClientTest extends PaymentRequestTestCase
         $this->item2 = (new Item())
             ->setDeliveryDate('2020-12-12')
             ->setProductCode('pr2')
-            ->setVatPercentage(24)
+            ->setVatPercentage(25.5)
             ->setReference('itemReference123')
             ->setStamp('itemStamp-2' . rand(1, 999999))
             ->setUnits(2)
