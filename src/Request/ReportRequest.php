@@ -22,7 +22,7 @@ class ReportRequest implements \JsonSerializable
     private $endDate;
     private $limit;
     private $reportFields;
-    private $subMerchant;
+    private $submerchant;
 
     public function validate()
     {
@@ -164,12 +164,12 @@ class ReportRequest implements \JsonSerializable
     /**
      * Set submerchant.
      *
-     * @param int $subMerchant
+     * @param int $submerchant
      * @return $this
      */
-    public function setSubMerchant(int $subMerchant): self
+    public function setSubMerchant(int $submerchant): self
     {
-        $this->subMerchant = $subMerchant;
+        $this->submerchant = $submerchant;
         return $this;
     }
 

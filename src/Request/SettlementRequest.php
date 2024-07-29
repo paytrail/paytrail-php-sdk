@@ -15,7 +15,7 @@ class SettlementRequest implements \JsonSerializable
     protected $endDate;
     protected $reference;
     protected $limit;
-    protected $subMerchant;
+    protected $submerchant;
 
     public function validate()
     {
@@ -102,12 +102,12 @@ class SettlementRequest implements \JsonSerializable
     /**
      * Set submerchant.
      *
-     * @param int $subMerchant
+     * @param int $submerchant
      * @return $this
      */
-    public function setSubMerchant(int $subMerchant): self
+    public function setSubMerchant(int $submerchant): self
     {
-        $this->subMerchant = $subMerchant;
+        $this->submerchant = $submerchant;
         return $this;
     }
 
