@@ -59,17 +59,17 @@ interface ItemInterface
     /**
      * Get the VAT percentage.
      *
-     * @return int
+     * @return float
      */
-    public function getVatPercentage(): ?int;
+    public function getVatPercentage(): ?float;
 
     /**
      * Set the VAT percentage.
      *
-     * @param int|null $vatPercentage
+     * @param float|null $vatPercentage
      * @return ItemInterface Return self to enable chaining.
      */
-    public function setVatPercentage(?int $vatPercentage): ItemInterface;
+    public function setVatPercentage(?float $vatPercentage): ItemInterface;
 
     /**
      * Get the product code.
