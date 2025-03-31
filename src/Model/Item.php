@@ -388,6 +388,9 @@ class Item implements \JsonSerializable, ItemInterface
         if ($props['units'] < 0) {
             throw new ValidationException('Items units can\'t be a negative number');
         }
+        if ($props['vatPercentage'] === null) {
+            throw new ValidationException('Item vatPercentage is empty');
+        }
         if ($props['vatPercentage'] < 0) {
             throw new ValidationException('Items vatPercentage can\'t be a negative number');
         }
