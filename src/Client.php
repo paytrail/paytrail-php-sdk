@@ -85,7 +85,7 @@ class Client extends PaytrailClient
      * @throws ClientException
      * @throws RequestException    A Guzzle HTTP request exception is thrown for erroneous requests.
      */
-    public function getPaymentProviders(int $amount = null): array
+    public function getPaymentProviders(?int $amount = null): array
     {
         $uri = '/merchants/payment-providers';
 
@@ -134,7 +134,7 @@ class Client extends PaytrailClient
      * @throws ClientException
      * @throws RequestException A Guzzle HTTP request exception is thrown for erroneous requests.
      */
-    public function getGroupedPaymentProviders(int $amount = null, string $locale = 'FI', array $groups = []): array
+    public function getGroupedPaymentProviders(?int $amount = null, string $locale = 'FI', array $groups = []): array
     {
         $uri = '/merchants/grouped-payment-providers';
 

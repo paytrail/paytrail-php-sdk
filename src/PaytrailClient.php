@@ -73,11 +73,11 @@ abstract class PaytrailClient
      */
     protected function post(
         string $uri,
-        \JsonSerializable $data = null,
-        callable $callback = null,
-        string $transactionId = null,
+        ?\JsonSerializable $data = null,
+        ?callable $callback = null,
+        ?string $transactionId = null,
         bool $signatureInHeader = true,
-        string $paytrailTokenizationId = null
+        ?string $paytrailTokenizationId = null
     ) {
         $body = json_encode($data, JSON_UNESCAPED_SLASHES);
 
@@ -133,7 +133,7 @@ abstract class PaytrailClient
      * @return mixed
      * @throws HmacException
      */
-    protected function get(string $uri, callable $callback = null, string $transactionId = null)
+    protected function get(string $uri, ?callable $callback = null, ?string $transactionId = null)
     {
         $headers = $this->getHeaders('GET', $transactionId);
         $mac = $this->calculateHmac($headers);
@@ -170,8 +170,8 @@ abstract class PaytrailClient
      */
     protected function getHeaders(
         string $method,
-        string $transactionId = null,
-        string $checkoutTokenizationId = null
+        ?string $transactionId = null,
+        ?string $checkoutTokenizationId = null
     ): array {
         $datetime = new \DateTime();
 

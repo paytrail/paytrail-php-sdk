@@ -57,6 +57,17 @@ class ItemTest extends TestCase
             ->validate();
     }
 
+    public function testItemWithoutVatThrowsError()
+    {
+        $this->expectException(ValidationException::class);
+        (new Item())->setUnitPrice(1)
+            ->setUnits(2)
+            ->setStamp('thisIsStamp')
+            ->setProductCode('productCode123')
+            ->setDescription('description')
+            ->validate();
+    }
+
     public function testItemWIthNegativeVatThrowsError()
     {
         $this->expectException(ValidationException::class);
