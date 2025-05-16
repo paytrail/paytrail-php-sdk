@@ -11,6 +11,7 @@ namespace Paytrail\SDK\Response;
 use Paytrail\SDK\Interfaces\ResponseInterface;
 use Paytrail\SDK\Model\Token\Card;
 use Paytrail\SDK\Model\Token\Customer;
+use Paytrail\SDK\Model\Token\NetworkToken;
 use Paytrail\SDK\Util\ObjectPropertyConverter;
 
 /**
@@ -30,6 +31,9 @@ class GetTokenResponse implements ResponseInterface, \JsonSerializable
 
     /** @var Customer $customer */
     protected $customer;
+
+    /** @var NetworkToken $networkToken */
+    protected $networkToken;
 
     /**
      * @param string $token
@@ -89,6 +93,25 @@ class GetTokenResponse implements ResponseInterface, \JsonSerializable
     }
 
     /**
+     * @param NetworkToken|null $networkToken
+     * @return GetTokenResponse
+     */
+    public function setNetworkToken(?NetworkToken $networkToken): GetTokenResponse
+    {
+        $this->networkToken = $networkToken;
+
+        return $this;
+    }
+
+    /**
+     * @return NetworkToken
+     */
+    public function getNetworkToken(): ?NetworkToken
+    {
+        return $this->networkToken;
+    }
+
+    /**
      * Implements the json serialize method and
      * return all object variables including
      * private/protected properties.
@@ -112,6 +135,11 @@ class GetTokenResponse implements ResponseInterface, \JsonSerializable
         $customer->loadFromStdClass($response->customer);
         $this->setCustomer($customer);
 
+        if (isset($response->networkToken)) {
+            $networkToken = new NetworkToken();
+            $networkToken->loadFromStdClass($response->networkToken);
+            $this->setNetworkToken($networkToken);
+        }
         return $this;
     }
 }
