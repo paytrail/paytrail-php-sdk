@@ -135,9 +135,9 @@ class GetTokenResponse implements ResponseInterface, \JsonSerializable
         $customer->loadFromStdClass($response->customer);
         $this->setCustomer($customer);
 
-        if (isset($response->networkToken)) {
+        if (isset($response->network_token)) {
             $networkToken = new NetworkToken();
-            $networkToken->loadFromStdClass($response->networkToken);
+            $networkToken->loadFromStdClass($response->network_token);
             $this->setNetworkToken($networkToken);
         }
         return $this;
