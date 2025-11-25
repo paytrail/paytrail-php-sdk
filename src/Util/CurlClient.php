@@ -48,7 +48,9 @@ class CurlClient
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $headers = rtrim(substr($response, 0, $header_size));
         $body = substr($response, $header_size);
-        curl_close($curl);
+        if (PHP_VERSION_ID < 80000) {
+            curl_close($curl);
+        }
 
         if ($statusCode == 400) {
             throw new ClientException($body, $statusCode);
