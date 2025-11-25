@@ -103,7 +103,9 @@ class AbstractPaymentRequestTest extends MockeryTestCase
         string $value
     ): void {
         $attribute = new ReflectionProperty($paymentRequest, $propertyName);
-        $attribute->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $attribute->setAccessible(true);
+        }
         $attribute->setValue($paymentRequest, $value);
     }
 
