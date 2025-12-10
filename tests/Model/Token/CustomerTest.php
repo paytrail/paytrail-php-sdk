@@ -69,7 +69,9 @@ class CustomerTest extends TestCase
     {
         $reflector = new \ReflectionClass($class);
         $property = $reflector->getProperty($propertyName);
-        $property->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $property->setAccessible(true);
+        }
         $property->setValue($class, $value);
     }
 }
