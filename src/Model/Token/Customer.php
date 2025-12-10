@@ -41,17 +41,17 @@ class Customer implements \JsonSerializable
         return true;
     }
 
-    /** @var string $networkAddress */
+    /** @var string|null $networkAddress */
     protected $networkAddress;
 
-    /** @var string $countryCode */
+    /** @var string|null $countryCode */
     protected $countryCode;
 
     /**
-     * @param string $networkAddress
+     * @param string|null $networkAddress
      * @return Customer
      */
-    public function setNetworkAddress(string $networkAddress): Customer
+    public function setNetworkAddress(?string $networkAddress): Customer
     {
         $this->networkAddress = $networkAddress;
 
@@ -59,18 +59,18 @@ class Customer implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNetworkAddress(): string
+    public function getNetworkAddress(): ?string
     {
         return $this->networkAddress;
     }
 
     /**
-     * @param string $countryCode
+     * @param string|null $countryCode
      * @return Customer
      */
-    public function setCountryCode(string $countryCode): Customer
+    public function setCountryCode(?string $countryCode): Customer
     {
         $this->countryCode = $countryCode;
 
@@ -78,9 +78,9 @@ class Customer implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCountryCode(): string
+    public function getCountryCode(): ?string
     {
         return $this->countryCode;
     }
@@ -103,8 +103,13 @@ class Customer implements \JsonSerializable
      */
     public function loadFromStdClass(\stdClass $customer): Customer
     {
-        $this->setNetworkAddress($customer->network_address);
-        $this->setCountryCode($customer->country_code);
+        if (isset($customer->network_address)) {
+            $this->setNetworkAddress($customer->network_address);
+        }
+
+        if (isset($customer->country_code)) {
+            $this->setCountryCode($customer->country_code);
+        }
 
         return $this;
     }
