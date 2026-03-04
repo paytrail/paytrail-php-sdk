@@ -33,6 +33,7 @@ use Paytrail\SDK\Response\ReportRequestResponse;
 use Paytrail\SDK\Response\RevertPaymentAuthHoldResponse;
 use Paytrail\SDK\Response\SettlementResponse;
 use Paytrail\SDK\Response\InvoiceActivationResponse;
+use Paytrail\SDK\Response\InvoiceCancellationResponse;
 use Paytrail\SDK\Util\Signature;
 use Paytrail\SDK\Exception\HmacException;
 use Paytrail\SDK\Exception\ValidationException;
@@ -788,7 +789,7 @@ class Client extends PaytrailClient
      * @return InvoiceActivationResponse
      * @throws HmacException
      */
-    public function activateInvoice(string $transactionId)
+    public function activateInvoice(string $transactionId): InvoiceActivationResponse
     {
         $uri = "/payments/{$transactionId}/activate-invoice";
 
@@ -807,6 +808,27 @@ class Client extends PaytrailClient
             },
             $transactionId
         );
+    }
+
+    /**
+     * Cancel invoice created with manualInvoiceActivation set to true
+     *
+     * @param string $transactionId
+     * @return InvoiceCancellationResponse
+     * @throws HmacException
+     */
+    public function cancelInvoice(string $transactionId): InvoiceCancellationResponse
+    {
+        $uri = "/payments/{$transactionId}/cancel-order";
+
+        $response = $this->post($uri, null, null, $transactionId);
+
+        $decoded = json_decode((string) $response->getBody());
+
+        return (new InvoiceCancellationResponse())
+            ->setStatus($decoded->status)
+            ->setMessage($decoded->message)
+            ->setHttpStatusCode($response->getStatusCode());
     }
 
     /**
