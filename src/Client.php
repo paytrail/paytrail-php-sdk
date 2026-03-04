@@ -783,7 +783,7 @@ class Client extends PaytrailClient
     }
 
     /**
-     * Activate invoice created with manualInvoiceActivation set to true
+     * Activate invoice created with manualInvoiceActivation set to true. Supported payment methods: Walley, Klarna
      *
      * @param string $transactionId
      * @return InvoiceActivationResponse
@@ -811,7 +811,7 @@ class Client extends PaytrailClient
     }
 
     /**
-     * Cancel invoice created with manualInvoiceActivation set to true
+     * Cancel invoice created with manualInvoiceActivation set to true. Supported payment methods: Klarna
      *
      * @param string $transactionId
      * @return InvoiceCancellationResponse

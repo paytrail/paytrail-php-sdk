@@ -13,8 +13,6 @@ use Paytrail\SDK\Interfaces\ResponseInterface;
 /**
  * Class InvoiceCancellationResponse
  *
- * Currently only supported for Klarna payment method
- * 
  * Possible HTTP status codes returned by Paytrail API:
  *   201 - Invoice cancelled
  *   202 - Invoice cancellation requested, status of the payment will be updated asynchronously
