@@ -109,6 +109,8 @@ List of `Client::class` methods
 | createMitPaymentAuthorizationHold() | Create MiT authorization hold                        |
 | createMitPaymentCommit()            | Commit MiT authorization hold                        |
 | revertPaymentAuthorizationHold()    | Revert existing Mit or CiT authorization hold        |
+| activateInvoice()                   | Activate pending invoice (Walley / Klarna)           |
+| cancelInvoice()                     | Cancel pending invoice (Currently only Klarna)       |
 | getSettlements() [Deprecated]       | Deprecated Request settlements                       |
 | requestSettlements()                | Request settlements                                  |
 | requestPaymentReport()              | Request payment report                               |

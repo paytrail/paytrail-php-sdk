@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class RefundResponse
+ * Class InvoiceActivationResponse
  */
 
 declare(strict_types=1);
@@ -11,7 +11,7 @@ namespace Paytrail\SDK\Response;
 use Paytrail\SDK\Interfaces\ResponseInterface;
 
 /**
- * Class RefundResponse
+ * Class InvoiceActivationResponse
  *
  * @package Paytrail\SDK\Response
  */
