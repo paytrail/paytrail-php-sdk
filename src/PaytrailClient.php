@@ -176,7 +176,7 @@ abstract class PaytrailClient
         $datetime = new \DateTime();
 
         $headers = [
-            'checkout-account' => $this->merchantId,
+            'checkout-account' => (string)$this->merchantId,
             'checkout-algorithm' => 'sha256',
             'checkout-method' => strtoupper($method),
             'checkout-nonce' => uniqid('', true),
