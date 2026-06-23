@@ -202,7 +202,7 @@ class NetworkToken implements \JsonSerializable
         $this->setPartialPan($networkToken->partial_pan);
         $this->setExpireYear($networkToken->expire_year);
         $this->setExpireMonth($networkToken->expire_month);
-        $this->setImageUrl($networkToken->image_url);
+        $this->setImageUrl($networkToken->image_url ?? null);
         $this->setPaymentAccountReference($networkToken->payment_account_reference ?? null);
 
 
