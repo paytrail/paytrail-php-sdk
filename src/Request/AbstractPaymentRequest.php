@@ -14,6 +14,7 @@ use Paytrail\SDK\Interfaces\ItemInterface;
 use Paytrail\SDK\Interfaces\PaymentRequestInterface;
 use Paytrail\SDK\Model\CallbackUrl;
 use Paytrail\SDK\Model\Item;
+use Paytrail\SDK\Model\ProviderDetails;
 use Paytrail\SDK\Util\JsonSerializable;
 
 /**
@@ -110,6 +111,9 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
         }
         if (! empty($this->invoicingAddress)) {
             $this->invoicingAddress->validate();
+        }
+        if (! empty($this->providerDetails)) {
+            $this->providerDetails->validate();
         }
 
         return true;
@@ -214,6 +218,13 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
      * @var boolean
      */
     protected $manualInvoiceActivation;
+
+    /**
+     * Payment method specific parameters.
+     *
+     * @var ProviderDetails
+     */
+    protected $providerDetails;
 
     /**
      * Get the stamp.
@@ -537,5 +548,24 @@ abstract class AbstractPaymentRequest implements \JsonSerializable, PaymentReque
     public function getManualInvoiceActivation(): bool
     {
         return $this->manualInvoiceActivation;
+    }
+
+    /**
+     * @return ProviderDetails|null
+     */
+    public function getProviderDetails(): ?ProviderDetails
+    {
+        return $this->providerDetails;
+    }
+
+    /**
+     * @param ProviderDetails|null $providerDetails
+     * @return PaymentRequestInterface Return self to enable chaining.
+     */
+    public function setProviderDetails(?ProviderDetails $providerDetails): PaymentRequestInterface
+    {
+        $this->providerDetails = $providerDetails;
+
+        return $this;
     }
 }
