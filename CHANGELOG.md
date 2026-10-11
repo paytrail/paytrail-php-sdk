@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+### Fixed
+- Compatibility with Guzzle 8: stop calling removed `ClientException::hasResponse()` when reading error response bodies
+
+### Changed
+- Allow Guzzle 8 in `require-dev`
+
 ## [2.8.1] - 2026-07-01
 ### Changed
 - Casted checkout-account header to string for Guzzle 7.11 deprecation
