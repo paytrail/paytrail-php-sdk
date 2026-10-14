@@ -35,6 +35,13 @@ class KlarnaPaymentResponse implements ResponseInterface
     protected $stepUpUrl;
 
     /**
+     * Error message returned with a step-up, e.g. "Step-up required".
+     *
+     * @var string
+     */
+    protected $error;
+
+    /**
      * @param string|null $transactionId
      * @return KlarnaPaymentResponse Return self to enable chaining.
      */
@@ -70,5 +77,24 @@ class KlarnaPaymentResponse implements ResponseInterface
     public function getStepUpUrl(): ?string
     {
         return $this->stepUpUrl;
+    }
+
+    /**
+     * @param string|null $error
+     * @return KlarnaPaymentResponse Return self to enable chaining.
+     */
+    public function setError(?string $error): KlarnaPaymentResponse
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getError(): ?string
+    {
+        return $this->error;
     }
 }

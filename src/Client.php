@@ -998,7 +998,8 @@ class Client extends PaytrailClient
                 $decoded = json_decode($e->getResponseBody());
                 return (new KlarnaPaymentResponse())
                     ->setTransactionId($decoded->transactionId ?? null)
-                    ->setStepUpUrl($decoded->stepUpUrl ?? null);
+                    ->setStepUpUrl($decoded->stepUpUrl ?? null)
+                    ->setError($decoded->error ?? null);
             }
             throw $e;
         }
