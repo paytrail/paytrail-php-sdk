@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Paytrail\SDK;
 
 use Paytrail\SDK\Model\Provider;
-use Paytrail\SDK\Request\AbstractPaymentRequest;
 use Paytrail\SDK\Request\AddCardFormRequest;
 use Paytrail\SDK\Request\CitPaymentRequest;
 use Paytrail\SDK\Request\GetTokenRequest;
@@ -921,23 +920,17 @@ class Client extends PaytrailClient
     }
 
     /**
-     * Commit (capture) a Klarna authorization hold. Body schema is the same as the authorization hold.
+     * Commit (capture) a Klarna authorization hold.
      *
-     * @param AbstractPaymentRequest $payment
      * @param string $transactionId
      * @return KlarnaPaymentResponse
      * @throws HmacException
-     * @throws ValidationException
      */
-    public function createKlarnaPaymentCommit(
-        AbstractPaymentRequest $payment,
-        string $transactionId
-    ): KlarnaPaymentResponse {
-        $this->validateRequestItem($payment);
-
+    public function createKlarnaPaymentCommit(string $transactionId): KlarnaPaymentResponse
+    {
         return $this->post(
             '/payments/' . $transactionId . '/klarna/commit',
-            $payment,
+            null,
             function ($decoded) {
                 return (new KlarnaPaymentResponse())
                     ->setTransactionId($decoded->transactionId ?? null);
