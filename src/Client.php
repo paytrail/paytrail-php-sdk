@@ -12,6 +12,7 @@ use Paytrail\SDK\Model\Provider;
 use Paytrail\SDK\Request\AddCardFormRequest;
 use Paytrail\SDK\Request\CitPaymentRequest;
 use Paytrail\SDK\Request\GetTokenRequest;
+use Paytrail\SDK\Request\KlarnaPaymentRequest;
 use Paytrail\SDK\Request\MitPaymentRequest;
 use Paytrail\SDK\Request\PaymentRequest;
 use Paytrail\SDK\Request\ReportBySettlementRequest;
@@ -24,6 +25,7 @@ use Paytrail\SDK\Request\EmailRefundRequest;
 use Paytrail\SDK\Request\RevertPaymentAuthHoldRequest;
 use Paytrail\SDK\Response\CitPaymentResponse;
 use Paytrail\SDK\Response\GetTokenResponse;
+use Paytrail\SDK\Response\KlarnaPaymentResponse;
 use Paytrail\SDK\Response\MitPaymentResponse;
 use Paytrail\SDK\Response\PaymentResponse;
 use Paytrail\SDK\Response\PaymentStatusResponse;
@@ -888,6 +890,113 @@ class Client extends PaytrailClient
             } else {
                 throw $e;
             }
+        }
+    }
+
+    /**
+     * Create a Klarna payment with auto-capture.
+     *
+     * @param KlarnaPaymentRequest $klarnaPayment
+     * @return KlarnaPaymentResponse stepUpUrl is set if the customer must be redirected.
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    public function createKlarnaPaymentCharge(KlarnaPaymentRequest $klarnaPayment): KlarnaPaymentResponse
+    {
+        return $this->createKlarnaPayment($klarnaPayment, '/payments/klarna/charge');
+    }
+
+    /**
+     * Create a Klarna authorization hold (manual capture).
+     *
+     * @param KlarnaPaymentRequest $klarnaPayment
+     * @return KlarnaPaymentResponse stepUpUrl is set if the customer must be redirected.
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    public function createKlarnaPaymentAuthorizationHold(KlarnaPaymentRequest $klarnaPayment): KlarnaPaymentResponse
+    {
+        return $this->createKlarnaPayment($klarnaPayment, '/payments/klarna/authorization-hold');
+    }
+
+    /**
+     * Commit (capture) a Klarna authorization hold.
+     *
+     * @param string $transactionId
+     * @return KlarnaPaymentResponse
+     * @throws HmacException
+     */
+    public function createKlarnaPaymentCommit(string $transactionId): KlarnaPaymentResponse
+    {
+        return $this->post(
+            '/payments/' . $transactionId . '/klarna/commit',
+            null,
+            function ($decoded) {
+                return (new KlarnaPaymentResponse())
+                    ->setTransactionId($decoded->transactionId ?? null);
+            },
+            $transactionId
+        );
+    }
+
+    /**
+     * Revert (void) a Klarna authorization hold.
+     *
+     * @param RevertPaymentAuthHoldRequest $revertPaymentAuthHoldRequest
+     * @return RevertPaymentAuthHoldResponse
+     * @throws HmacException
+     * @throws ValidationException
+     */
+    public function revertKlarnaPaymentAuthorizationHold(
+        RevertPaymentAuthHoldRequest $revertPaymentAuthHoldRequest
+    ): RevertPaymentAuthHoldResponse {
+        $this->validateRequestItem($revertPaymentAuthHoldRequest);
+        $transactionId = $revertPaymentAuthHoldRequest->getTransactionId();
+
+        return $this->post(
+            '/payments/' . $transactionId . '/klarna/revert',
+            $revertPaymentAuthHoldRequest,
+            function ($decoded) {
+                return (new RevertPaymentAuthHoldResponse())
+                    ->setTransactionId($decoded->transactionId ?? null);
+            },
+            $transactionId
+        );
+    }
+
+    /**
+     * @param KlarnaPaymentRequest $klarnaPayment
+     * @param string $uri
+     * @return KlarnaPaymentResponse
+     * @throws HmacException
+     * @throws ClientException
+     * @throws ValidationException
+     */
+    private function createKlarnaPayment(KlarnaPaymentRequest $klarnaPayment, string $uri): KlarnaPaymentResponse
+    {
+        $this->validateRequestItem($klarnaPayment);
+
+        try {
+            return $this->post(
+                $uri,
+                $klarnaPayment,
+                function ($decoded) {
+                    return (new KlarnaPaymentResponse())
+                        ->setTransactionId($decoded->transactionId ?? null);
+                }
+            );
+        } catch (ClientException $e) {
+            // 403 means step-up required: redirect the customer to stepUpUrl.
+            if ($e->getResponseBody() && $e->getResponseCode() === 403) {
+                $decoded = json_decode($e->getResponseBody());
+                if (!empty($decoded->stepUpUrl)) {
+                    return (new KlarnaPaymentResponse())
+                        ->setTransactionId($decoded->transactionId ?? null)
+                        ->setStepUpUrl($decoded->stepUpUrl)
+                        ->setError($decoded->error ?? null);
+                }
+            }
+            throw $e;
         }
     }
 

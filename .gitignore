@@ -1,3 +1,4 @@
 test-reports/
 composer.lock
 *.cache
+vendor/
