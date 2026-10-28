@@ -989,10 +989,12 @@ class Client extends PaytrailClient
             // 403 means step-up required: redirect the customer to stepUpUrl.
             if ($e->getResponseBody() && $e->getResponseCode() === 403) {
                 $decoded = json_decode($e->getResponseBody());
-                return (new KlarnaPaymentResponse())
-                    ->setTransactionId($decoded->transactionId ?? null)
-                    ->setStepUpUrl($decoded->stepUpUrl ?? null)
-                    ->setError($decoded->error ?? null);
+                if (!empty($decoded->stepUpUrl)) {
+                    return (new KlarnaPaymentResponse())
+                        ->setTransactionId($decoded->transactionId ?? null)
+                        ->setStepUpUrl($decoded->stepUpUrl)
+                        ->setError($decoded->error ?? null);
+                }
             }
             throw $e;
         }
