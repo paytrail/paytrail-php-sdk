@@ -42,8 +42,12 @@ class RequestClient
             return $this->client->request($method, $uri, $options);
         } catch (GuzzleClientException $exception) {
             $clientException = new ClientException($exception->getMessage());
-            if ($exception->hasResponse()) {
-                $responseBody = $exception->getResponse()->getBody()->getContents();
+            // Guzzle 8 removed hasResponse(); ClientException always carries a response.
+            $response = method_exists($exception, 'hasResponse')
+                ? ($exception->hasResponse() ? $exception->getResponse() : null)
+                : $exception->getResponse();
+            if ($response !== null) {
+                $responseBody = $response->getBody()->getContents();
                 $clientException->setResponseBody($responseBody);
                 $clientException->setResponseCode($exception->getCode());
             }

@@ -4,11 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.9.0] - 2026-10-22
+## Unreleased
 ### Added
 - Support for Klarna provider details (networkSessionToken and networkData) in payment requests
 - Support for Klarna charge, authorization hold, commit and revert endpoints
+
+### Fixed
+- Compatibility with Guzzle 8: stop calling removed `ClientException::hasResponse()` when reading error response bodies
+
 ### Changed
+- Allow Guzzle 8 in `require-dev`
 - Added vendor folder to .gitignore
 
 ## [2.8.1] - 2026-07-01
