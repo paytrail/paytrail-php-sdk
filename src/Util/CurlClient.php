@@ -3,6 +3,7 @@
 namespace Paytrail\SDK\Util;
 
 use Paytrail\SDK\Exception\ClientException;
+use Paytrail\SDK\Exception\RequestException;
 use Paytrail\SDK\Response\CurlResponse;
 
 class CurlClient
@@ -24,6 +25,7 @@ class CurlClient
      * @param array $options
      * @return CurlResponse
      * @throws \Paytrail\SDK\Exception\ClientException
+     * @throws \Paytrail\SDK\Exception\RequestException
      */
     public function request(string $method, string $uri, array $options)
     {
@@ -52,8 +54,31 @@ class CurlClient
             curl_close($curl);
         }
 
-        if ($statusCode == 400) {
-            throw new ClientException($body, $statusCode);
+        return $this->createResponse($headers, $body, $statusCode);
+    }
+
+    /**
+     * Turn the raw response into a response object, or throw for error statuses.
+     *
+     * @param string $headers
+     * @param string $body
+     * @param int $statusCode
+     * @return CurlResponse
+     * @throws \Paytrail\SDK\Exception\ClientException
+     * @throws \Paytrail\SDK\Exception\RequestException
+     */
+    protected function createResponse(string $headers, string $body, int $statusCode): CurlResponse
+    {
+        // Same split as Guzzle: 5xx is a failed request, 4xx is a client error.
+        if ($statusCode >= 500) {
+            throw new RequestException($body, $statusCode);
+        }
+
+        if ($statusCode >= 400) {
+            $clientException = new ClientException($body, $statusCode);
+            $clientException->setResponseBody($body);
+            $clientException->setResponseCode($statusCode);
+            throw $clientException;
         }
 
         return new CurlResponse($headers, $body, $statusCode);
