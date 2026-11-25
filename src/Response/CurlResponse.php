@@ -2,8 +2,6 @@
 
 namespace Paytrail\SDK\Response;
 
-use Paytrail\SDK\Exception\ClientException;
-
 class CurlResponse
 {
     private $body;
@@ -15,9 +13,6 @@ class CurlResponse
         $this->body = $body;
         $this->setHeaders($headers);
         $this->statusCode = $statusCode;
-        if ($statusCode == 404) {
-            throw new ClientException($body);
-        }
     }
 
     public function getBody()
