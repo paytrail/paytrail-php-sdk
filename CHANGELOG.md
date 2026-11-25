@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+### Changed
+- `CurlClient` now throws `ClientException` for all 4xx responses and `RequestException` for all 5xx responses, the same as with Guzzle (previously only 400 and 404 threw an exception)
+- Possibly breaking when using `CurlClient`: error responses that previously surfaced as `HmacException` or as an empty response now throw `ClientException` or `RequestException`
+- `ClientException::getCode()` for 404 responses from `CurlClient` is now 404 instead of 0
+
+### Fixed
+- `ClientException` thrown by `CurlClient` now has `getResponseBody()` and `getResponseCode()` set, the same as with Guzzle
+
 ## [2.9.0] - 2026-10-28
 ### Added
 - Support for Klarna provider details (networkSessionToken and networkData) in payment requests
